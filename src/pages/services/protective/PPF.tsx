@@ -61,92 +61,100 @@ const PPF = () => {
         </div>
       </div>
 
-      {/* Configurator + UI Overlay */}
+      {/* Configurator + UI Layout (Mobile-First Vertical Stack) */}
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-6xl mx-auto relative group">
+        <div className="max-w-4xl mx-auto flex flex-col items-center">
           
-          {/* 2D Schematic */}
+          {/* HUD Metadata (Above Configurator) */}
+          <div className="w-full flex justify-between items-end mb-2 px-2 font-mono text-[8px] uppercase tracking-[0.3em] text-[#39FF14]/60">
+            <span className="border-b border-[#39FF14]/20 pb-1">Current Schematic: SIDE_PROFILE_V2</span>
+            <span className="border-b border-[#39FF14]/20 pb-1 text-right">Config ID: CD-PPF-051</span>
+          </div>
+
+          {/* 2D Schematic (60% width via component constraint) */}
           <PPFExplorer2D 
             activeZones={currentPkg.zones} 
           />
 
-          {/* HUD Styled Decorative Overlays */}
-          <div className="absolute top-0 right-0 p-4 font-mono text-[8px] uppercase tracking-[0.3em] text-[#39FF14]/40 flex flex-col items-end pointer-events-none">
-            <span>Current Schematic: SIDE_PROFILE_V2</span>
-            <span>Config ID: CD-PPF-051</span>
-          </div>
-
-          {/* UI Overlay — Package Selector */}
-          <div className="absolute top-4 left-4 z-20 w-72 bg-black/80 backdrop-blur-xl border border-white/10 p-5 space-y-4 pointer-events-auto" style={{ borderRadius: '2px' }}>
-            <p className="font-mono text-[9px] uppercase tracking-[0.4em] text-[#39FF14] font-bold">Coverage Selection</p>
+          {/* Package Selection (Vertical Flow) */}
+          <div className="w-full bg-black/40 backdrop-blur-sm border border-white/5 p-6 mb-8 space-y-5" style={{ borderRadius: '2px' }}>
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#39FF14] font-bold text-center border-b border-white/5 pb-4">
+              Coverage Package Selection
+            </p>
             
-            <div className="space-y-2">
+            <div className="grid grid-cols-1 gap-3">
               {(Object.keys(packages) as PackageKey[]).map((key) => (
                 <button
                   key={key}
                   onClick={() => setSelectedPackage(key)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 transition-all duration-200 border ${
+                  className={`w-full flex items-center justify-between px-4 py-3.5 transition-all duration-200 border ${
                     selectedPackage === key
-                      ? 'border-[#39FF14] bg-[#39FF14]/10 text-white'
-                      : 'border-white/5 bg-white/2 text-white/50 hover:border-white/20 hover:text-white/80'
+                      ? 'border-[#39FF14] bg-[#39FF14]/5 text-white'
+                      : 'border-white/5 bg-white/[0.02] text-white/40 hover:border-white/20 hover:text-white/80'
                   }`}
                   style={{ borderRadius: '2px' }}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-3 h-3 rounded-full border-2 flex items-center justify-center ${
-                      selectedPackage === key ? 'border-[#39FF14]' : 'border-white/30'
+                  <div className="flex items-center gap-4">
+                    <div className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center ${
+                      selectedPackage === key ? 'border-[#39FF14]' : 'border-white/20'
                     }`}>
                       {selectedPackage === key && (
                         <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14]" />
                       )}
                     </div>
-                    <span className="font-mono text-[10px] uppercase tracking-widest font-bold">{packages[key].title}</span>
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] font-bold">{packages[key].title}</span>
                   </div>
                   <span className={`font-mono text-xs font-black ${
-                    selectedPackage === key ? 'text-[#39FF14]' : 'text-white/40'
+                    selectedPackage === key ? 'text-[#39FF14]' : 'text-white/30'
                   }`}>{packages[key].price}</span>
                 </button>
               ))}
             </div>
 
             {/* What's Protected Accordion */}
-            <button
-              onClick={() => setShowIncluded(!showIncluded)}
-              className="w-full flex items-center justify-between text-white/60 hover:text-white transition-colors"
-            >
-              <span className="font-mono text-[9px] uppercase tracking-[0.3em]">What's Protected?</span>
-              {showIncluded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
-            </button>
-            
-            {showIncluded && (
-              <ul className="space-y-1.5 border-t border-white/5 pt-3">
-                {currentPkg.legend.map((item, i) => (
-                  <li key={i} className="flex gap-2 text-white/60">
-                    <span className="text-[#39FF14] font-mono text-[9px] shrink-0 mt-0.5">✓</span>
-                    <span className="font-mono text-[9px] leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            {/* CTA */}
-            <Button
-              onClick={() => openQuote(`PPF: ${currentPkg.title} (${currentPkg.price})`)}
-              className="w-full bg-[#39FF14] text-black font-mono text-[10px] uppercase tracking-widest font-black hover:bg-[#32e612] transition-all py-5"
-              style={{ borderRadius: '2px', boxShadow: '0 0 20px #39ff1430' }}
-            >
-              Get Quote →
-            </Button>
-          </div>
-
-          {/* Dynamic Price Tag — Bottom Right */}
-          <div className="absolute bottom-4 right-4 z-20 text-right pointer-events-none">
-            <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/30">Selected Package</p>
-            <p className="text-4xl lg:text-5xl font-black italic tracking-tighter text-white" style={{ textShadow: '0 0 40px #39ff1420' }}>
-              {currentPkg.price}
-            </p>
+            <div className="pt-2">
+              <button
+                onClick={() => setShowIncluded(!showIncluded)}
+                className="w-full flex items-center justify-between py-3 text-white/50 hover:text-white/80 transition-colors border-t border-white/5"
+              >
+                <div className="flex items-center gap-2">
+                  <ClipboardCheck size={14} className="text-[#39FF14]/60" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em]">Inc. Components List</span>
+                </div>
+                {showIncluded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+              </button>
+              
+              {showIncluded && (
+                <ul className="grid grid-cols-1 gap-1.5 pt-2 pb-4">
+                  {currentPkg.legend.map((item, i) => (
+                    <li key={i} className="flex gap-3 text-white/50 items-center bg-white/[0.02] p-2">
+                      <span className="text-[#39FF14] font-mono text-[10px] shrink-0">✓</span>
+                      <span className="font-mono text-[9px] uppercase tracking-wider">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* Fixed Bottom Navigation (Price + CTA) */}
+      <div className="fixed bottom-0 left-0 w-full z-50 bg-black/90 backdrop-blur-2xl border-t border-[#39FF14]/20 p-4 pb-8 flex items-center justify-between gap-4 safe-area-bottom">
+        <div className="flex flex-col">
+          <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#39FF14]/60">Total Investment</span>
+          <span className="text-3xl font-black italic tracking-tighter text-white drop-shadow-[0_0_15px_rgba(57,255,20,0.3)]">
+            {currentPkg.price}
+          </span>
+        </div>
+        
+        <Button
+          onClick={() => openQuote(`PPF: ${currentPkg.title} (${currentPkg.price})`)}
+          className="flex-1 bg-[#39FF14] text-black font-mono text-[11px] uppercase tracking-[0.2em] font-black hover:bg-[#32e612] transition-all py-7 shadow-[0_0_20px_#39ff1440]"
+          style={{ borderRadius: '2px' }}
+        >
+          BOOK INSTALL →
+        </Button>
       </div>
 
       {/* Description + Tech Grid Below */}

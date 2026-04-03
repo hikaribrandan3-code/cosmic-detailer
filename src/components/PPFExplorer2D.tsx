@@ -8,10 +8,10 @@ const PPFExplorer2D: React.FC<PPFExplorer2DProps> = ({ activeZones }) => {
   const isSelected = (zone: string) => activeZones.includes(zone);
 
   return (
-    <div className="w-full flex items-center justify-center p-4 lg:p-8 bg-[#131313]/50 rounded-lg border border-white/5 relative overflow-hidden">
-      {/* Tactical Grid Overlay (Optional, matches 3D feel) */}
-      <div className="absolute inset-0 pointer-events-none opacity-5" 
-           style={{ backgroundImage: 'linear-gradient(#39ff14 1px, transparent 1px), linear-gradient(90deg, #39ff14 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+    <div className="w-[60%] mx-auto flex items-center justify-center p-4 lg:p-8 bg-[#131313]/50 rounded-lg border border-white/5 relative overflow-hidden my-6">
+      {/* Tactical Grid Overlay */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]" 
+           style={{ backgroundImage: 'linear-gradient(#39ff14 1px, transparent 1px), linear-gradient(90deg, #39ff14 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
 
       <style>{`
         .config-zone {
@@ -36,9 +36,15 @@ const PPFExplorer2D: React.FC<PPFExplorer2DProps> = ({ activeZones }) => {
           stroke: #333;
           stroke-opacity: 0.4;
         }
+        /* Hit targets for touch usability */
+        .hit-box {
+          fill: transparent;
+          cursor: pointer;
+          pointer-events: all;
+        }
       `}</style>
 
-      <svg className="w-full h-auto max-w-4xl drop-shadow-2xl relative z-10" viewBox="0 0 1000 350" xmlns="http://www.w3.org/2000/svg">
+      <svg className="w-full h-auto drop-shadow-2xl relative z-10" viewBox="0 0 1000 350" xmlns="http://www.w3.org/2000/svg">
         {/* Ground Shadow */}
         <ellipse cx="500" cy="320" fill="rgba(0,0,0,0.6)" filter="blur(15px)" rx="450" ry="15"/>
         
@@ -50,12 +56,15 @@ const PPFExplorer2D: React.FC<PPFExplorer2DProps> = ({ activeZones }) => {
             d="M10,240 Q10,210 50,190 L120,190 Q130,220 120,260 L40,260 Z"
           />
           
-          {/* Headlight */}
-          <path 
-            className={`config-zone ${isSelected('headlight') ? 'active-zone' : 'inactive-zone'}`} 
-            data-zone="headlight" 
-            d="M50,190 Q80,180 110,190 L100,210 Q70,200 50,210 Z"
-          />
+          {/* Headlight Group (Small Target) */}
+          <g>
+            <rect x="40" y="170" width="80" height="50" className="hit-box" />
+            <path 
+              className={`config-zone ${isSelected('headlight') ? 'active-zone' : 'inactive-zone'}`} 
+              data-zone="headlight" 
+              d="M50,190 Q80,180 110,190 L100,210 Q70,200 50,210 Z"
+            />
+          </g>
           
           {/* Hood Leading Edge (30% - for Partial) */}
           <path 
@@ -85,19 +94,23 @@ const PPFExplorer2D: React.FC<PPFExplorer2DProps> = ({ activeZones }) => {
             d="M140,190 Q250,185 300,200 L300,260 L160,260 Q160,210 140,190 Z"
           />
           
-          {/* Mirror Left */}
-          <path 
-            className={`config-zone ${isSelected('mirror-left') ? 'active-zone' : 'inactive-zone'}`} 
-            data-zone="mirror-left" 
-            d="M430,170 Q410,150 450,150 L460,170 Z"
-          />
-          
-          {/* Mirror Right */}
-          <path 
-            className={`config-zone ${isSelected('mirror-right') ? 'active-zone' : 'inactive-zone'}`} 
-            data-zone="mirror-right" 
-            d="M430,170 Q450,150 410,150 L400,170 Z"
-          />
+          {/* Mirror Caps (Small Targets) */}
+          <g>
+            <circle cx="430" cy="160" r="40" className="hit-box" />
+            <path 
+              className={`config-zone ${isSelected('mirror-left') ? 'active-zone' : 'inactive-zone'}`} 
+              data-zone="mirror-left" 
+              d="M430,170 Q410,150 450,150 L460,170 Z"
+            />
+          </g>
+          <g>
+            <circle cx="430" cy="160" r="40" className="hit-box" />
+            <path 
+              className={`config-zone ${isSelected('mirror-right') ? 'active-zone' : 'inactive-zone'}`} 
+              data-zone="mirror-right" 
+              d="M430,170 Q450,150 410,150 L400,170 Z"
+            />
+          </g>
           
           {/* Pillar A */}
           <path 
@@ -134,12 +147,15 @@ const PPFExplorer2D: React.FC<PPFExplorer2DProps> = ({ activeZones }) => {
             d="M300,200 Q450,190 600,200 L600,280 L300,280 Z"
           />
           
-          {/* Door Cup */}
-          <path 
-            className={`config-zone ${isSelected('door-cup') ? 'active-zone' : 'inactive-zone'}`} 
-            data-zone="door-cup" 
-            d="M540,220 Q550,215 560,220 L560,230 Q550,235 540,230 Z"
-          />
+          {/* Door Cup (Small Target) */}
+          <g>
+            <circle cx="550" cy="225" r="30" className="hit-box" />
+            <path 
+              className={`config-zone ${isSelected('door-cup') ? 'active-zone' : 'inactive-zone'}`} 
+              data-zone="door-cup" 
+              d="M540,220 Q550,215 560,220 L560,230 Q550,235 540,230 Z"
+            />
+          </g>
           
           {/* Fender Rear */}
           <path 
@@ -155,12 +171,15 @@ const PPFExplorer2D: React.FC<PPFExplorer2DProps> = ({ activeZones }) => {
             d="M880,170 Q950,175 980,195 L980,210 Q950,200 880,190 Z"
           />
           
-          {/* Taillight */}
-          <path 
-            className={`config-zone ${isSelected('taillight') ? 'active-zone' : 'inactive-zone'}`} 
-            data-zone="taillight" 
-            d="M960,195 Q990,200 990,215 L970,215 Q970,205 960,205 Z"
-          />
+          {/* Taillight (Small Target) */}
+          <g>
+            <rect x="960" y="195" width="40" height="30" className="hit-box" />
+            <path 
+              className={`config-zone ${isSelected('taillight') ? 'active-zone' : 'inactive-zone'}`} 
+              data-zone="taillight" 
+              d="M960,195 Q990,200 990,215 L970,215 Q970,205 960,205 Z"
+            />
+          </g>
           
           {/* Bumper Rear */}
           <path 
