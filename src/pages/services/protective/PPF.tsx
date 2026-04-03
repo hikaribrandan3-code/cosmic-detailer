@@ -85,81 +85,50 @@ const PPF = () => {
                   className={`w-full h-auto transition-all duration-700 ${selectedPackage === 'full-car' ? 'brightness-110' : 'brightness-90'}`} 
                 />
                 
-                {/* INTERACTIVE GLOW ZONES (Side View Mapping) */}
-                <svg 
-                  viewBox="0 0 1000 1000" 
-                  className="absolute inset-0 w-full h-full pointer-events-none z-20 mix-blend-screen"
-                >
-                  <defs>
-                    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
-                      <feGaussianBlur stdDeviation="15" result="blur" />
-                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                    </filter>
-                  </defs>
 
-                  {/* 1. FRONT BUMPER & HEADLIGHT AREA (Tactical Wrap) */}
-                  <path 
-                    d="M40,550 L100,510 L280,545 L275,660 L80,660 Z"
-                    className={`transition-all duration-500 fill-[#00ff88] ${isActive('bumper') ? 'opacity-60' : 'opacity-10'}`}
-                    filter="url(#neonGlow)"
-                  />
+{/* INTERACTIVE GLOW ZONES — CSS Percentage-Based (1:1 Image Map) */}
+                <div className="absolute inset-0 pointer-events-none z-20 mix-blend-screen">
 
-                  {/* 2. HOOD - PARTIAL (Lower Front - 24 inch typical) */}
-                  <path 
-                    d="M260,505 L400,510 L400,545 L280,545 Z"
-                    className={`transition-all duration-500 fill-[#00ff88] ${isActive('hood-front') || isActive('hood') ? 'opacity-60' : 'opacity-10'}`}
-                    filter="url(#neonGlow)"
-                  />
+                  {/* FRONT BUMPER + HEADLIGHTS — left face of car */}
+                  <div className={`absolute transition-all duration-500 rounded-sm ${isActive('bumper') ? 'opacity-70' : 'opacity-10'}`}
+                    style={{ top: '47%', left: '13%', width: '13%', height: '24%', background: 'radial-gradient(ellipse, #00ff88 0%, #00ff8880 60%, transparent 100%)' }} />
 
-                  {/* 3. HOOD - REAR (Main Panel) */}
-                  <path 
-                    d="M400,510 L585,510 L585,550 L400,545 Z"
-                    className={`transition-all duration-500 fill-[#00ff88] ${isActive('hood') ? 'opacity-60' : 'opacity-10'}`}
-                    filter="url(#neonGlow)"
-                  />
+                  {/* HOOD FRONT SECTION (Partial front only — typical 24" cut) */}
+                  <div className={`absolute transition-all duration-500 ${isActive('hood-front') || isActive('hood') ? 'opacity-60' : 'opacity-10'}`}
+                    style={{ top: '36%', left: '25%', width: '18%', height: '16%', background: 'linear-gradient(160deg, transparent 0%, #00ff8860 40%, #00ff88 100%)', borderRadius: '4px 0 0 4px', transform: 'skewX(-8deg)' }} />
 
-                  {/* 4. HEADLIGHTS (Precision Ellipse) */}
-                  <ellipse 
-                    cx="120" cy="535" rx="45" ry="18"
-                    className={`transition-all duration-500 fill-[#00ff88] ${isActive('headlights') ? 'opacity-80' : 'opacity-20'}`}
-                    filter="url(#neonGlow)"
-                  />
+                  {/* HOOD REAR SECTION (Full front only) */}
+                  <div className={`absolute transition-all duration-500 ${isActive('hood') ? 'opacity-55' : 'opacity-10'}`}
+                    style={{ top: '35%', left: '42%', width: '16%', height: '15%', background: 'linear-gradient(160deg, #00ff88 0%, #00ff8870 80%, transparent 100%)', borderRadius: '0 4px 4px 0', transform: 'skewX(-10deg)' }} />
 
-                  {/* 5. MIRROR CAPS (Tactical Fit) */}
-                  <path 
-                    d="M510,480 L565,480 L565,515 L515,515 Z"
-                    className={`transition-all duration-500 fill-[#00ff88] ${isActive('mirrors') ? 'opacity-80' : 'opacity-10'}`}
-                    filter="url(#neonGlow)"
-                  />
+                  {/* HEADLIGHTS — distinct slanted bar on front face */}
+                  <div className={`absolute transition-all duration-500 ${isActive('headlights') ? 'opacity-90' : 'opacity-20'}`}
+                    style={{ top: '48%', left: '14%', width: '10%', height: '8%', background: 'radial-gradient(ellipse, #ffffff 0%, #00ff88 40%, transparent 100%)', borderRadius: '50%' }} />
 
-                  {/* 6. MAIN BODY (Doors & Rockers) */}
-                  <path 
-                    d="M320,550 L880,550 L880,680 L280,680 Z"
-                    className={`transition-all duration-700 fill-[#00ff88] ${isActive('body') ? 'opacity-40' : 'opacity-0'}`}
-                    filter="url(#neonGlow)"
-                  />
+                  {/* MIRROR CAPS — small precise box on driver mirror */}
+                  <div className={`absolute transition-all duration-500 ${isActive('mirrors') ? 'opacity-90' : 'opacity-10'}`}
+                    style={{ top: '37%', left: '50%', width: '5%', height: '6%', background: 'radial-gradient(ellipse, #00ff88 20%, #00ff8860 80%, transparent 100%)', borderRadius: '3px' }} />
 
-                  {/* 7. ROOF & PILLARS */}
-                  <path 
-                    d="M470,440 L810,470 L890,530 L350,550 Z"
-                    className={`transition-all duration-700 fill-[#00ff88] ${isActive('roof') ? 'opacity-30' : 'opacity-0'}`}
-                    filter="url(#neonGlow)"
-                  />
+                  {/* MAIN BODY PANELS — door skins, rockers (Full Car) */}
+                  <div className={`absolute transition-all duration-700 ${isActive('body') ? 'opacity-35' : 'opacity-0'}`}
+                    style={{ top: '48%', left: '24%', width: '60%', height: '24%', background: 'linear-gradient(to right, #00ff8820, #00ff8860, #00ff8820)', borderRadius: '2px' }} />
 
-                  {/* 8. REAR BUMPER */}
-                  <path 
-                    d="M885,550 L980,565 L980,670 L885,680 Z"
-                    className={`transition-all duration-700 fill-[#00ff88] ${isActive('rear') ? 'opacity-50' : 'opacity-0'}`}
-                    filter="url(#neonGlow)"
-                  />
-                </svg>
+                  {/* ROOF (Full Car) */}
+                  <div className={`absolute transition-all duration-700 ${isActive('roof') ? 'opacity-30' : 'opacity-0'}`}
+                    style={{ top: '27%', left: '44%', width: '43%', height: '20%', background: 'linear-gradient(to bottom, transparent, #00ff8850, #00ff8870)', borderRadius: '8px 8px 0 0', transform: 'skewX(-5deg)' }} />
 
-                {/* Tactical Legend Overlay (Calibrated Positioning) */}
+                  {/* REAR BUMPER (Full Car) */}
+                  <div className={`absolute transition-all duration-700 ${isActive('rear') ? 'opacity-55' : 'opacity-0'}`}
+                    style={{ top: '47%', left: '83%', width: '10%', height: '23%', background: 'radial-gradient(ellipse, #00ff88 0%, #00ff8870 70%, transparent 100%)' }} />
+
+                </div>
+
+                {/* Tactical Labels — anchored to zones */}
                 <div className="absolute inset-0 z-30 pointer-events-none font-mono text-[9px] uppercase tracking-widest font-black text-[#00ff88]">
-                  <div className={`absolute top-[54%] left-[5%] transition-all ${isActive('bumper') ? 'opacity-100 scale-110' : 'opacity-30'}`}>[ IMPACT_ZONE_ALPHA ]</div>
-                  <div className={`absolute top-[50%] left-[33%] transition-all ${isActive('hood-front') ? 'opacity-100 scale-110' : 'opacity-30'}`}>[ FRONT_HOOD_GRID ]</div>
-                  <div className={`absolute top-[47%] right-[38%] transition-all ${isActive('mirrors') ? 'opacity-100 scale-110' : 'opacity-0'}`}>[ MIRROR_CAP_SECURE ]</div>
-                  <div className={`absolute bottom-[36%] right-[10%] transition-all ${isActive('rear') ? 'opacity-100' : 'opacity-0'}`}>[ REAR_QUARTER_SHIELD ]</div>
+                  <div className={`absolute transition-all duration-300 ${isActive('bumper') ? 'opacity-100' : 'opacity-25'}`} style={{ top: '72%', left: '10%' }}>[ IMPACT_ZONE ]</div>
+                  <div className={`absolute transition-all duration-300 ${isActive('hood-front') || isActive('hood') ? 'opacity-100' : 'opacity-25'}`} style={{ top: '53%', left: '27%' }}>[ HOOD ]</div>
+                  <div className={`absolute transition-all duration-300 ${isActive('mirrors') ? 'opacity-100' : 'opacity-0'}`} style={{ top: '33%', left: '48%' }}>[ MIRROR ]</div>
+                  <div className={`absolute transition-all duration-300 ${isActive('rear') ? 'opacity-100' : 'opacity-0'}`} style={{ top: '72%', right: '5%' }}>[ REAR ]</div>
                 </div>
               </div>
             </div>
