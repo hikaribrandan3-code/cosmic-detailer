@@ -78,7 +78,7 @@ const Ceramic = () => {
       <div className="bg-[#131313] text-[#8eff71] font-mono tracking-tighter uppercase border-b border-white/5 flex justify-between items-center w-full px-6 py-2 z-40 lg:hidden">
         <div className="flex items-center gap-2">
           <Settings className="text-[#8eff71] w-4 h-4" />
-          <span className="text-sm font-bold tracking-[0.2em]">CERAMIC_DIVISION</span>
+          <span className="text-sm font-bold tracking-[0.2em]">Ceramic Coating</span>
         </div>
         <button 
           onClick={() => openQuote(`Ceramic: ${selectedPackage}`)}
@@ -131,8 +131,8 @@ const Ceramic = () => {
           
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 gap-4 lg:gap-8 max-w-7xl mx-auto">
             <div className="border-l-4 border-[#8eff71] pl-6">
-              <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-white">Select Armor <span className="text-[#8eff71]">Tier</span></h2>
-              <p className="font-mono text-[10px] text-[#adaaaa] font-bold uppercase tracking-[0.4em] mt-2 italic">Base Level Coatings & Sealants</p>
+              <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-white">Choose Your <span className="text-[#8eff71]">Package</span></h2>
+              <p className="font-mono text-[10px] text-[#adaaaa] font-bold uppercase tracking-[0.4em] mt-2">Ceramic coating tiers — matched to your vehicle and goals.</p>
             </div>
           </div>
           
@@ -180,7 +180,7 @@ const Ceramic = () => {
                           <Layers className="text-[#8eff71] w-5 h-5" />
                         </div>
                         <div>
-                          <p className="text-[10px] text-[#adaaaa] uppercase font-bold tracking-widest font-mono">Layering Profile</p>
+                          <p className="text-[10px] text-[#adaaaa] uppercase font-bold tracking-widest font-mono">Ceramic Layers</p>
                           <p className="text-lg font-mono font-black italic uppercase tracking-tighter">{currentPkg.layers}</p>
                         </div>
                       </div>
@@ -189,7 +189,7 @@ const Ceramic = () => {
                           <Shield className="text-[#8eff71] w-5 h-5" />
                         </div>
                         <div>
-                          <p className="text-[10px] text-[#adaaaa] uppercase font-bold tracking-widest font-mono">Structural Warranty</p>
+                          <p className="text-[10px] text-[#adaaaa] uppercase font-bold tracking-widest font-mono">Warranty</p>
                           <p className="text-lg font-mono font-black italic uppercase tracking-tighter">{currentPkg.warranty}</p>
                         </div>
                       </div>
@@ -208,7 +208,7 @@ const Ceramic = () => {
                    
                    <div className="mt-12 flex flex-col sm:flex-row items-center gap-6">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-[#adaaaa] text-[10px] font-bold uppercase tracking-widest">Base Investment</span>
+                        <span className="text-[#adaaaa] text-[10px] font-bold uppercase tracking-widest">Starting From</span>
                         <span className="text-4xl lg:text-5xl font-mono font-black text-white italic tracking-tighter">${currentPkg.price}</span>
                         <span className="text-xs font-bold text-[#8eff71]">/ {packages[selectedPackage].years}</span>
                       </div>
@@ -230,14 +230,14 @@ const Ceramic = () => {
           <div className="max-w-7xl mx-auto">
             <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter mb-12 flex items-center gap-4">
               <Sparkles className="text-[#8eff71] w-8 h-8 lg:w-12 lg:h-12" />
-              Supplemental Armor
+              Add-On Services
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { icon: <Timer className="w-6 h-6 text-[#8eff71]" />, title: 'Wheel & Caliper', price: '+$299', desc: 'Permanent brake dust repellent' },
-                { icon: <User className="w-6 h-6 text-[#8eff71]" />, title: 'Interior Leather', price: '+$199', desc: 'Dye transfer prevention coat' },
-                { icon: <Waves className="w-6 h-6 text-[#8eff71]" />, title: 'Plastic Trim', price: '+$149', desc: 'UV restoration & protection' },
-                { icon: <Droplets className="w-6 h-6 text-[#8eff71]" />, title: 'Glass Coating', price: '+$99', desc: 'Extreme rain visibility' },
+                { icon: <Timer className="w-6 h-6 text-[#8eff71]" />, title: 'Wheel & Caliper', price: '+$299', desc: 'Protects against brake dust' },
+                { icon: <User className="w-6 h-6 text-[#8eff71]" />, title: 'Interior Leather', price: '+$199', desc: 'Prevents stains and wear' },
+                { icon: <Waves className="w-6 h-6 text-[#8eff71]" />, title: 'Plastic Trim', price: '+$149', desc: 'Restores and protects trim' },
+                { icon: <Droplets className="w-6 h-6 text-[#8eff71]" />, title: 'Glass Coating', price: '+$99', desc: 'Improves rain visibility' },
               ].map((addon, i) => (
                 <div key={i} className="p-6 bg-[#191a1a] border border-white/5 hover:border-[#8eff71]/30 transition-all group flex flex-col gap-4">
                   <div className="w-12 h-12 bg-[#0e0e0e] flex items-center justify-center border border-white/10 group-hover:bg-[#8eff71]/10 group-hover:border-[#8eff71]/20 transition-all">
@@ -260,8 +260,8 @@ const Ceramic = () => {
            
            <div className="max-w-4xl mx-auto relative z-10">
               <div className="text-center mb-16">
-                <span className="text-[10px] font-bold text-[#8eff71] tracking-[0.5em] uppercase block mb-4 italic">Material Science</span>
-                <h2 className="font-mono text-4xl lg:text-7xl font-black uppercase tracking-tighter text-white italic">TECH_SPEC <span className="text-[#8eff71]">PROFILE</span></h2>
+                <span className="text-[10px] font-bold text-[#8eff71] tracking-[0.5em] uppercase block mb-4">Benefits</span>
+                <h2 className="font-mono text-4xl lg:text-7xl font-black uppercase tracking-tighter text-white italic">WHY CHOOSE <span className="text-[#8eff71]">CERAMIC</span></h2>
               </div>
               
               <div className="space-y-4">
@@ -269,20 +269,20 @@ const Ceramic = () => {
                   { 
                     id: 'hydrophobic', 
                     icon: <Droplets className="w-5 h-5" />, 
-                    title: 'HYDROPHOBIC CONTACT ANGLE', 
-                    desc: 'Engineered at a 110-degree contact angle, forcing water to bead and roll off instantly. Our surfaces eliminate standing water, drastically reducing water spot development.' 
+                    title: 'EASY CLEANING', 
+                    desc: 'Ceramic coatings repel water and dirt, making your vehicle much easier to wash and keep clean.' 
                   },
                   { 
                     id: 'uv', 
                     icon: <Sun className="w-5 h-5" />, 
-                    title: 'UV INTERCEPTION BARRIER', 
-                    desc: 'Blocks 99.9% of harmful UV-A and UV-B radiation. This nanoscopic shield prevents clear-coat oxidation, drying, and eventual paint fade commonly seen in Naples climate.' 
+                    title: 'UV PROTECTION', 
+                    desc: 'Protects your paint from sun damage, preventing fading and oxidation over time.' 
                   },
                   { 
                     id: 'chemical', 
                     icon: <Beaker className="w-5 h-5" />, 
-                    title: 'PH2 - PH13 CHEMICAL RESISTANCE', 
-                    desc: 'A structural defense against acidic pollutants. From bird droppings to industrial fall-out, the ceramic layer acts as a sacrificial barrier with immense chemical inertia.' 
+                    title: 'CHEMICAL RESISTANCE', 
+                    desc: 'Acts as a protective layer against bird droppings, road salt, and other environmental contaminants.' 
                   }
                 ].map((spec) => (
                   <div 
@@ -315,7 +315,7 @@ const Ceramic = () => {
           <div className="max-w-4xl mx-auto">
             <div className="mb-16 border-l-4 border-[#8eff71] pl-8">
               <h2 className="font-mono text-4xl lg:text-6xl font-black uppercase tracking-tighter">Application <span className="text-[#8eff71]">Process</span></h2>
-              <p className="font-mono text-xs font-bold text-[#adaaaa] uppercase tracking-[0.3em] mt-3">From Decontamination to Molecular Curing</p>
+              <p className="font-mono text-xs font-bold text-[#adaaaa] uppercase tracking-[0.3em] mt-3">What to expect from door-to-door</p>
             </div>
             
             <div className="relative space-y-16 ml-6 py-4">
@@ -379,12 +379,12 @@ const Ceramic = () => {
         {/* FAQ SECTION */}
         <section className="py-20 px-6 lg:px-12 bg-[#0e0e0e]">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter mb-12 border-l-4 border-[#8eff71] pl-8">Intelligence <span className="text-[#8eff71]">Query</span></h2>
+            <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter mb-12 border-l-4 border-[#8eff71] pl-8">Common <span className="text-[#8eff71]">Questions</span></h2>
             <div className="divide-y divide-white/10 border-t border-white/10">
               {[
-                { q: 'How long does the application take?', a: 'Typically 1-2 days. The precision correction phase consumes the most time, while the lattice application and IR curing require set climate durations for optimal bonding.' },
-                { q: 'When is the first wash permitted?', a: 'We mandate a 7-day minimum cure window before the first chemical contact. After this, maintaining the vehicle becomes exponentially easier with simple pH-neutral solutions.' },
-                { q: 'Will it prevent scratches and impacts?', a: 'Nanoceramic provides a 9H hardness barrier against micro-swirling and marring. However, for high-velocity rock chips and deep abrasions, we always recommend pairing it with PPF armor.' },
+                { q: 'How long does the application take?', a: 'Typically 1-2 days. Most of that time is spent on paint correction — getting the surface flawless before the coating goes on. The coating itself cures within 24–48 hours.' },
+                { q: 'When can I wash the car after coating?', a: 'Wait at least 7 days before the first wash. After that, maintenance is much easier — a pH-neutral rinse is all you usually need.' },
+                { q: 'Does ceramic coating prevent rock chips?', a: 'No — ceramic coating is designed for paint protection against UV, chemicals, and washing swirls. For rock chip protection, pair it with PPF on the front end.' },
               ].map((faq, i) => (
                 <div key={i} className="py-6 group cursor-pointer overflow-hidden">
                   <div className="flex justify-between items-center" onClick={() => toggleAccordion(`faq-${i}`)}>
@@ -402,19 +402,13 @@ const Ceramic = () => {
           </div>
         </section>
 
-        {/* FOOTER AREA */}
-        <footer className="py-24 px-6 text-center bg-[#0e0e0e] border-t border-white/5">
-          <div className="opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-             <h2 className="font-mono text-5xl font-black italic tracking-tighter uppercase mb-4 text-white">AREA 51 DETAILING</h2>
-             <p className="text-[#8eff71] text-xs uppercase tracking-[0.5em] font-black italic">Automotive Excellence Division</p>
-          </div>
-        </footer>
+        {/* SECTION SPACER */}
       </main>
 
       {/* STICKY BOTTOM CONVERSION BAR (MOBILE) */}
       <div className="lg:hidden fixed bottom-0 left-0 w-full bg-[#0e0e0e]/95 backdrop-blur-xl z-50 flex items-center justify-between px-6 pb-8 pt-4 border-t border-[#8eff71]/20 safe-area-bottom">
         <div className="flex flex-col">
-          <span className="text-[10px] font-bold text-[#adaaaa] uppercase tracking-[0.4em] mb-1 italic">Active Plan</span>
+          <span className="text-[10px] font-bold text-[#adaaaa] uppercase tracking-[0.4em] mb-1">Selected Plan</span>
           <div className="flex items-baseline gap-1">
             <span className="text-3xl font-mono font-black text-white tracking-tighter italic">${currentPkg.price}</span>
             <span className="text-[10px] font-black text-[#8eff71] font-mono tracking-widest uppercase bg-[#8eff71]/10 px-2 ml-1">{selectedPackage}</span>

@@ -106,7 +106,7 @@ const Tint = () => {
       <div className="bg-[#131313] text-[#39ff14] font-mono tracking-tighter uppercase border-b border-white/5 flex justify-between items-center w-full px-6 py-2 z-40 lg:hidden">
         <div className="flex items-center gap-2">
           <Settings className="text-[#39ff14] w-4 h-4" />
-          <span className="text-sm font-bold tracking-[0.2em]">TINT_DIVISION</span>
+          <span className="text-sm font-bold tracking-[0.2em]">Window Tint</span>
         </div>
       </div>
 
@@ -116,11 +116,11 @@ const Tint = () => {
         <section className="px-6 pt-16 pb-8 lg:px-12 lg:pt-24 lg:pb-12 text-center lg:text-left">
           <div className="space-y-4">
             <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#39ff14]/10 border border-[#39ff14]/20 shadow-[0_0_20px_rgba(57,255,20,0.1)] lg:mx-0 mx-auto">
-               <span className="text-[10px] lg:text-xs font-bold text-[#39ff14] tracking-[0.3em] uppercase">Engineering Privacy</span>
+             <span className="text-[10px] lg:text-xs font-bold text-[#39ff14] tracking-[0.3em] uppercase">Window Tint</span>
             </div>
             <h2 className="text-5xl lg:text-8xl font-mono font-black italic tracking-tighter text-white uppercase leading-[0.9]">
-              Precision Shade.<br/>
-              <span className="text-[#39ff14]">Ultimate Privacy.</span>
+              Professional Window Tinting.<br/>
+              <span className="text-[#39ff14]">Block heat. Protect your interior.</span>
             </h2>
           </div>
         </section>
@@ -257,7 +257,7 @@ const Tint = () => {
                     {vlt}% {filmNames[film]}
                   </h4>
                   <p className="text-[9px] font-mono text-[#adaaaa] uppercase tracking-[0.3em] font-bold">
-                     Selected Tier Performance
+                     Your Configuration
                   </p>
                 </div>
                 <div className="text-right">
@@ -295,7 +295,7 @@ const Tint = () => {
               <div className="flex items-start gap-4 p-4 bg-[#191a1a] rounded-sm border border-white/5">
                 <BarChart2 className="text-[#39ff14] w-5 h-5 shrink-0 mt-0.5" />
                 <p className="font-mono text-[10px] text-[#adaaaa] uppercase tracking-wider leading-relaxed">
-                  <strong className="text-white">Signal-Friendly Component:</strong> Nano-construction causes zero interference with GPS, Mobile Data, or Keyless entry systems.
+                  <strong className="text-white">No signal interference:</strong> Compatible with GPS, mobile data, and keyless entry systems.
                 </p>
               </div>
 
@@ -316,10 +316,10 @@ const Tint = () => {
         <section className="px-6 lg:px-12 py-16">
            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
              {[
-               { icon: <ShieldCheck className="text-[#39ff14] w-6 h-6" />, title: 'TOTAL PRIVACY', desc: 'Secure your belongings from prying eyes with deep charcoal finishes.' },
-               { icon: <ThermometerSun className="text-[#39ff14] w-6 h-6" />, title: 'HEAT CONTROL', desc: 'Drastically reduce cabin temperature during peak summer irradiance.' },
-               { icon: <Sun className="text-[#39ff14] w-6 h-6" />, title: 'UR REJECTION', desc: 'Block 99.9% of harmful UVA/UVB rays to protect skin and leather interiors.' },
-               { icon: <EyeOff className="text-[#39ff14] w-6 h-6" />, title: 'GLARE REDUCTION', desc: 'Minimize blinding glare from the sun and incoming LED headlights.' },
+               { icon: <ShieldCheck className="text-[#39ff14] w-6 h-6" />, title: 'PRIVACY', desc: 'Protects valuables inside your vehicle from outside view.' },
+               { icon: <ThermometerSun className="text-[#39ff14] w-6 h-6" />, title: 'HEAT REDUCTION', desc: 'Keeps your cabin cooler — especially during summer.' },
+               { icon: <Sun className="text-[#39ff14] w-6 h-6" />, title: 'UV REJECTION', desc: 'Blocks 99.9% of UV rays. Protects your skin and prevents leather from fading.' },
+               { icon: <EyeOff className="text-[#39ff14] w-6 h-6" />, title: 'GLARE REDUCTION', desc: 'Reduces glare from direct sunlight and oncoming headlights.' },
              ].map((adv, i) => (
                 <div key={i} className="bg-[#131313] p-6 border-l-2 border-white/5 hover:border-[#39ff14] transition-all space-y-4 shadow-lg group">
                   <div className="w-12 h-12 flex flex-col justify-center bg-[#191a1a] border border-white/5 pl-3 group-hover:bg-[#39ff14]/10 transition-colors">

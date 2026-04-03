@@ -215,7 +215,7 @@ export default function PPF() {
             
             {/* Step 1 */}
             <div className="space-y-4">
-              <p className="font-mono font-bold uppercase text-[10px] tracking-[0.3em] text-[#00FF41]">01 // How Do You Drive?</p>
+              <p className="font-mono font-bold uppercase text-[10px] tracking-[0.3em] text-[#00FF41]">01 — How do you drive?</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <button 
                   onClick={() => setUsage('city')}
@@ -234,20 +234,20 @@ export default function PPF() {
             
             {/* Step 2 */}
             <div className="space-y-4">
-              <p className="font-mono font-bold uppercase text-[10px] tracking-[0.3em] text-[#00FF41]">02 // Primary Threat Vector?</p>
+              <p className="font-mono font-bold uppercase text-[10px] tracking-[0.3em] text-[#00FF41]">02 — What's your main concern?</p>
               <div className="grid grid-cols-1 gap-4">
                 <button 
                   onClick={() => setThreat('rocks')}
                   className={`flex justify-between items-center p-6 lg:p-8 border-2 transition-all group ${threat === 'rocks' ? 'bg-[#00FF41]/10 border-[#00FF41]' : 'bg-[#131313] border-[#262626] hover:bg-white/5'}`}
                 >
-                  <span className={`font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest ${threat === 'rocks' ? 'text-[#00FF41]' : 'text-white'}`}>Rock Chips / High Velocity Debris</span>
+                  <span className={`font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest ${threat === 'rocks' ? 'text-[#00FF41]' : 'text-white'}`}>Rock chips and road debris</span>
                   <ArrowRight className={`w-5 h-5 transition-opacity ${threat === 'rocks' ? 'opacity-100 text-[#00FF41]' : 'opacity-0 group-hover:opacity-50 text-white'}`} />
                 </button>
                 <button 
                   onClick={() => setThreat('bugs')}
                   className={`flex justify-between items-center p-6 lg:p-8 border-2 transition-all group ${threat === 'bugs' ? 'bg-[#00FF41]/10 border-[#00FF41]' : 'bg-[#131313] border-[#262626] hover:bg-white/5'}`}
                 >
-                  <span className={`font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest ${threat === 'bugs' ? 'text-[#00FF41]' : 'text-white'}`}>Bug Acid / Environmental / UVFade</span>
+                  <span className={`font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest ${threat === 'bugs' ? 'text-[#00FF41]' : 'text-white'}`}>UV exposure and environmental fallout</span>
                   <ArrowRight className={`w-5 h-5 transition-opacity ${threat === 'bugs' ? 'opacity-100 text-[#00FF41]' : 'opacity-0 group-hover:opacity-50 text-white'}`} />
                 </button>
               </div>
@@ -259,11 +259,11 @@ export default function PPF() {
 
       {/* TRUST LOGOS */}
       <section className="bg-[#131313] px-6 py-12 lg:py-16 border-y border-white/5">
-        <p className="text-center font-mono font-bold text-[9px] uppercase tracking-[0.4em] text-[#adaaaa] mb-10">Industry Certified Armor Materials</p>
+        <p className="text-center font-mono font-bold text-[9px] uppercase tracking-[0.4em] text-[#adaaaa] mb-10">Certified Film Partners</p>
         <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-60">
           <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
             <span className="text-3xl lg:text-5xl font-black italic tracking-tighter text-white">STEK</span>
-            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#00FF41]">Advanced Armor</span>
+            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#00FF41]">Authorized Dealer</span>
           </div>
           <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
             <span className="text-3xl lg:text-5xl font-black tracking-tight text-white">XPEL</span>
@@ -281,7 +281,7 @@ export default function PPF() {
         <div className="flex flex-col max-w-[50%]">
           <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-[0.3em] text-[#adaaaa] mb-1">Selected Plan</span>
           <span className="font-mono text-sm lg:text-xl font-black italic uppercase tracking-tighter text-white truncate">
-             {selectedPackage ? packages[selectedPackage].name : 'SELECT CONFIGURATION'}
+          {selectedPackage ? packages[selectedPackage].name : 'No package selected'}
           </span>
         </div>
         <button 
@@ -293,7 +293,7 @@ export default function PPF() {
             selectedPackage ? 'bg-[#00FF41] text-[#053900] hover:bg-[#32e612]' : 'bg-[#262626] text-white hover:bg-[#333]'
           }`}
         >
-          {selectedPackage ? `SECURE ${currentPkg?.price !== 'GET QUOTE' ? '$' : ''}${currentPkg?.price}` : 'START CONFIG'}
+          {selectedPackage ? `Book — ${currentPkg?.price !== 'GET QUOTE' ? '$' : ''}${currentPkg?.price}` : 'Choose Your Coverage'}
         </button>
       </div>
 
