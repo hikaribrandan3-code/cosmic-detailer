@@ -1,6 +1,6 @@
 import { useOutletContext, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronRight } from "lucide-react";
+import { Check, ChevronRight, Shield, Droplets, Zap, Sparkles } from "lucide-react";
 
 const ServicesPage = () => {
   const { openQuote } = useOutletContext<{ openQuote: () => void }>();
@@ -119,34 +119,61 @@ const ServicesPage = () => {
       </section>
 
       {/* Ceramic Coating */}
-      <section className="border-t border-border py-24 lg:py-32 bg-card/50">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="relative border-t border-border overflow-hidden">
+        {/* Background Layer */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-fixed bg-center opacity-40 grayscale-[0.5]"
+          style={{ backgroundImage: `url(/images/bg/ceramic-bg.png)` }}
+        />
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-background via-background/90 to-background" />
+
+        <div className="container relative z-20 mx-auto px-4 lg:px-8 py-24 lg:py-32">
           <div className="text-center mb-16">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Protection</p>
-            <h2 className="text-3xl font-bold lg:text-5xl">Ceramic Coating Packages</h2>
-            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold lg:text-6xl tracking-tight mb-6">Ceramic Coating <span className="text-primary text-glow">Packages</span></h2>
+            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-lg">
               Extreme hydrophobic protection — dirt rolls right off. UV protection prevents oxidation and fading. Enhanced gloss with a harder surface layer that protects against light scratches.
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3 mb-12">
+          {/* Benefit Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+            {[
+              { icon: <Shield size={24} />, label: "UV RAY PROTECTION" },
+              { icon: <Droplets size={24} />, label: "WATER SPOT RESISTANT" },
+              { icon: <Zap size={24} />, label: "PREVENTS CHEMICAL ETCHING" },
+              { icon: <Sparkles size={24} />, label: "EASY TO MAINTAIN" },
+            ].map((benefit, i) => (
+              <div key={i} className="flex flex-col items-center p-6 rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm transition-all hover:border-primary/50 group">
+                <span className="text-primary mb-4 drop-shadow-[0_0_10px_rgba(var(--primary),0.5)] transition-transform group-hover:scale-110">
+                  {benefit.icon}
+                </span>
+                <span className="font-mono text-[10px] lg:text-xs uppercase tracking-widest text-center text-muted-foreground group-hover:text-foreground transition-colors">
+                  {benefit.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3 mb-16">
             {[
               { tier: "1-Year Coating", price: "Quote Based", featured: false },
               { tier: "3-Year Coating", price: "Starting at $1,100", featured: true },
               { tier: "5-Year Coating", price: "Starting at $1,600", featured: false },
             ].map(c => (
-              <div key={c.tier} className={`rounded-lg border p-8 text-center ${c.featured ? "glow-border bg-card" : "border-border bg-card"}`}>
-                <h3 className="font-display text-lg font-semibold mb-2">{c.tier}</h3>
-                <p className="font-mono text-2xl text-primary font-bold mb-6">{c.price}</p>
-                <Button onClick={openQuote} className={`w-full font-display uppercase tracking-wider text-sm ${c.featured ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground hover:bg-primary hover:text-primary-foreground"}`}>
-                  Get Quote <ChevronRight size={14} />
+              <div key={c.tier} className={`rounded-xl border p-8 text-center transition-all duration-500 ${c.featured ? "glow-border bg-card/60 backdrop-blur shadow-2xl scale-105 z-10" : "border-border/50 bg-card/40 backdrop-blur hover:bg-card/60"}`}>
+                <h3 className="font-display text-xl font-bold mb-2 tracking-tight text-foreground">{c.tier}</h3>
+                <div className="h-px w-12 bg-primary/30 mx-auto mb-6" />
+                <p className="font-mono text-3xl text-primary font-bold mb-8 drop-shadow-[0_0_15px_rgba(var(--primary),0.3)]">{c.price}</p>
+                <Button onClick={openQuote} className={`w-full font-display uppercase tracking-widest text-xs py-6 transition-all ${c.featured ? "bg-primary text-primary-foreground hover:opacity-90 box-glow" : "bg-background border border-border hover:border-primary/50 text-foreground"}`}>
+                  Get Started <ChevronRight size={14} className="ml-1" />
                 </Button>
               </div>
             ))}
           </div>
 
-          <div className="max-w-2xl mx-auto">
-            <h3 className="font-display text-sm uppercase tracking-wider text-primary mb-6 text-center">Ceramic Add-Ons</h3>
+          <div className="max-w-3xl mx-auto rounded-2xl border border-border/40 bg-card/20 backdrop-blur-md p-8 lg:p-12">
+            <h3 className="font-display text-xs uppercase tracking-[0.3em] text-primary mb-8 text-center font-semibold">Specialized Protection Add-Ons</h3>
             <div className="grid gap-4 sm:grid-cols-2">
               {[
                 { name: "Wheels, Faces & Calipers", price: "$399" },
@@ -154,9 +181,9 @@ const ServicesPage = () => {
                 { name: "All Glass Ceramic Coating", price: "$99" },
                 { name: "Leather Ceramic Coating", price: "From $399" },
               ].map(a => (
-                <div key={a.name} className="flex items-center justify-between rounded-lg border border-border bg-card p-4">
-                  <span className="text-sm">{a.name}</span>
-                  <span className="font-mono text-sm text-primary">{a.price}</span>
+                <div key={a.name} className="flex items-center justify-between rounded-lg border border-border/30 bg-background/40 p-4 transition-colors hover:border-primary/30">
+                  <span className="text-sm font-medium text-foreground/80">{a.name}</span>
+                  <span className="font-mono text-xs font-bold text-primary">{a.price}</span>
                 </div>
               ))}
             </div>
