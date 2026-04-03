@@ -8,9 +8,11 @@ import SpringPromo from "./SpringPromo";
 const Layout = () => {
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [selectedService, setSelectedService] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
 
-  const handleOpenQuote = (service?: string) => {
+  const handleOpenQuote = (service?: string, location?: string) => {
     if (service) setSelectedService(service);
+    if (location) setSelectedLocation(location);
     setQuoteOpen(true);
   };
 
@@ -20,12 +22,13 @@ const Layout = () => {
       <main className="pt-16">
         <Outlet context={{ openQuote: handleOpenQuote }} />
       </main>
-      <Footer onQuoteClick={() => handleOpenQuote()} />
+      <Footer onQuoteClick={handleOpenQuote} />
       <SpringPromo onClaim={handleOpenQuote} />
       <QuoteModal 
         open={quoteOpen} 
         onOpenChange={setQuoteOpen} 
         defaultService={selectedService} 
+        defaultLocation={selectedLocation}
       />
     </div>
   );

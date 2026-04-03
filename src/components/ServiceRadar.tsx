@@ -1,86 +1,182 @@
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { MapPin, ArrowRight, Target, Navigation } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const ServiceRadar = () => {
-  const [isActive, setIsActive] = useState(false);
+interface City {
+  id: string;
+  name: string;
+  x: number;
+  y: number;
+  dist: string;
+  time: string;
+  isCenter?: boolean;
+}
 
-  useEffect(() => {
-    setIsActive(true);
-  }, []);
+const cities: City[] = [
+  { id: "naples", name: "NAPLES [CMD]", x: 200, y: 200, dist: "0 MI", time: "0 MIN", isCenter: true },
+  { id: "bonita", name: "BONITA_SPRINGS", x: 200, y: 120, dist: "12 MI", time: "~20 MIN" },
+  { id: "estero", name: "ESTERO_SEC.B", x: 260, y: 140, dist: "18 MI", time: "~25 MIN" },
+  { id: "ftmyers", name: "FT_MYERS_Z.0", x: 280, y: 60, dist: "25 MI", time: "~35 MIN" },
+  { id: "marco", name: "MARCO_ISLAND", x: 200, y: 320, dist: "20 MI", time: "~30 MIN" },
+];
+
+interface ServiceRadarProps {
+  onCityClick?: (city: string) => void;
+}
+
+const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
+  const [selectedCity, setSelectedCity] = useState<City>(cities[0]);
+  const [hoveredCity, setHoveredCity] = useState<City | null>(null);
+
+  const activeCity = hoveredCity || selectedCity;
+
+  const handleCityInteraction = (city: City) => {
+    setSelectedCity(city);
+    if (onCityClick) {
+      onCityClick(city.name.replace(/\[.*\]|_|\./g, ' ').trim());
+      toast.success(`Quote request started for ${city.name.split('_').join(' ')}`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className="w-full py-12 flex flex-col items-center">
-      {/* Header */}
+    <div className="w-full py-12 flex flex-col items-center selection:bg-[#39FF14] selection:text-black">
+      
+      {/* Tactical Header */}
       <div className="text-center mb-8 space-y-2">
         <h3 className="font-mono text-xs uppercase tracking-[0.4em] text-[#39FF14] font-bold">
           AREA 51 SERVICE ZONES
         </h3>
         <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground italic">
-          Serving Naples & surrounding areas within 30 miles
+          Tactical Coverage Matrix / active monitoring
         </p>
       </div>
 
-      {/* Radar Container */}
-      <div className="relative w-full max-w-[400px] aspect-square rounded-full border border-[#39FF14]/20 bg-black/40 overflow-hidden group">
+      <div className="grid lg:grid-cols-2 gap-12 items-center w-full max-w-5xl mx-auto px-4">
         
-        {/* Sonar Sweep Animation */}
-        <div className="absolute inset-0 animate-[radar-sweep_4s_linear_infinite] origin-center z-10 pointer-events-none">
-          <div className="w-full h-1/2 bg-gradient-to-t from-[#39FF14]/30 to-transparent border-l border-[#39FF14]/50" />
+        {/* Radar Map */}
+        <div className="relative w-full max-w-[400px] aspect-square rounded-full border border-[#39FF14]/20 bg-black/40 overflow-hidden mx-auto lg:mx-0">
+          
+          {/* Sonar Sweep Animation (Paused on hover) */}
+          <div className={`absolute inset-0 origin-center z-10 pointer-events-none transition-opacity duration-500 ${hoveredCity ? 'opacity-20 grayscale' : 'opacity-100 animate-[radar-sweep_4s_linear_infinite]'}`}>
+            <div className="w-full h-1/2 bg-gradient-to-t from-[#39FF14]/30 to-transparent border-l border-[#39FF14]/50" />
+          </div>
+
+          {/* Global Grid Overlay */}
+          <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+              <div className="absolute top-1/2 left-0 w-full h-px bg-[#39FF14]" />
+              <div className="absolute top-0 left-1/2 w-px h-full bg-[#39FF14]" />
+          </div>
+
+          <svg viewBox="0 0 400 400" className="relative z-20 w-full h-full drop-shadow-[0_0_15px_#39FF14/20]">
+            {/* Concentric Circles */}
+            <circle cx="200" cy="200" r="50" fill="none" stroke="#39FF14" strokeWidth="0.5" strokeDasharray="4 4" className="opacity-20" />
+            <circle cx="200" cy="200" r="100" fill="none" stroke="#39FF14" strokeWidth="0.5" strokeDasharray="4 4" className="opacity-20" />
+            <circle cx="200" cy="200" r="150" fill="none" stroke="#39FF14" strokeWidth="1" strokeDasharray="8 8" className="opacity-40" />
+
+            {/* City Markers */}
+            {cities.map((city) => {
+              const isHovered = hoveredCity?.id === city.id;
+              const isSelected = selectedCity.id === city.id;
+              const isAnyHovered = !!hoveredCity;
+
+              return (
+                <g 
+                  key={city.id}
+                  className="cursor-crosshair transition-all duration-300"
+                  onMouseEnter={() => setHoveredCity(city)}
+                  onMouseLeave={() => setHoveredCity(null)}
+                  onClick={() => handleCityInteraction(city)}
+                  style={{ opacity: isAnyHovered && !isHovered ? 0.3 : 1 }}
+                >
+                  {/* Outer Glow Ring */}
+                  {isSelected && (
+                    <circle 
+                      cx={city.x} cy={city.y} r={isHovered ? "12" : "8"} 
+                      fill="none" stroke="#39FF14" strokeWidth="1" 
+                      className="animate-ping opacity-40 transition-all duration-300" 
+                    />
+                  )}
+                  
+                  {/* Blip Dot */}
+                  <circle 
+                    cx={city.x} cy={city.y} 
+                    r={city.isCenter ? (isHovered ? "6" : "4") : (isHovered ? "4" : "2.5")} 
+                    fill={isSelected || isHovered ? "#39FF14" : "#ffffff"} 
+                    className={`transition-all duration-300 ${isSelected ? 'shadow-[0_0_10px_#39FF14]' : ''}`}
+                  />
+
+                  {/* Name Label */}
+                  <text 
+                    x={city.x + (city.x > 200 ? 10 : -10)} 
+                    y={city.y + 15} 
+                    textAnchor={city.x > 200 ? "start" : "end"}
+                    className={`font-mono text-[7px] uppercase tracking-tighter transition-all duration-300 ${isHovered || isSelected ? 'fill-[#39FF14] font-bold' : 'fill-white/60'}`}
+                  >
+                    {city.name}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
         </div>
 
-        {/* Global Grid Overlay */}
-        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-            <div className="absolute top-1/2 left-0 w-full h-px bg-[#39FF14]" />
-            <div className="absolute top-0 left-1/2 w-px h-full bg-[#39FF14]" />
+        {/* Dynamic Tactical Info Panel */}
+        <div className="flex flex-col gap-6 lg:border-l lg:border-[#39FF14]/10 lg:pl-12">
+          
+          <div className="space-y-6">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 text-[#39FF14]">
+                <Target size={14} className="animate-pulse" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] font-black">Tracking Specimen</span>
+              </div>
+              <h4 className="text-3xl font-black italic uppercase tracking-tighter text-white">
+                {activeCity.name.split('_').join(' ')}
+              </h4>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 border border-white/5 bg-white/5 rounded-none backdrop-blur-sm group hover:border-[#39FF14]/30 transition-colors">
+                <p className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground mb-1">Sector Distance</p>
+                <div className="flex items-center gap-2">
+                  <Navigation size={12} className="text-[#39FF14]" />
+                  <p className="text-xl font-bold font-mono text-white text-glow">{activeCity.dist}</p>
+                </div>
+              </div>
+              <div className="p-4 border border-white/5 bg-white/5 rounded-none backdrop-blur-sm group hover:border-[#39FF14]/30 transition-colors">
+                <p className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground mb-1">Drive Time Est.</p>
+                <div className="flex items-center gap-2">
+                  <MapPin size={12} className="text-[#39FF14]" />
+                  <p className="text-xl font-bold font-mono text-white text-glow">{activeCity.time}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 border border-[#39FF14]/20 bg-[#39FF14]/5 space-y-3">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-[#39FF14] animate-pulse" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold text-white">Service Available</span>
+              </div>
+              <p className="text-[10px] text-muted-foreground uppercase leading-relaxed italic">
+                 Mobile Detailing fully operational in this sector. Our tactical units are ready to deploy to your location.
+              </p>
+            </div>
+
+            <Button 
+              onClick={() => handleCityInteraction(activeCity)}
+              className="w-full h-14 bg-[#39FF14] text-black font-display text-xs uppercase tracking-[0.2em] font-black italic transition-all hover:bg-[#39FF14]/90 group rounded-none"
+            >
+              DEPLOY TO THIS ZONE
+              <ArrowRight size={14} className="ml-2 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </div>
+
+          <p className="font-mono text-[8px] text-muted-foreground text-center italic uppercase opacity-50">
+            * Tracking data updated in real-time / Sector 239 active
+          </p>
         </div>
 
-        {/* SVG Components */}
-        <svg viewBox="0 0 400 400" className="relative z-20 w-full h-full drop-shadow-[0_0_15px_#39FF14/20]">
-          {/* Concentric Circles */}
-          <circle cx="200" cy="200" r="50" fill="none" stroke="#39FF14" strokeWidth="0.5" strokeDasharray="4 4" className="opacity-40" />
-          <circle cx="200" cy="200" r="100" fill="none" stroke="#39FF14" strokeWidth="0.5" strokeDasharray="4 4" className="opacity-40" />
-          <circle cx="200" cy="200" r="150" fill="none" stroke="#39FF14" strokeWidth="1" strokeDasharray="8 8" className="opacity-60 shadow-[0_0_10px_#39FF14]" />
-
-          {/* Zone Labels */}
-          <text x="255" y="195" className="font-mono text-[8px] fill-[#39FF14]/60 uppercase">10MI</text>
-          <text x="305" y="195" className="font-mono text-[8px] fill-[#39FF14]/60 uppercase">20MI</text>
-          <text x="355" y="195" className="font-mono text-[8px] fill-[#39FF14]/80 uppercase font-black">30MI</text>
-
-          {/* Target: Naples (Center) */}
-          <g className="animate-pulse">
-            <circle cx="200" cy="200" r="4" fill="#39FF14" className="shadow-[0_0_10px_#39FF14]" />
-            <circle cx="200" cy="200" r="8" fill="none" stroke="#39FF14" strokeWidth="1" className="animate-[ping_2s_infinite]" />
-          </g>
-          <text x="210" y="215" className="font-mono text-[9px] fill-[#39FF14] font-black uppercase tracking-tighter">NAPLES [CMD]</text>
-          <text x="210" y="225" className="font-mono text-[7px] fill-white opacity-70 uppercase tracking-widest leading-none">YOU ARE HERE</text>
-
-          {/* Surrounding Targets */}
-          {/* Bonita Springs */}
-          <g className="cursor-crosshair">
-            <circle cx="180" cy="120" r="2.5" fill="#39FF14" />
-            <text x="188" y="123" className="font-mono text-[7px] fill-white/80 uppercase">BONITA_SPRINGS</text>
-          </g>
-
-          {/* Marco Island */}
-          <g className="cursor-crosshair">
-            <circle cx="230" cy="320" r="2.5" fill="#39FF14" />
-            <text x="238" y="323" className="font-mono text-[7px] fill-white/80 uppercase">MARCO_ISLAND</text>
-          </g>
-
-          {/* Estero */}
-          <g className="cursor-crosshair">
-            <circle cx="140" cy="80" r="2.5" fill="#39FF14" />
-            <text x="100" y="75" className="font-mono text-[7px] fill-white/80 uppercase">ESTERO_SEC.B</text>
-          </g>
-
-          {/* Fort Myers */}
-          <g className="cursor-crosshair">
-            <circle cx="280" cy="60" r="2.5" fill="#39FF14" />
-            <text x="288" y="63" className="font-mono text-[7px] fill-white/80 uppercase">FT_MYERS_Z.0</text>
-          </g>
-        </svg>
-
-        {/* Ambient Glow */}
-        <div className="absolute inset-0 bg-radial-gradient from-[#39FF14]/5 to-transparent pointer-events-none" />
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `

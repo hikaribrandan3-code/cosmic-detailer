@@ -4,7 +4,7 @@ import logo from "@/assets/alien-icon.png";
 import ServiceRadar from "./ServiceRadar";
 
 interface FooterProps {
-  onQuoteClick: () => void;
+  onQuoteClick: (service?: string, location?: string) => void;
 }
 
 const Footer = ({ onQuoteClick }: FooterProps) => (
@@ -51,7 +51,7 @@ const Footer = ({ onQuoteClick }: FooterProps) => (
         </div>
       </div>
 
-      <ServiceRadar />
+      <ServiceRadar onCityClick={(city) => onQuoteClick(undefined, city)} />
 
       <div className="mt-12 border-t border-border pt-8 flex flex-col items-center gap-4 md:flex-row md:justify-between">
         <p className="text-muted-foreground text-xs">© {new Date().getFullYear()} Area 51 Detailing LLC. All rights reserved.</p>

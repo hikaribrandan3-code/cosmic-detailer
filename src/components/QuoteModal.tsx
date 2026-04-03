@@ -25,19 +25,23 @@ interface QuoteModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   defaultService?: string;
+  defaultLocation?: string;
 }
 
-const QuoteModal = ({ open, onOpenChange, defaultService }: QuoteModalProps) => {
+const QuoteModal = ({ open, onOpenChange, defaultService, defaultLocation }: QuoteModalProps) => {
   const [loading, setLoading] = useState(false);
   const [service, setService] = useState(defaultService || "");
+  const [location, setLocation] = useState(defaultLocation || "");
 
   useEffect(() => {
-    if (open && defaultService) {
-      setService(defaultService);
-    } else if (!open) {
+    if (open) {
+      if (defaultService) setService(defaultService);
+      if (defaultLocation) setLocation(defaultLocation);
+    } else {
       setService("");
+      setLocation("");
     }
-  }, [open, defaultService]);
+  }, [open, defaultService, defaultLocation]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,7 +65,19 @@ const QuoteModal = ({ open, onOpenChange, defaultService }: QuoteModalProps) => 
             <Input placeholder="First Name" required className="bg-secondary border-border" />
             <Input placeholder="Phone" type="tel" required className="bg-secondary border-border" />
           </div>
-          <Input placeholder="Email" type="email" required className="bg-secondary border-border" />
+          <Input 
+            placeholder="Email" 
+            type="email" 
+            required 
+            className="bg-secondary border-border" 
+          />
+          <Input 
+            placeholder="Location / City" 
+            value={location} 
+            onChange={(e) => setLocation(e.target.value)} 
+            required 
+            className="bg-secondary border-primary/20 text-[#39FF14]" 
+          />
           <div className="grid grid-cols-3 gap-3">
             <Input placeholder="Year" className="bg-secondary border-border" />
             <Input placeholder="Make" className="bg-secondary border-border" />
