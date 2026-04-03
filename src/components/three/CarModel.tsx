@@ -12,11 +12,11 @@ export function CarModel({ activeZones }: CarModelProps) {
 
   // Materials
   const factoryPaint = useMemo(() => new THREE.MeshPhysicalMaterial({
-    color: new THREE.Color('#e8e8e8'),
-    roughness: 0.4,
-    metalness: 0.6,
-    clearcoat: 0.3,
-    clearcoatRoughness: 0.2,
+    color: new THREE.Color('#dcdcdc'), // Light silver/white base
+    roughness: 0.2, // Smoother for better reflections
+    metalness: 0.7, // More metallic
+    clearcoat: 0.8,
+    clearcoatRoughness: 0.1,
   }), []);
 
   const ppfMaterial = useMemo(() => new THREE.MeshPhysicalMaterial({

@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Environment, ContactShadows, Grid } from '@react-three/drei';
 import * as THREE from 'three';
-import { CarModel } from './CarModel';
+import ProceduralCar from './ProceduralCar';
 
 interface PPFSceneProps {
   activeZones: string[];
@@ -70,7 +70,12 @@ function Scene({ activeZones, selectedPackage }: PPFSceneProps) {
       <CameraController selectedPackage={selectedPackage} />
 
       {/* Car */}
-      <CarModel activeZones={activeZones} />
+      <ProceduralCar 
+        selectedPackage={selectedPackage} 
+        hoveredZone={null} 
+        scale={0.8}
+        position={[0, -0.5, 0]}
+      />
 
       {/* Ground */}
       <ContactShadows 
@@ -100,13 +105,18 @@ function Scene({ activeZones, selectedPackage }: PPFSceneProps) {
       {/* Orbit Controls */}
       <OrbitControls
         makeDefault
+        enableDamping={true}
+        dampingFactor={0.05}
+        rotateSpeed={0.6}
+        zoomSpeed={0.8}
+        panSpeed={0.8}
         autoRotate={selectedPackage === 'full-car'}
         autoRotateSpeed={0.8}
         enablePan={false}
-        minDistance={4}
-        maxDistance={12}
+        minDistance={3}
+        maxDistance={8}
         minPolarAngle={Math.PI / 6}
-        maxPolarAngle={Math.PI / 2.1}
+        maxPolarAngle={Math.PI / 2 - 0.1}
         target={[0, 0, 0]}
       />
     </>
@@ -115,7 +125,7 @@ function Scene({ activeZones, selectedPackage }: PPFSceneProps) {
 
 export default function PPFConfigurator({ activeZones, selectedPackage }: PPFSceneProps) {
   return (
-    <div className="w-full h-[500px] lg:h-[650px] relative rounded-lg overflow-hidden" style={{ background: '#0a0a0a' }}>
+    <div className="w-full h-[500px] lg:h-[650px] relative rounded-lg overflow-hidden" style={{ background: '#0a0a0a', touchAction: 'none' }}>
       <Canvas
         shadows
         camera={{ position: [6, 3, 6], fov: 40, near: 0.1, far: 100 }}
