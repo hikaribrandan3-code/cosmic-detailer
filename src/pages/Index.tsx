@@ -86,22 +86,39 @@ const Index = () => {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { icon: <Sparkles size={24} />, title: "Interior Detailing", price: "From $180", desc: "Full vacuum, carpet cleaning, leather conditioning, and meticulous interior restoration." },
-              { icon: <Shield size={24} />, title: "Wax Packages", price: "From $150", desc: "Hand-applied professional wax for deep gloss, UV protection, and streak-free finish." },
-              { icon: <Wrench size={24} />, title: "Full Detail", price: "From $250", desc: "Complete interior and exterior — door jambs, wheels, tires, and everything in between." },
-              { icon: <Zap size={24} />, title: "Paint Correction", price: "Quote Based", desc: "One-step or two-step polish to remove swirls, scratches, and restore mirror clarity." },
-              { icon: <Droplets size={24} />, title: "Ceramic Coating", price: "From $1,100", desc: "Extreme hydrophobic protection with enhanced gloss, UV defense, and scratch resistance." },
-              { icon: <Car size={24} />, title: "PPF & Window Tint", price: "From $1,300", desc: "XPEL & SunTek paint protection film and lifetime-warranty window tint." },
+              { title: "Interior Detailing", price: "From $180", image: "/images/bg/interior-bg.png" },
+              { title: "Wax Packages", price: "From $150", image: "/images/bg/wax-bg.png" },
+              { title: "Full Detail", price: "From $250", image: "/images/bg/full-detail-bg.png" },
+              { title: "Paint Correction", price: "Quote Based", image: "/images/bg/onestep-bg.png" },
+              { title: "Ceramic Coating", price: "From $1,100", image: "/images/bg/ceramic-bg.png" },
+              { title: "PPF & Window Tint", price: "From $1,300", image: "/images/bg/ppf-tint-bg.png" },
             ].map(s => (
-              <div key={s.title} className="group rounded-lg border border-border bg-card p-8 transition-all hover:glow-border">
-                <span className="text-primary mb-4 block">{s.icon}</span>
-                <h3 className="font-display text-lg font-semibold mb-1">{s.title}</h3>
-                <p className="font-mono text-sm text-primary mb-3">{s.price}</p>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">{s.desc}</p>
-                <Link to="/services" className="inline-flex items-center gap-1 text-sm text-primary font-mono uppercase tracking-wider hover:gap-2 transition-all">
-                  Learn More <ChevronRight size={14} />
-                </Link>
-              </div>
+              <Link 
+                key={s.title} 
+                to="/services"
+                className="group relative aspect-square overflow-hidden rounded-xl border border-primary/10 bg-card transition-all duration-500"
+              >
+                {/* Specimen Image Layer */}
+                <img 
+                  src={s.image} 
+                  alt={s.title} 
+                  className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-110" 
+                />
+                
+                {/* Stealth Overlay Layer */}
+                <div className="absolute inset-0 z-10 bg-black/60 backdrop-blur-[2px] transition-all duration-500 group-hover:bg-black/20 group-hover:backdrop-blur-none" />
+
+                {/* Content Layer */}
+                <div className="relative z-20 flex h-full flex-col justify-end p-8">
+                  <div className="space-y-1">
+                    <h3 className="font-display text-lg font-bold tracking-tight text-white group-hover:text-primary transition-colors">{s.title}</h3>
+                    <p className="font-mono text-sm text-primary font-bold drop-shadow-[0_0_10px_rgba(var(--primary),0.5)]">{s.price}</p>
+                  </div>
+                  <div className="mt-4 flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
+                    Explore Specimen <ChevronRight size={12} className="transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
