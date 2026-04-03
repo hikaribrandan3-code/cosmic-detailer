@@ -58,8 +58,8 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
         {/* Radar Map */}
         <div className="relative w-full max-w-[400px] aspect-square rounded-full border border-[#39FF14]/20 bg-black/40 overflow-hidden mx-auto lg:mx-0">
           
-          {/* Sonar Sweep Animation (Paused on hover) */}
-          <div className={`absolute inset-0 origin-center z-10 pointer-events-none transition-opacity duration-500 ${hoveredCity ? 'opacity-20 grayscale' : 'opacity-100 animate-[radar-sweep_4s_linear_infinite]'}`}>
+          {/* Sonar Sweep Animation (Slower 12s sweep) */}
+          <div className={`absolute inset-0 origin-center z-10 pointer-events-none transition-opacity duration-500 ${hoveredCity ? 'opacity-20 grayscale' : 'opacity-100 animate-[radar-sweep_12s_linear_infinite]'}`}>
             <div className="w-full h-1/2 bg-gradient-to-t from-[#39FF14]/30 to-transparent border-l border-[#39FF14]/50" />
           </div>
 
@@ -95,7 +95,7 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
                     <circle 
                       cx={city.x} cy={city.y} r={isHovered ? "12" : "8"} 
                       fill="none" stroke="#39FF14" strokeWidth="1" 
-                      className="animate-ping opacity-40 transition-all duration-300" 
+                      className="animate-[ping-slow_3s_cubic-bezier(0,0,0.2,1)_infinite] opacity-30 transition-all duration-300" 
                     />
                   )}
                   
@@ -128,7 +128,7 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
           <div className="space-y-6">
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-[#39FF14]">
-                <Target size={14} className="animate-pulse" />
+                <Target size={14} className="animate-[pulse-slow_4s_ease-in-out_infinite]" />
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] font-black">Tracking Specimen</span>
               </div>
               <h4 className="text-3xl font-black italic uppercase tracking-tighter text-white">
@@ -155,7 +155,7 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
 
             <div className="p-4 border border-[#39FF14]/20 bg-[#39FF14]/5 space-y-3">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#39FF14] animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-[#39FF14] animate-[pulse-slow_4s_ease-in-out_infinite]" />
                 <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold text-white">Service Available</span>
               </div>
               <p className="text-[10px] text-muted-foreground uppercase leading-relaxed italic">
@@ -183,6 +183,16 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
         @keyframes radar-sweep {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
+        }
+        @keyframes ping-slow {
+          75%, 100% {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.3; }
         }
       `}} />
     </div>
