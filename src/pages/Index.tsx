@@ -20,7 +20,7 @@ const Index = () => {
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">Naples' Premier Mobile Detailing</p>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
               Detailing That Is{" "}
-              <span className="text-primary text-glow">Out of This World</span>
+              <span className="text-primary">Precisely Refined</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
               We come to you. 15+ years of automotive expertise, fully mobile, fully self-sufficient. From ceramic coatings to paint correction — elevated precision, at your doorstep.
@@ -82,15 +82,15 @@ const Index = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Our Services</p>
-            <h2 className="text-3xl font-bold lg:text-5xl">Precision-Engineered Packages</h2>
+            <h2 className="text-3xl font-bold lg:text-5xl">Precision Maintenance Packages</h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: "Interior Detailing", price: "From $180", image: "/images/bg/interior-bg.png" },
-              { title: "Wax Packages", price: "From $150", image: "/images/bg/wax-bg.png" },
-              { title: "Full Detail", price: "From $250", image: "/images/bg/full-detail-bg.png" },
-              { title: "Paint Correction", price: "Quote Based", image: "/images/bg/onestep-bg.png" },
-              { title: "Ceramic Coating", price: "From $1,100", image: "/images/bg/ceramic-bg.png", path: "/services/id-protective-ceramic" },
+              { title: "Interior Detailing", price: "From $180", image: "/images/bg/interior-bg.png", path: "/services#interior" },
+              { title: "Wax Packages", price: "From $150", image: "/images/bg/wax-bg.png", path: "/services#other-services" },
+              { title: "Full Detail", price: "From $250", image: "/images/bg/full-detail-bg.png", path: "/services#full-detail" },
+              { title: "Paint Correction", price: "Quote Based", image: "/images/bg/onestep-bg.png", path: "/services#paint-correction" },
+              { title: "Ceramic Coating", price: "From $1,100", image: "/images/bg/ceramic-bg.png", path: "/services/protective/ceramic" },
               { title: "PPF & Window Tint", price: "From $1,300", image: "/images/bg/ppf-tint-bg.png", path: "/services/protective/ppf" },
             ].map(s => (
               <Link 
@@ -115,7 +115,7 @@ const Index = () => {
                     <p className="font-mono text-sm text-primary font-bold drop-shadow-[0_0_10px_rgba(var(--primary),0.5)]">{s.price}</p>
                   </div>
                   <div className="mt-4 flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
-                    Explore Specimen <ChevronRight size={12} className="transition-transform group-hover:translate-x-1" />
+                    Explore Details <ChevronRight size={12} className="transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </Link>
@@ -162,7 +162,7 @@ const Index = () => {
               <div key={i} className="group aspect-[4/3] rounded-lg border border-border bg-secondary flex items-center justify-center overflow-hidden">
                 <div className="text-center">
                   <Sparkles className="mx-auto mb-2 text-primary/40" size={32} />
-                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Specimen Coming Soon</p>
+                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Project Coming Soon</p>
                 </div>
               </div>
             ))}
@@ -231,7 +231,7 @@ const Index = () => {
       <section className="py-24 lg:py-32 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="text-3xl font-bold lg:text-5xl mb-6">
-            Ready For An <span className="text-primary text-glow">Out of This World</span> Detail?
+            Ready For A <span className="text-primary">Professional Transformation?</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto mb-8">
             Book your appointment today and experience Naples' premier mobile detailing service.

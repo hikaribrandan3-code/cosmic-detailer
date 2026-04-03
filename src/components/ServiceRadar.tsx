@@ -14,11 +14,11 @@ interface City {
 }
 
 const cities: City[] = [
-  { id: "naples", name: "NAPLES [CMD]", x: 200, y: 200, dist: "0 MI", time: "0 MIN", isCenter: true },
-  { id: "bonita", name: "BONITA_SPRINGS", x: 200, y: 120, dist: "12 MI", time: "~20 MIN" },
-  { id: "estero", name: "ESTERO_SEC.B", x: 260, y: 140, dist: "18 MI", time: "~25 MIN" },
-  { id: "ftmyers", name: "FT_MYERS_Z.0", x: 280, y: 60, dist: "25 MI", time: "~35 MIN" },
-  { id: "marco", name: "MARCO_ISLAND", x: 200, y: 320, dist: "20 MI", time: "~30 MIN" },
+  { id: "naples", name: "NAPLES NORTH", x: 200, y: 200, dist: "0 MI", time: "0 MIN", isCenter: true },
+  { id: "bonita", name: "BONITA SPRINGS", x: 200, y: 120, dist: "12 MI", time: "~20 MIN" },
+  { id: "estero", name: "ESTERO CORR", x: 260, y: 140, dist: "18 MI", time: "~25 MIN" },
+  { id: "ftmyers", name: "FT MYERS Z.0", x: 280, y: 60, dist: "25 MI", time: "~35 MIN" },
+  { id: "marco", name: "MARCO ISLAND", x: 200, y: 320, dist: "20 MI", time: "~30 MIN" },
 ];
 
 interface ServiceRadarProps {
@@ -43,13 +43,12 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
   return (
     <div className="w-full py-12 flex flex-col items-center selection:bg-[#39FF14] selection:text-black">
       
-      {/* Tactical Header */}
       <div className="text-center mb-8 space-y-2">
         <h3 className="font-mono text-xs uppercase tracking-[0.4em] text-[#39FF14] font-bold">
-          AREA 51 SERVICE ZONES
+          AREA 51 SERVICE LOCATIONS
         </h3>
         <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground italic">
-          Tactical Coverage Matrix / active monitoring
+          Regional Service Coverage / Active Response Area
         </p>
       </div>
 
@@ -132,23 +131,24 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-[#39FF14]">
                 <Target size={14} style={{ animation: 'pulse-slow 6s ease-in-out infinite' }} />
-                <span className="font-mono text-[10px] uppercase tracking-[0.3em] font-black">Tracking Specimen</span>
+                <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#39FF14]/70 mb-1">PRECISION STATUS</p>
               </div>
+              <h3 className="text-xl font-black italic tracking-tighter uppercase mb-4">SERVICE AREA ACTIVE</h3>
               <h4 className="text-3xl font-black italic uppercase tracking-tighter text-white">
-                {activeCity.name.split('_').join(' ')}
+                {activeCity.name}
               </h4>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 border border-white/5 bg-white/5 rounded-none backdrop-blur-sm group hover:border-[#39FF14]/30 transition-colors">
-                <p className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground mb-1">Sector Distance</p>
+                <p className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground mb-1">Travel Distance</p>
                 <div className="flex items-center gap-2">
                   <Navigation size={12} className="text-[#39FF14]" />
                   <p className="text-xl font-bold font-mono text-white text-glow">{activeCity.dist}</p>
                 </div>
               </div>
               <div className="p-4 border border-white/5 bg-white/5 rounded-none backdrop-blur-sm group hover:border-[#39FF14]/30 transition-colors">
-                <p className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground mb-1">Drive Time Est.</p>
+                <p className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground mb-1">Estimated Arrival</p>
                 <div className="flex items-center gap-2">
                   <MapPin size={12} className="text-[#39FF14]" />
                   <p className="text-xl font-bold font-mono text-white text-glow">{activeCity.time}</p>
@@ -162,7 +162,7 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
                 <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold text-white">Service Available</span>
               </div>
               <p className="text-[10px] text-muted-foreground uppercase leading-relaxed italic">
-                 Mobile Detailing fully operational in this sector. Our tactical units are ready to deploy to your location.
+                 Mobile Detailing fully operational in this area. Our specialized units are optimized for local service.
               </p>
             </div>
 
@@ -170,13 +170,13 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
               onClick={() => handleCityInteraction(activeCity)}
               className="w-full h-14 bg-[#39FF14] text-black font-display text-xs uppercase tracking-[0.2em] font-black italic transition-all hover:bg-[#39FF14]/90 group rounded-none"
             >
-              DEPLOY TO THIS ZONE
+              REQUEST SERVICE IN THIS AREA
               <ArrowRight size={14} className="ml-2 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
 
           <p className="font-mono text-[8px] text-muted-foreground text-center italic uppercase opacity-50">
-            * Tracking data updated in real-time / Sector 239 active
+            * Location data updated in real-time / Naples North active
           </p>
         </div>
 

@@ -21,17 +21,16 @@ const PaintCorrection = () => {
     <div className="min-h-screen bg-background pt-24 pb-32 selection:bg-[#39FF14] selection:text-black">
       <div className="container mx-auto px-4 lg:px-8">
         
-        {/* Tactical Header */}
         <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#39FF14]/30 bg-[#39FF14]/5 text-[#39FF14] font-mono text-[10px] uppercase tracking-[0.3em]">
              <Gauge size={12} className="animate-pulse" />
-             RESTORATION / LEVEL-02 CLEARANCE
+             RESTORATION / STAGE 2 CLARITY
           </div>
           <h1 className="text-4xl lg:text-7xl font-black italic uppercase tracking-tighter leading-none">
             PAINT <span className="text-[#39FF14] text-glow">CORRECTION</span>
           </h1>
           <p className="font-mono text-xs lg:text-sm uppercase tracking-[0.4em] text-muted-foreground max-w-2xl mx-auto italic">
-            TACTICAL CLEAR COAT RESURFACING / MIRROR REFLECTIVITY
+            PROFESSIONAL CLEAR COAT RESURFACING / MIRROR FINISH
           </p>
         </div>
 
@@ -82,14 +81,14 @@ const PaintCorrection = () => {
 
             {/* Tactical Labels */}
             <div className="absolute top-4 left-4 z-40 px-2 py-1 bg-red-600 text-white font-mono text-[8px] uppercase tracking-widest font-black">
-              SWIRL_DAMAGE_DETECTED
+              SWIRL DAMAGE DETECTED
             </div>
             <div className="absolute top-4 right-4 z-40 px-2 py-1 bg-[#39FF14] text-black font-mono text-[8px] uppercase tracking-widest font-black">
-              MIRROR_CLARITY_SYNCED
+              MIRROR CLARITY ACHIEVED
             </div>
           </div>
           <p className="mt-4 text-center font-mono text-[10px] text-muted-foreground uppercase tracking-widest italic">
-            Slide to visualize strategic Clear Coat Resurfacing
+            Slide to visualize stage-two paint restoration
           </p>
         </div>
 
@@ -137,10 +136,10 @@ const PaintCorrection = () => {
 
            <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: <Search size={20} />, label: "Inspection", desc: "Digital clear coat measurement & analysis." },
-                { icon: <Fingerprint size={20} />, label: "DNA Match", desc: "Custom compound pairing for each paint type." },
+                { icon: <Search size={20} />, label: "Inspection", desc: "Digital clear coat measurement & finish analysis." },
+                { icon: <Fingerprint size={20} />, label: "Paint Chemistry", desc: "Custom compound pairing for specific clear coat hardness." },
                 { icon: <Gauge size={20} />, label: "Precision", desc: "Rotary & dual-action mechanical restoration." },
-                { icon: <Sparkles size={20} />, label: "Final Sync", desc: "Mirror-finish clarity & gloss preservation." },
+                { icon: <Sparkles size={20} />, label: "Final Clarity", desc: "Mirror-finish depth & long-term gloss preservation." },
               ].map((item, i) => (
                 <div key={i} className="p-6 border border-white/5 bg-white/5 space-y-3 hover:border-[#39FF14]/30 transition-all">
                    <div className="text-[#39FF14]">{item.icon}</div>

@@ -229,7 +229,7 @@ const ServicesPage = () => {
       />
 
       {/* ADDITIONAL SERVICES GRID */}
-      <section className="py-24 border-t border-border/30">
+      <section id="other-services" className="py-24 border-t border-border/30">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-12">
             <p className="font-mono text-xs uppercase tracking-[0.4em] text-primary mb-3">// ADDITIONAL</p>

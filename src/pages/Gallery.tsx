@@ -6,7 +6,7 @@ const GalleryPage = () => {
       <section className="py-24 lg:py-32 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Portfolio</p>
-          <h1 className="text-4xl font-bold lg:text-6xl">Our <span className="text-primary text-glow">Work</span></h1>
+          <h1 className="text-4xl font-bold lg:text-6xl">Our <span className="text-primary">Work</span></h1>
           <p className="mt-6 text-muted-foreground max-w-xl mx-auto">Before and after transformations from our Naples detailing service.</p>
         </div>
       </section>
@@ -18,7 +18,7 @@ const GalleryPage = () => {
               <div key={i} className="group aspect-[4/3] rounded-lg border border-border bg-card flex items-center justify-center overflow-hidden">
                 <div className="text-center">
                   <Sparkles className="mx-auto mb-2 text-primary/30 animate-pulse-glow" size={32} />
-                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Specimen {String(i + 1).padStart(2, "0")} — Coming Soon</p>
+                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Project {String(i + 1).padStart(2, "0")} — Coming Soon</p>
                 </div>
               </div>
             ))}

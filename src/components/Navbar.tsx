@@ -10,9 +10,9 @@ const Navbar = ({ onQuoteClick }: { onQuoteClick: (service?: string) => void }) 
   const location = useLocation();
 
   const detailingLinks = [
-    { label: "Interior Detailing", path: "/services" },
-    { label: "Exterior Detailing", path: "/services" },
-    { label: "Full Detail", path: "/services" },
+    { label: "Interior Detailing", path: "/services#interior" },
+    { label: "Exterior Detailing", path: "/services#other-services" },
+    { label: "Full Detail", path: "/services#full-detail" },
   ];
 
   const protectiveLinks = [
@@ -93,31 +93,40 @@ const Navbar = ({ onQuoteClick }: { onQuoteClick: (service?: string) => void }) 
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 top-[65px] bg-background z-40 p-4 lg:hidden">
-          <div className="flex flex-col gap-6 overflow-y-auto max-h-[calc(100vh-100px)]">
-             <Link onClick={() => setMobileOpen(false)} to="/" className="text-xl font-black italic italic tracking-tighter uppercase">Home</Link>
-             <Link onClick={() => setMobileOpen(false)} to="/about" className="text-xl font-black italic italic tracking-tighter uppercase">About</Link>
-             
-             <div className="space-y-4">
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#39FF14] font-bold">Services</p>
-                <div className="grid grid-cols-1 gap-4 pl-4 border-l border-white/10">
-                   <Link onClick={() => setMobileOpen(false)} to="/services" className="text-sm font-bold uppercase tracking-widest text-white/70">Regular Detailing</Link>
-                   <Link onClick={() => setMobileOpen(false)} to="/services/protective/paint-correction" className="text-sm font-bold uppercase tracking-widest text-[#39FF14]">Paint Correction</Link>
-                   <Link onClick={() => setMobileOpen(false)} to="/services/protective/ceramic" className="text-sm font-bold uppercase tracking-widest text-white/70">Ceramic Coatings</Link>
-                   <Link onClick={() => setMobileOpen(false)} to="/services/protective/ppf" className="text-sm font-bold uppercase tracking-widest text-white/70">PPF (Clear Bra)</Link>
-                   <Link onClick={() => setMobileOpen(false)} to="/services/protective/tint" className="text-sm font-bold uppercase tracking-widest text-white/70">Window Tint</Link>
-                </div>
-             </div>
-
-             <Link onClick={() => setMobileOpen(false)} to="/gallery" className="text-xl font-black italic italic tracking-tighter uppercase">Gallery</Link>
-             <Link onClick={() => setMobileOpen(false)} to="/faq" className="text-xl font-black italic italic tracking-tighter uppercase">FAQ</Link>
-             <Link onClick={() => setMobileOpen(false)} to="/contact" className="text-xl font-black italic italic tracking-tighter uppercase">Contact</Link>
-             
-             <Button onClick={() => { onQuoteClick(); setMobileOpen(false); }} className="w-full bg-[#39FF14] text-black font-display uppercase font-black italic tracking-widest py-8">
-               Launch My Quote
-             </Button>
+        <>
+          <div 
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-40 lg:hidden animate-in fade-in duration-300" 
+            onClick={() => setMobileOpen(false)}
+          />
+          <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-background/95 backdrop-blur-2xl z-50 p-6 lg:hidden shadow-2xl animate-in slide-in-from-right duration-300">
+            <div className="flex flex-col gap-6 overflow-y-auto h-full pt-16">
+               <Link onClick={() => setMobileOpen(false)} to="/" className="text-2xl font-black italic tracking-tighter uppercase text-white hover:text-[#39FF14] transition-colors">Home</Link>
+               <Link onClick={() => setMobileOpen(false)} to="/about" className="text-2xl font-black italic tracking-tighter uppercase text-white hover:text-[#39FF14] transition-colors">About</Link>
+               
+               <div className="space-y-4">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#39FF14] font-bold">Services</p>
+                  <div className="grid grid-cols-1 gap-4 pl-4 border-l border-white/10">
+                     <Link onClick={() => setMobileOpen(false)} to="/services#interior" className="text-sm font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Interior Detailing</Link>
+                     <Link onClick={() => setMobileOpen(false)} to="/services#other-services" className="text-sm font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Exterior Detailing</Link>
+                     <Link onClick={() => setMobileOpen(false)} to="/services/protective/paint-correction" className="text-sm font-bold uppercase tracking-widest text-[#39FF14] hover:text-[#39FF14]/80 transition-colors">Paint Correction</Link>
+                     <Link onClick={() => setMobileOpen(false)} to="/services/protective/ceramic" className="text-sm font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Ceramic Coatings</Link>
+                     <Link onClick={() => setMobileOpen(false)} to="/services/protective/ppf" className="text-sm font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">PPF (Clear Bra)</Link>
+                     <Link onClick={() => setMobileOpen(false)} to="/services/protective/tint" className="text-sm font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Window Tint</Link>
+                  </div>
+               </div>
+  
+               <Link onClick={() => setMobileOpen(false)} to="/gallery" className="text-2xl font-black italic tracking-tighter uppercase text-white hover:text-[#39FF14] transition-colors">Gallery</Link>
+               <Link onClick={() => setMobileOpen(false)} to="/faq" className="text-2xl font-black italic tracking-tighter uppercase text-white hover:text-[#39FF14] transition-colors">FAQ</Link>
+               <Link onClick={() => setMobileOpen(false)} to="/contact" className="text-2xl font-black italic tracking-tighter uppercase text-white hover:text-[#39FF14] transition-colors">Contact</Link>
+               
+               <div className="mt-auto pb-8">
+                 <Button onClick={() => { onQuoteClick(); setMobileOpen(false); }} className="w-full bg-[#39FF14] text-black font-display uppercase font-black italic tracking-widest py-8 hover:bg-[#32e612] transition-all">
+                   Get A Quote
+                 </Button>
+               </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </nav>
   );
