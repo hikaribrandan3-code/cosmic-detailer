@@ -1,282 +1,302 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { Shield, Settings, ArrowRight } from 'lucide-react';
+import { 
+  Shield, 
+  MapPin, 
+  ArrowRight, 
+  AlertTriangle, 
+  CheckCircle2,
+  TrendingDown
+} from 'lucide-react';
 import PPFFrontSVG from '@/components/PPFFrontSVG';
+
+type PpfPackage = 'partial' | 'fullFront' | 'stealth';
+type Usage = 'city' | 'highway' | null;
+type Threat = 'rocks' | 'bugs' | null;
 
 const packages = {
   partial: {
+    id: 'partial',
+    name: 'PARTIAL FRONT',
+    price: '1,200',
     zones: ['bumper-front', 'hood-leading', 'fender-left', 'fender-right', 'mirror-left', 'mirror-right', 'door-cup-left', 'door-cup-right'],
-    price: '800',
-    legend: ['Front Bumper', 'Hood Leading Edge (30%)', 'Fender Leading Edges', 'Mirror Caps', 'Door Cups']
+    features: ['Bumper + Hood Leading Edge (30%)', 'Mirror Caps + Door Cups', '2-Year Warranty']
   },
   fullFront: {
+    id: 'fullFront',
+    name: 'FULL FRONT',
+    price: '1,800',
     zones: ['bumper-front', 'hood', 'fender-left', 'fender-right', 'mirror-left', 'mirror-right', 'headlight-left', 'headlight-right', 'door-cup-left', 'door-cup-right'],
-    price: '1,400',
-    legend: ['Front Bumper', 'Full Hood', 'Full Fenders', 'Mirror Caps', 'Headlights', 'Door Cups']
+    features: ['Full Hood, Fenders, Bumper', 'Mirrors, Headlights, Door Cups', '10-Year Warranty']
   },
-  fullCar: {
+  stealth: {
+    id: 'stealth',
+    name: 'STEALTH FULL',
+    price: 'GET QUOTE',
     zones: ['bumper-front', 'hood', 'hood-leading', 'fender-left', 'fender-right', 'mirror-left', 'mirror-right', 'door-left', 'door-right', 'door-cup-left', 'door-cup-right', 'roof', 'headlight-left', 'headlight-right'],
-    price: '2,800',
-    legend: ['Full Vehicle Protection', 'All Painted Panels', 'Bumpers', 'Hood & Fenders', 'Doors & Roof', 'Lights & Mirrors']
+    features: ['Every Painted Surface Covered', 'Matte/Satin Finish Available', 'Transferable Lifetime Warranty']
   }
 };
 
-type PackageKey = 'partial' | 'fullFront' | 'fullCar';
-
 export default function PPF() {
   const { openQuote } = useOutletContext<{ openQuote: (service?: string) => void }>();
-  const [currentPackage, setCurrentPackage] = useState<PackageKey>('fullFront');
+  
+  // Master State
+  const [selectedPackage, setSelectedPackage] = useState<PpfPackage | null>(null);
+  
+  // Quiz State
+  const [usage, setUsage] = useState<Usage>(null);
+  const [threat, setThreat] = useState<Threat>(null);
+
+  // Interaction State
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
+  
+  const funnelRef = useRef<HTMLDivElement>(null);
 
-  const selectPackage = (pkg: PackageKey) => {
-    setCurrentPackage(pkg);
-  };
+  // Engine: Quiz mapping
+  useEffect(() => {
+    if (usage && threat) {
+      if (usage === 'highway' || threat === 'rocks') {
+        setSelectedPackage('fullFront');
+      } else {
+        setSelectedPackage('partial');
+      }
+      
+      // Give DOM time to un-hide the recommendation box
+      setTimeout(() => {
+        funnelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  }, [usage, threat]);
 
+  // Engine: Zone click mapping
   const handleZoneClick = (zoneId: string) => {
-    // Find smallest package that includes this zone
-    if (packages.partial.zones.includes(zoneId)) selectPackage('partial');
-    else if (packages.fullFront.zones.includes(zoneId)) selectPackage('fullFront');
-    else selectPackage('fullCar');
+    if (packages.partial.zones.includes(zoneId)) setSelectedPackage('partial');
+    else if (packages.fullFront.zones.includes(zoneId)) setSelectedPackage('fullFront');
+    else setSelectedPackage('stealth');
   };
 
   const isZoneActive = (zoneId: string) => {
-    return packages[currentPackage].zones.includes(zoneId);
+    if (!selectedPackage) return false;
+    return packages[selectedPackage].zones.includes(zoneId);
   };
 
-  const currentConfig = packages[currentPackage];
-
-  // Zone label for hover
+  // Label formatting
   const formatZoneLabel = (zoneId: string) => {
-    return zoneId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    return zoneId.replace(/-/g, ' ').toUpperCase();
   };
+
+  const currentPkg = selectedPackage ? packages[selectedPackage] : null;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e5e2e1] flex flex-col">
-      {/* Sub-header removed from top level to eliminate triple-header on desktop */}
-
-      {/* MOBILE LAYOUT (< 1024px) */}
-      <main className="flex-grow flex flex-col pt-4 pb-32 lg:hidden">
-        {/* Mobile-only sub-header bar - preserved for mobile UX */}
-        <div className="bg-[#131313] text-[#39ff14] font-mono tracking-tighter uppercase border-b border-white/5 flex justify-between items-center w-full px-6 py-2 mb-2">
-          <div className="flex items-center gap-2">
-            <Settings className="text-[#39ff14] w-3.5 h-3.5" />
-            <span className="text-sm font-bold tracking-[0.2em]">PRECISION_PPF</span>
+    <div className="min-h-screen bg-[#0e0e0e] text-[#adaaaa] font-sans pt-16 pb-32 overflow-x-hidden selection:bg-[#00FF41] selection:text-black">
+      
+      {/* HERO SECTION */}
+      <section className="px-6 py-16 lg:py-32 relative overflow-hidden bg-[#0e0e0e] border-b border-white/5">
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" }}></div>
+        <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+          <div className="lg:w-1/2">
+            <span className="text-[#00FF41] font-mono font-bold uppercase tracking-[0.2em] text-[10px] lg:text-xs">Just Took Delivery?</span>
+            <h2 className="mt-4 text-5xl md:text-7xl font-mono font-black leading-[0.9] uppercase tracking-tighter italic text-white drop-shadow-lg">
+              PROTECT IT BEFORE<br/>
+              <span className="text-[#00FF41]">THE FIRST CHIP</span>
+            </h2>
+            <p className="mt-6 text-[#adaaaa] max-w-md font-mono text-xs lg:text-sm uppercase tracking-widest leading-relaxed">
+              That new car smell comes with a countdown. Highway debris hits at <span className="text-white font-bold">140mph</span>. Your factory paint won't survive the drive home.
+            </p>
           </div>
-          <button 
-            onClick={() => openQuote(`PPF: ${currentPackage} (${currentConfig.price})`)}
-            className="bg-[#39ff14] text-[#053900] px-3 py-1 text-[9px] font-bold tracking-widest rounded-sm font-mono"
-          >
-            GET QUOTE
-          </button>
-        </div>
-        <div className="px-6 mb-2">
-          <div className="flex justify-between items-end border-l-2 border-[#39ff14] pl-4">
-            <div>
-              <p className="font-mono text-[#c6c6c6] text-[10px] tracking-[0.2em] uppercase">Current Schematic</p>
-              <h1 className="font-mono text-xl font-black tracking-tight text-[#e5e2e1] uppercase mt-1">MODEL S <span className="text-[#39ff14]">/ PPF</span></h1>
+          <div className="lg:w-1/2 w-full pt-12 lg:pt-0">
+             {/* PAIN POINTS */}
+            <div className="grid grid-cols-1 gap-4">
+              <div className="bg-[#131313] p-6 lg:p-8 border-l-4 border-[#ff725e] group hover:border-[#ff725e]/50 transition-all">
+                <div className="flex items-center gap-2 text-[#ff725e] mb-3">
+                  <AlertTriangle className="w-4 h-4" />
+                  <span className="font-mono font-bold uppercase text-[10px] tracking-[0.3em]">Paint Matching = Impossible</span>
+                </div>
+                <h3 className="text-xl lg:text-2xl font-mono font-black uppercase leading-tight italic text-white">BODY SHOPS CAN'T MATCH ROBOTS</h3>
+                <p className="mt-2 text-[#adaaaa] font-mono text-[9px] uppercase tracking-widest leading-relaxed opacity-80">
+                  Factory: 3-stage electrostatic precision. Body shop: Gravity-fed spray gun + hope. Your metallic pearl will never lay the same way twice.
+                </p>
+              </div>
+              <div className="bg-[#131313] p-6 lg:p-8 border-l-4 border-[#ff725e] group hover:border-[#ff725e]/50 transition-all">
+                <div className="flex items-center gap-2 text-[#ff725e] mb-3">
+                  <TrendingDown className="w-4 h-4" />
+                  <span className="font-mono font-bold uppercase text-[10px] tracking-[0.3em]">CARFAX Flags</span>
+                </div>
+                <h3 className="text-xl lg:text-2xl font-mono font-black uppercase leading-tight italic text-white">A RESPRAY IS A RED FLAG</h3>
+                <p className="mt-2 text-[#adaaaa] font-mono text-[9px] uppercase tracking-widest leading-relaxed opacity-80">
+                  One "minor" chip leads to a panel respray. One respray leads to a "Minor Accident" flag on CARFAX. Resale value drops 15% instantly.
+                </p>
+              </div>
             </div>
-            <div className="text-right">
-              <p className="font-mono text-[#c6c6c6] text-[10px] tracking-[0.2em] uppercase">Config ID</p>
-              <p className="font-mono text-xs font-black text-[#e5e2e1] mt-1">#TS-MS-24</p>
-            </div>
           </div>
         </div>
+      </section>
 
-        {/* Mobile Car Diagram */}
-        <div className="relative w-full aspect-[4/3] flex items-center justify-center p-4">
-          <div className="absolute inset-0 grid grid-cols-6 grid-rows-4 opacity-10 pointer-events-none">
-            {[...Array(24)].map((_, i) => (
-              <div key={i} className="border-r border-b border-[#c6c6c6]"></div>
-            ))}
-          </div>
+      {/* INTERACTIVE CAR DIAGRAM */}
+      <section className="py-20 lg:py-32 px-6 bg-[#0e0e0e] border-b border-white/5">
+        <h3 className="text-center font-mono font-bold uppercase tracking-[0.3em] text-[10px] mb-8 lg:mb-12 text-[#adaaaa]">Select Impact Zones to View Tier Coverage</h3>
+        <div className="relative w-full max-w-4xl mx-auto flex justify-center">
           
           <PPFFrontSVG 
-            currentPackage={currentPackage}
+            currentPackage={selectedPackage || ''}
             isZoneActive={isZoneActive}
             handleZoneClick={handleZoneClick}
             setHoveredZone={setHoveredZone}
           />
           
-          {/* Hover Label */}
           {hoveredZone && (
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 pointer-events-none bg-[#131313]/90 backdrop-blur-sm border border-[#39ff14] text-[#39ff14] px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest font-bold shadow-[0_0_15px_rgba(57,255,20,0.2)]">
-              {formatZoneLabel(hoveredZone)}
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 pointer-events-none bg-[#131313]/90 backdrop-blur-sm border border-[#00FF41]/30 text-[#00FF41] px-4 py-2 text-[10px] font-mono uppercase tracking-[0.3em] font-black shadow-[0_0_20px_rgba(0,255,65,0.15)] flex flex-col items-center gap-1 z-20">
+              <span>{formatZoneLabel(hoveredZone)}</span>
+              {hoveredZone === 'bumper-front' && <span className="text-[#ff725e] text-[8px] animate-pulse whitespace-nowrap">60% IMPACT RISK</span>}
             </div>
           )}
-          
-          {/* Price Badge */}
-          <div className="absolute top-8 right-6 bg-[#131313]/80 backdrop-blur-lg border-l-2 border-[#39ff14] p-3 shadow-2xl">
-            <span className="font-mono text-[9px] tracking-widest text-[#c6c6c6] uppercase block mb-0.5">Package Value</span>
-            <div className="flex items-start">
-              <span className="font-mono text-xs text-[#39ff14] mt-1 mr-1 font-bold">$</span>
-              <span className="font-mono text-3xl font-black italic text-[#e5e2e1] tracking-tighter">{currentConfig.price}</span>
-            </div>
-          </div>
-        </div>
 
-        {/* Mobile Package Selector */}
-        <div className="px-4 space-y-4">
-          <div className="flex w-full bg-[#1c1b1b] p-1 rounded-sm gap-1 border border-white/5">
-            {(['partial', 'fullFront', 'fullCar'] as PackageKey[]).map((pkg) => (
-              <button
-                key={pkg}
-                onClick={() => selectPackage(pkg)}
-                className={`flex-1 py-3 px-2 flex flex-col items-center justify-center border-b-2 sm:border-l-4 sm:border-b-0 transition-all ${
-                  currentPackage === pkg 
-                    ? 'border-[#39ff14] text-[#39ff14] bg-[#39ff14]/5' 
-                    : 'border-transparent text-[#c6c6c6] hover:text-white bg-white/[0.01]'
-                }`}
-              >
-                <span className={`font-mono text-[9px] font-bold tracking-widest uppercase mb-1 ${currentPackage === pkg ? '' : 'opacity-60'}`}>
-                  {pkg === 'partial' ? 'Entry' : pkg === 'fullFront' ? 'Standard' : 'Elite'}
-                </span>
-                <span className="font-mono text-[11px] font-black tracking-tighter uppercase whitespace-nowrap">
-                  {pkg === 'partial' ? 'PARTIAL' : pkg === 'fullFront' ? 'FULL FRONT' : 'FULL CAR'}
-                </span>
-              </button>
-            ))}
-          </div>
-          
-          {/* Legend */}
-          <div className="bg-[#1c1b1b] rounded-sm border border-[#3c4b35]/20 overflow-hidden">
-            <div className="p-5 bg-gradient-to-br from-[#1c1b1b] to-[#131313]">
-              <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/5">
-                <Shield className="text-[#39ff14] w-4 h-4" />
-                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-[#e5e2e1]">Included Focus Areas</span>
-              </div>
-              <div className="grid grid-cols-2 gap-y-3 gap-x-4">
-                {currentConfig.legend.map((item, i) => (
-                  <div key={i} className="flex items-start gap-2.5">
-                    <div className="w-1.5 h-1.5 bg-[#39ff14] rounded-full mt-1.5 shrink-0 shadow-[0_0_5px_#39ff14]"></div>
-                    <span className="text-[10px] font-mono leading-tight uppercase tracking-wider text-[#baccb0]">{item}</span>
+        </div>
+        <p className="text-center font-mono text-[9px] uppercase tracking-widest text-white/30 mt-8">Graphic uses Model S layout. Coverage applies to all makes/models.</p>
+      </section>
+
+      {/* PACKAGE CARDS */}
+      <section className="py-20 px-6 lg:px-12 bg-[#131313]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {(Object.keys(packages) as PpfPackage[]).map((pkgKey) => {
+              const pkg = packages[pkgKey];
+              const isActive = selectedPackage === pkgKey;
+              return (
+                <div 
+                  key={pkgKey}
+                  onClick={() => setSelectedPackage(pkgKey)}
+                  className={`cursor-pointer transition-all duration-300 border-l-4 relative overflow-hidden ${
+                    isActive 
+                      ? 'bg-[#1a1b1a] border-[#00FF41] shadow-[0_0_30px_rgba(0,255,65,0.1)] -translate-y-2' 
+                      : 'bg-[#191a1a] border-white/5 hover:bg-[#202020]'
+                  }`}
+                >
+                  {pkgKey === 'fullFront' && (
+                    <div className="absolute top-0 right-0 bg-[#00FF41] text-[#053900] px-4 py-1">
+                      <span className="font-mono text-[9px] font-black uppercase tracking-widest">Industry Standard ★</span>
+                    </div>
+                  )}
+                  <div className="p-8">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] opacity-50 block mb-2">{pkgKey === 'stealth' ? 'Premium Tier' : 'Clear Bra'}</span>
+                    <h3 className={`text-3xl font-mono font-black italic uppercase leading-none tracking-tighter ${isActive ? 'text-[#00FF41]' : 'text-white'}`}>{pkg.name}</h3>
+                    <div className="mt-8 mb-8">
+                      <span className={`font-mono text-4xl font-black italic tracking-tighter ${isActive ? 'text-white' : 'text-[#adaaaa]'}`}>
+                        {pkg.price !== 'GET QUOTE' && '$'}{pkg.price}
+                      </span>
+                    </div>
+                    <ul className="space-y-4">
+                      {pkg.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                           <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 transition-colors ${isActive ? 'text-[#00FF41]' : 'text-[#484847]'}`} />
+                           <span className="font-mono text-[9px] lg:text-[10px] text-[#e5e2e1] uppercase tracking-wider">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
-        
-        <div className="px-6 mt-6 opacity-50 text-center">
-          <p className="text-[9px] font-mono leading-relaxed uppercase tracking-[0.15em] text-[#baccb0]">
-            * All packages include edge wrapping. 8.5 mil TPU standard. 10-year anti-yellowing warranty.
-          </p>
-        </div>
-      </main>
+      </section>
 
-      {/* DESKTOP LAYOUT (≥ 1024px) */}
-      <main className="hidden lg:flex flex-grow bg-[#0a0a0a] overflow-hidden">
-        {/* Left: Car Section */}
-        <div className="w-[60%] flex items-center justify-center p-6 relative bg-gradient-to-br from-[#0a0a0a] to-[#131313] border-r border-[#202020]">
-          <div className="w-full max-w-4xl relative">
-            <div className="absolute top-0 left-0 border-l-4 border-[#39ff14] pl-5 z-10">
-              <p className="font-mono text-[#c6c6c6] text-[10px] font-bold tracking-[0.3em] uppercase mb-1">Current Schematic</p>
-              <h1 className="font-mono text-4xl font-black italic tracking-tighter text-[#e5e2e1] uppercase">MODEL S <span className="text-[#39ff14]">/ PPF</span></h1>
-              <p className="font-mono text-[9px] tracking-widest text-[#c6c6c6] mt-2 uppercase font-bold opacity-60">Config ID: #TS-MS-24</p>
+      {/* SMART RECOMMENDER */}
+      <section className="px-6 py-20 lg:py-32 bg-[#0e0e0e]" id="funnel" ref={funnelRef}>
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-6xl font-mono font-black uppercase tracking-tighter italic text-white">CONFIGURE <span className="text-[#00FF41]">PROTECTION</span></h2>
+            <div className="h-1 w-12 bg-[#00FF41] mx-auto mt-6 shadow-[0_0_10px_#00FF41]"></div>
+            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] font-bold text-[#adaaaa]">Not sure? Answer 2 questions to auto-calculate your tier.</p>
+          </div>
+          
+          <div className="space-y-12">
+            
+            {/* Step 1 */}
+            <div className="space-y-4">
+              <p className="font-mono font-bold uppercase text-[10px] tracking-[0.3em] text-[#00FF41]">01 // How Do You Drive?</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button 
+                  onClick={() => setUsage('city')}
+                  className={`py-8 px-6 border-2 transition-all font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest flex items-center justify-center ${usage === 'city' ? 'border-[#00FF41] bg-[#00FF41]/10 text-[#00FF41]' : 'border-[#262626] bg-[#131313] hover:border-[#484847] text-white hover:bg-[#1a1a1a]'}`}
+                >
+                  City/Suburban
+                </button>
+                <button 
+                  onClick={() => setUsage('highway')}
+                  className={`py-8 px-6 border-2 transition-all font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest flex items-center justify-center ${usage === 'highway' ? 'border-[#00FF41] bg-[#00FF41]/10 text-[#00FF41]' : 'border-[#262626] bg-[#131313] hover:border-[#484847] text-white hover:bg-[#1a1a1a]'}`}
+                >
+                  Highway Commuter
+                </button>
+              </div>
             </div>
             
-            <PPFFrontSVG 
-              currentPackage={currentPackage}
-              isZoneActive={isZoneActive}
-              handleZoneClick={handleZoneClick}
-              setHoveredZone={setHoveredZone}
-            />
-
-            {/* Hover Tooltip for Desktop */}
-             {hoveredZone && (
-              <div className="absolute top-4 right-4 pointer-events-none bg-[#131313]/90 backdrop-blur-sm border border-[#39ff14] text-[#39ff14] px-4 py-2 font-mono uppercase tracking-widest font-black shadow-[0_0_20px_rgba(57,255,20,0.15)] flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#39ff14] animate-pulse"></span>
-                {formatZoneLabel(hoveredZone)}
+            {/* Step 2 */}
+            <div className="space-y-4">
+              <p className="font-mono font-bold uppercase text-[10px] tracking-[0.3em] text-[#00FF41]">02 // Primary Threat Vector?</p>
+              <div className="grid grid-cols-1 gap-4">
+                <button 
+                  onClick={() => setThreat('rocks')}
+                  className={`flex justify-between items-center p-6 lg:p-8 border-2 transition-all group ${threat === 'rocks' ? 'bg-[#00FF41]/10 border-[#00FF41]' : 'bg-[#131313] border-[#262626] hover:bg-white/5'}`}
+                >
+                  <span className={`font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest ${threat === 'rocks' ? 'text-[#00FF41]' : 'text-white'}`}>Rock Chips / High Velocity Debris</span>
+                  <ArrowRight className={`w-5 h-5 transition-opacity ${threat === 'rocks' ? 'opacity-100 text-[#00FF41]' : 'opacity-0 group-hover:opacity-50 text-white'}`} />
+                </button>
+                <button 
+                  onClick={() => setThreat('bugs')}
+                  className={`flex justify-between items-center p-6 lg:p-8 border-2 transition-all group ${threat === 'bugs' ? 'bg-[#00FF41]/10 border-[#00FF41]' : 'bg-[#131313] border-[#262626] hover:bg-white/5'}`}
+                >
+                  <span className={`font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest ${threat === 'bugs' ? 'text-[#00FF41]' : 'text-white'}`}>Bug Acid / Environmental / UVFade</span>
+                  <ArrowRight className={`w-5 h-5 transition-opacity ${threat === 'bugs' ? 'opacity-100 text-[#00FF41]' : 'opacity-0 group-hover:opacity-50 text-white'}`} />
+                </button>
               </div>
-            )}
-          </div>
-        </div>
-        
-        {/* Right: Controls Section */}
-        <div className="w-[42%] bg-gradient-to-bl from-[#131313] to-[#0a0a0a] p-8 flex flex-col justify-start pt-10 overflow-y-auto">
-          <div className="mb-8 border-l-2 border-[#39ff14] pl-6 transition-all duration-500">
-            <span className="font-mono text-[10px] font-bold tracking-[0.4em] text-[#c6c6c6] uppercase">Active Investment</span>
-            <div className="flex items-baseline mt-1">
-              <span className="font-mono text-2xl font-black text-[#39ff14] mr-2 italic">$</span>
-              <span className="font-mono text-7xl font-black italic tracking-tighter text-[#e5e2e1] drop-shadow-[0_0_20px_rgba(57,255,20,0.2)]">
-                {currentConfig.price}
-              </span>
             </div>
-          </div>
-          
-          <div className="space-y-2 mb-8">
-            {(['partial', 'fullFront', 'fullCar'] as PackageKey[]).map((pkg) => (
-              <button
-                key={pkg}
-                onClick={() => selectPackage(pkg)}
-                className={`w-full p-4 border-l-4 text-left transition-all duration-300 ${
-                  currentPackage === pkg 
-                    ? 'border-[#39ff14] bg-[#39ff14]/10 shadow-[0_0_30px_rgba(57,255,20,0.05)]' 
-                    : 'border-white/5 bg-[#201f1f]/20 hover:bg-[#201f1f]/50'
-                }`}
-              >
-                <div className="flex justify-between items-center">
-                  <div>
-                    <span className={`font-mono text-[8px] font-bold tracking-[0.3em] uppercase block mb-1 ${currentPackage === pkg ? 'text-[#39ff14]' : 'text-[#c6c6c6]'}`}>
-                      {pkg === 'partial' ? 'Entry Level' : pkg === 'fullFront' ? 'Standard' : 'Elite Grade'}
-                    </span>
-                    <span className={`font-mono text-lg font-black uppercase tracking-tighter ${currentPackage === pkg ? 'text-white' : 'text-[#e5e2e1]'}`}>
-                      {pkg === 'partial' ? 'Partial Front' : pkg === 'fullFront' ? 'Full Front' : 'Full Vehicle'}
-                    </span>
-                  </div>
-                  <span className={`font-mono text-xl font-bold ${currentPackage === pkg ? 'text-[#39ff14]' : 'text-white/40'}`}>
-                    ${packages[pkg].price}
-                  </span>
-                </div>
-              </button>
-            ))}
-          </div>
-          
-          <div className="bg-[#1c1b1b]/30 backdrop-blur-sm border border-white/5 rounded-sm p-5 mb-8">
-            <h3 className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-[#e5e2e1] mb-5 flex items-center gap-3 border-b border-white/5 pb-3">
-              <Shield className="text-[#39ff14] w-4 h-4" />
-              Protection Profile Legend
-            </h3>
-            <div className="grid grid-cols-2 gap-x-6 gap-y-3">
-              {currentConfig.legend.map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-[#39ff14] rounded-full shadow-[0_0_5px_#39ff14]"></div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#baccb0]">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          <button 
-            onClick={() => openQuote(`PPF: ${currentPackage} (${currentConfig.price})`)}
-            className="w-full bg-[#39ff14] text-[#053900] py-5 px-8 rounded-sm shadow-[0_0_20px_rgba(57,255,20,0.2)] hover:shadow-[0_0_40px_rgba(57,255,20,0.4)] hover:bg-[#32e612] transition-all active:scale-[0.98] font-mono text-xs font-black uppercase tracking-[0.2em] flex justify-center items-center gap-3"
-          >
-            <span>Lock In Selection</span>
-            <ArrowRight className="w-5 h-5" />
-          </button>
-          
-          <p className="text-[9px] font-mono text-center leading-relaxed uppercase tracking-[0.15em] text-[#c6c6c6] mt-6 opacity-30">
-            * 10-year warranty against yellowing and cracking included.
-          </p>
-        </div>
-      </main>
 
-      {/* Mobile Bottom Nav */}
-      <nav className="lg:hidden fixed bottom-0 left-0 w-full z-50 h-24 bg-[#0a0a0a]/95 backdrop-blur-xl border-t border-[#39ff14]/20 flex justify-between items-center px-6 safe-area-bottom">
-        <div className="flex flex-col mb-2">
-          <span className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-[#c6c6c6] mb-1">Total Package</span>
-          <div className="flex items-baseline gap-1">
-            <span className="font-mono text-2xl font-black italic tracking-tighter text-[#39ff14]">${currentConfig.price}</span>
-            <span className="text-[8px] text-[#c6c6c6] font-bold uppercase tracking-widest bg-white/5 px-1 py-0.5 ml-1">USD</span>
           </div>
+        </div>
+      </section>
+
+      {/* TRUST LOGOS */}
+      <section className="bg-[#131313] px-6 py-12 lg:py-16 border-y border-white/5">
+        <p className="text-center font-mono font-bold text-[9px] uppercase tracking-[0.4em] text-[#adaaaa] mb-10">Industry Certified Armor Materials</p>
+        <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-60">
+          <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
+            <span className="text-3xl lg:text-5xl font-black italic tracking-tighter text-white">STEK</span>
+            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#00FF41]">Advanced Armor</span>
+          </div>
+          <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
+            <span className="text-3xl lg:text-5xl font-black tracking-tight text-white">XPEL</span>
+            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#00FF41]">Ultimate Plus</span>
+          </div>
+          <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
+            <span className="text-3xl lg:text-5xl font-black italic tracking-tighter text-white">3M</span>
+            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#00FF41]">Pro Series</span>
+          </div>
+        </div>
+      </section>
+
+      {/* STICKY BOTTOM CTA */}
+      <div className="fixed bottom-0 w-full z-[60] bg-[#1a1b1a]/95 backdrop-blur-2xl border-t border-[#00FF41]/20 px-6 py-4 flex items-center justify-between shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+        <div className="flex flex-col max-w-[50%]">
+          <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-[0.3em] text-[#adaaaa] mb-1">Selected Plan</span>
+          <span className="font-mono text-sm lg:text-xl font-black italic uppercase tracking-tighter text-white truncate">
+             {selectedPackage ? packages[selectedPackage].name : 'SELECT CONFIGURATION'}
+          </span>
         </div>
         <button 
-          onClick={() => openQuote(`PPF: ${currentPackage} (${currentConfig.price})`)}
-          className="bg-[#39ff14] text-[#053900] h-12 px-6 flex items-center justify-center gap-2 rounded-sm shadow-[0_0_20px_rgba(57,255,20,0.3)] hover:bg-[#32e612] transition-all active:scale-95 duration-100 mb-2"
+          onClick={() => {
+            if (currentPkg) openQuote(`PPF: ${currentPkg.name} (${currentPkg.price})`);
+            else document.getElementById('funnel')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className={`px-8 lg:px-12 py-4 lg:py-5 font-mono font-black uppercase italic tracking-[0.2em] text-[10px] lg:text-sm rounded-none transition-all shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] ${
+            selectedPackage ? 'bg-[#00FF41] text-[#053900] hover:bg-[#32e612]' : 'bg-[#262626] text-white hover:bg-[#333]'
+          }`}
         >
-          <span className="font-mono text-[11px] font-black uppercase tracking-[0.2em]">Reserve</span>
-          <ArrowRight className="w-4 h-4 ml-1" />
+          {selectedPackage ? `SECURE ${currentPkg?.price !== 'GET QUOTE' ? '$' : ''}${currentPkg?.price}` : 'START CONFIG'}
         </button>
-      </nav>
+      </div>
+
     </div>
   );
 }
