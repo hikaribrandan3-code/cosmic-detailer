@@ -30,7 +30,7 @@ export default function PPFFrontSVG({ currentPackage, isZoneActive, handleZoneCl
   );
 
   return (
-    <svg className="w-full h-full max-w-lg drop-shadow-2xl mx-auto" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <svg className="w-full h-auto drop-shadow-2xl mx-auto" viewBox="0 150 800 400" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="400" cy="520" fill="rgba(0,0,0,0.5)" filter="blur(15px)" rx="320" ry="35"/>
       
       {/* Front Bumper */}

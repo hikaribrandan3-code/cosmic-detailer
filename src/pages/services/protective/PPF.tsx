@@ -51,23 +51,24 @@ export default function PPF() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e5e2e1] flex flex-col pt-16">
-      {/* Header element to replace the custom one - integrated smoothly within the flow */}
-      <div className="bg-[#131313] text-[#39ff14] font-mono tracking-tighter uppercase border-b border-white/5 flex justify-between items-center w-full px-6 py-4 z-50">
-        <div className="flex items-center gap-3">
-          <Settings className="text-[#39ff14] w-5 h-5" />
-          <span className="text-xl font-bold tracking-[0.2em] text-[#39ff14]">PRECISION_PPF</span>
-        </div>
-        <button 
-          onClick={() => openQuote(`PPF: ${currentPackage} (${currentConfig.price})`)}
-          className="bg-[#39ff14] text-[#053900] px-4 py-1.5 text-xs font-bold tracking-widest hover:bg-[#39ff14]/90 transition-all rounded-sm font-mono"
-        >
-          GET QUOTE
-        </button>
-      </div>
+    <div className="min-h-screen bg-[#0a0a0a] text-[#e5e2e1] flex flex-col">
+      {/* Sub-header removed from top level to eliminate triple-header on desktop */}
 
       {/* MOBILE LAYOUT (< 1024px) */}
       <main className="flex-grow flex flex-col pt-4 pb-32 lg:hidden">
+        {/* Mobile-only sub-header bar - preserved for mobile UX */}
+        <div className="bg-[#131313] text-[#39ff14] font-mono tracking-tighter uppercase border-b border-white/5 flex justify-between items-center w-full px-6 py-2 mb-2">
+          <div className="flex items-center gap-2">
+            <Settings className="text-[#39ff14] w-3.5 h-3.5" />
+            <span className="text-sm font-bold tracking-[0.2em]">PRECISION_PPF</span>
+          </div>
+          <button 
+            onClick={() => openQuote(`PPF: ${currentPackage} (${currentConfig.price})`)}
+            className="bg-[#39ff14] text-[#053900] px-3 py-1 text-[9px] font-bold tracking-widest rounded-sm font-mono"
+          >
+            GET QUOTE
+          </button>
+        </div>
         <div className="px-6 mb-2">
           <div className="flex justify-between items-end border-l-2 border-[#39ff14] pl-4">
             <div>
@@ -163,14 +164,14 @@ export default function PPF() {
       </main>
 
       {/* DESKTOP LAYOUT (≥ 1024px) */}
-      <main className="hidden lg:flex flex-grow bg-[#0a0a0a]">
+      <main className="hidden lg:flex flex-grow bg-[#0a0a0a] overflow-hidden">
         {/* Left: Car Section */}
-        <div className="w-[60%] flex items-center justify-center p-8 relative bg-gradient-to-br from-[#0a0a0a] to-[#131313] border-r border-[#202020]">
+        <div className="w-[60%] flex items-center justify-center p-6 relative bg-gradient-to-br from-[#0a0a0a] to-[#131313] border-r border-[#202020]">
           <div className="w-full max-w-4xl relative">
-            <div className="absolute top-0 left-0 border-l-4 border-[#39ff14] pl-5">
+            <div className="absolute top-0 left-0 border-l-4 border-[#39ff14] pl-5 z-10">
               <p className="font-mono text-[#c6c6c6] text-[10px] font-bold tracking-[0.3em] uppercase mb-1">Current Schematic</p>
-              <h1 className="font-mono text-5xl font-black italic tracking-tighter text-[#e5e2e1] uppercase">MODEL S <span className="text-[#39ff14]">/ PPF</span></h1>
-              <p className="font-mono text-[10px] tracking-widest text-[#c6c6c6] mt-3 uppercase font-bold opacity-70">Config ID: #TS-MS-24</p>
+              <h1 className="font-mono text-4xl font-black italic tracking-tighter text-[#e5e2e1] uppercase">MODEL S <span className="text-[#39ff14]">/ PPF</span></h1>
+              <p className="font-mono text-[9px] tracking-widest text-[#c6c6c6] mt-2 uppercase font-bold opacity-60">Config ID: #TS-MS-24</p>
             </div>
             
             <PPFFrontSVG 
@@ -191,36 +192,38 @@ export default function PPF() {
         </div>
         
         {/* Right: Controls Section */}
-        <div className="w-[40%] bg-gradient-to-bl from-[#131313] to-[#0a0a0a] p-12 flex flex-col justify-center">
-          <div className="mb-12 border-l border-[#39ff14]/30 pl-6">
-            <span className="font-mono text-[10px] font-bold tracking-[0.4em] text-[#c6c6c6] uppercase">Total Investment</span>
-            <div className="flex items-baseline mt-2">
-              <span className="font-mono text-3xl font-black text-[#39ff14] mr-2">$</span>
-              <span className="font-mono text-7xl font-black italic tracking-tighter text-[#e5e2e1] drop-shadow-[0_0_25px_rgba(57,255,20,0.1)]">{currentConfig.price}</span>
+        <div className="w-[42%] bg-gradient-to-bl from-[#131313] to-[#0a0a0a] p-8 flex flex-col justify-start pt-10 overflow-y-auto">
+          <div className="mb-8 border-l-2 border-[#39ff14] pl-6 transition-all duration-500">
+            <span className="font-mono text-[10px] font-bold tracking-[0.4em] text-[#c6c6c6] uppercase">Active Investment</span>
+            <div className="flex items-baseline mt-1">
+              <span className="font-mono text-2xl font-black text-[#39ff14] mr-2 italic">$</span>
+              <span className="font-mono text-7xl font-black italic tracking-tighter text-[#e5e2e1] drop-shadow-[0_0_20px_rgba(57,255,20,0.2)]">
+                {currentConfig.price}
+              </span>
             </div>
           </div>
           
-          <div className="space-y-4 mb-10">
+          <div className="space-y-2 mb-8">
             {(['partial', 'fullFront', 'fullCar'] as PackageKey[]).map((pkg) => (
               <button
                 key={pkg}
                 onClick={() => selectPackage(pkg)}
-                className={`w-full p-5 border-l-4 text-left transition-all duration-300 ${
+                className={`w-full p-4 border-l-4 text-left transition-all duration-300 ${
                   currentPackage === pkg 
                     ? 'border-[#39ff14] bg-[#39ff14]/10 shadow-[0_0_30px_rgba(57,255,20,0.05)]' 
-                    : 'border-white/5 bg-[#201f1f]/30 hover:bg-[#201f1f]/80'
+                    : 'border-white/5 bg-[#201f1f]/20 hover:bg-[#201f1f]/50'
                 }`}
               >
                 <div className="flex justify-between items-center">
                   <div>
-                    <span className={`font-mono text-[9px] font-bold tracking-[0.3em] uppercase block mb-1 ${currentPackage === pkg ? 'text-[#39ff14]' : 'text-[#c6c6c6]'}`}>
-                      {pkg === 'partial' ? 'Entry Level' : pkg === 'fullFront' ? 'Standard Standard' : 'Elite Grade'}
+                    <span className={`font-mono text-[8px] font-bold tracking-[0.3em] uppercase block mb-1 ${currentPackage === pkg ? 'text-[#39ff14]' : 'text-[#c6c6c6]'}`}>
+                      {pkg === 'partial' ? 'Entry Level' : pkg === 'fullFront' ? 'Standard' : 'Elite Grade'}
                     </span>
-                    <span className={`font-mono text-xl font-black uppercase tracking-tighter ${currentPackage === pkg ? 'text-white' : 'text-[#e5e2e1]'}`}>
+                    <span className={`font-mono text-lg font-black uppercase tracking-tighter ${currentPackage === pkg ? 'text-white' : 'text-[#e5e2e1]'}`}>
                       {pkg === 'partial' ? 'Partial Front' : pkg === 'fullFront' ? 'Full Front' : 'Full Vehicle'}
                     </span>
                   </div>
-                  <span className={`font-mono text-2xl font-black ${currentPackage === pkg ? 'text-[#39ff14]' : 'text-white/40'}`}>
+                  <span className={`font-mono text-xl font-bold ${currentPackage === pkg ? 'text-[#39ff14]' : 'text-white/40'}`}>
                     ${packages[pkg].price}
                   </span>
                 </div>
@@ -228,16 +231,16 @@ export default function PPF() {
             ))}
           </div>
           
-          <div className="bg-[#1c1b1b]/50 backdrop-blur-sm border border-white/5 rounded-sm p-8 mb-8">
-            <h3 className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[#e5e2e1] mb-6 flex items-center gap-3 border-b border-white/5 pb-4">
+          <div className="bg-[#1c1b1b]/30 backdrop-blur-sm border border-white/5 rounded-sm p-5 mb-8">
+            <h3 className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-[#e5e2e1] mb-5 flex items-center gap-3 border-b border-white/5 pb-3">
               <Shield className="text-[#39ff14] w-4 h-4" />
-              Protection Legend Check
+              Protection Profile Legend
             </h3>
-            <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-3">
               {currentConfig.legend.map((item, i) => (
-                <div key={i} className="flex items-center gap-4">
-                  <div className="w-1.5 h-1.5 bg-[#39ff14] rounded-full shadow-[0_0_8px_#39ff14]"></div>
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#baccb0]">{item}</span>
+                <div key={i} className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-[#39ff14] rounded-full shadow-[0_0_5px_#39ff14]"></div>
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#baccb0]">{item}</span>
                 </div>
               ))}
             </div>
@@ -245,13 +248,13 @@ export default function PPF() {
           
           <button 
             onClick={() => openQuote(`PPF: ${currentPackage} (${currentConfig.price})`)}
-            className="w-full bg-[#39ff14] text-[#053900] py-6 px-8 rounded-sm shadow-[0_0_20px_rgba(57,255,20,0.2)] hover:shadow-[0_0_40px_rgba(57,255,20,0.4)] hover:bg-[#32e612] transition-all active:scale-[0.98] font-mono text-sm font-black uppercase tracking-[0.25em] flex justify-center items-center gap-3"
+            className="w-full bg-[#39ff14] text-[#053900] py-5 px-8 rounded-sm shadow-[0_0_20px_rgba(57,255,20,0.2)] hover:shadow-[0_0_40px_rgba(57,255,20,0.4)] hover:bg-[#32e612] transition-all active:scale-[0.98] font-mono text-xs font-black uppercase tracking-[0.2em] flex justify-center items-center gap-3"
           >
             <span>Lock In Selection</span>
             <ArrowRight className="w-5 h-5" />
           </button>
           
-          <p className="text-[9px] font-mono text-center leading-relaxed uppercase tracking-[0.2em] text-[#c6c6c6] mt-6 opacity-40">
+          <p className="text-[9px] font-mono text-center leading-relaxed uppercase tracking-[0.15em] text-[#c6c6c6] mt-6 opacity-30">
             * 10-year warranty against yellowing and cracking included.
           </p>
         </div>
