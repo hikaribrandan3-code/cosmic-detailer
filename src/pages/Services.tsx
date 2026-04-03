@@ -239,12 +239,12 @@ const ServicesPage = () => {
             {[
               { title: "Wax Package", price: "From $150", desc: "Hand-applied professional wax. UV protection and gloss enhancement. Not a substitute for paint correction — a maintenance layer for paint in good condition." },
               { title: "Mini Detail", price: "From $150", desc: "Quick maintenance service for vehicles already in good condition. Exterior hand wash, interior vacuum and wipe-down, interior/exterior glass." },
-              { title: "Exterior Detail", price: "Quote-Based", desc: "Two-bucket hand wash, foam pre-soak, iron decontamination, clay bar, wheel/tire detail. Exterior-only when the interior is maintained." },
+              { id: "exterior", title: "Exterior Detail", price: "Quote-Based", desc: "Two-bucket hand wash, foam pre-soak, iron decontamination, clay bar, wheel/tire detail. Exterior-only when the interior is maintained." },
               { title: "Water Spot Treatment", price: "Quote-Based", desc: "Chemical and mechanical removal of mineral deposit etching. Paint-safe process — clear coat measurement confirmed before work begins." },
               { title: "Ceramic Coating", price: "From $1,100", desc: "Nano-ceramic molecular bond to the clear coat. 3–5 year protection layer against contamination, UV, and water etching. Requires paint correction if defects are present.", link: "/services/protective/ceramic" },
               { title: "PPF / Window Tint", price: "From $1,300", desc: "Physical film protection and infrared-blocking tint. Both outsourced to certified installation partners — XPEL and STEK film exclusively.", link: "/services/protective/ppf" },
             ].map(s => (
-              <div key={s.title} className="p-6 border border-border/40 bg-card/20 space-y-3 hover:border-primary/30 transition-all group">
+              <div key={s.title} id={s.id} className="p-6 border border-border/40 bg-card/20 space-y-3 hover:border-primary/30 transition-all group">
                 <h3 className="font-display font-black uppercase tracking-wider text-sm text-foreground">{s.title}</h3>
                 <p className="font-mono text-xs text-primary font-bold">{s.price}</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>

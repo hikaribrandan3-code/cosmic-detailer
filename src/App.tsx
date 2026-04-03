@@ -18,11 +18,23 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo(0, 0);
+    } else {
+      // Small delay to ensure the target page is fully rendered
+      const timeoutId = setTimeout(() => {
+        const id = hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 0);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [pathname, hash]);
 
   return null;
 };

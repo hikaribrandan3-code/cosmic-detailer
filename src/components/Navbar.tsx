@@ -11,7 +11,7 @@ const Navbar = ({ onQuoteClick }: { onQuoteClick: (service?: string) => void }) 
 
   const detailingLinks = [
     { label: "Interior Detailing", path: "/services#interior" },
-    { label: "Exterior Detailing", path: "/services#other-services" },
+    { label: "Exterior Detailing", path: "/services#exterior" },
     { label: "Full Detail", path: "/services#full-detail" },
   ];
 
@@ -53,9 +53,20 @@ const Navbar = ({ onQuoteClick }: { onQuoteClick: (service?: string) => void }) 
                   <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#39FF14]/50 font-black border-b border-white/5 pb-2">Detailing Division</h4>
                   <div className="flex flex-col gap-2">
                     {detailingLinks.map(l => (
-                      <Link key={l.label} to={l.path} className="text-[11px] uppercase tracking-wider text-white/70 hover:text-[#39FF14] transition-colors">{l.label}</Link>
+                      <Link 
+                        key={l.label} 
+                        to={l.path} 
+                        onClick={() => setServicesOpen(false)}
+                        className="text-[11px] uppercase tracking-wider text-white/70 hover:text-[#39FF14] transition-colors"
+                      >
+                        {l.label}
+                      </Link>
                     ))}
-                    <Link to="/services/protective/paint-correction" className="flex items-center gap-2 group/pc">
+                    <Link 
+                      to="/services/protective/paint-correction" 
+                      onClick={() => setServicesOpen(false)}
+                      className="flex items-center gap-2 group/pc"
+                    >
                        <span className="text-[11px] uppercase tracking-widest text-[#39FF14] font-bold">Paint Correction</span>
                        <Zap size={10} className="text-[#39FF14] group-hover/pc:animate-pulse" />
                     </Link>
@@ -67,7 +78,14 @@ const Navbar = ({ onQuoteClick }: { onQuoteClick: (service?: string) => void }) 
                   <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#39FF14]/50 font-black border-b border-white/5 pb-2">Protective Services</h4>
                   <div className="flex flex-col gap-2">
                     {protectiveLinks.map(l => (
-                      <Link key={l.label} to={l.path} className="text-[11px] uppercase tracking-wider text-white/70 hover:text-[#39FF14] transition-colors">{l.label}</Link>
+                      <Link 
+                        key={l.label} 
+                        to={l.path} 
+                        onClick={() => setServicesOpen(false)}
+                        className="text-[11px] uppercase tracking-wider text-white/70 hover:text-[#39FF14] transition-colors"
+                      >
+                        {l.label}
+                      </Link>
                     ))}
                   </div>
                 </div>
