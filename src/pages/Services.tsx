@@ -23,6 +23,7 @@ const ServicesPage = () => {
           <ServiceBlock
             title="Interior Detailing"
             price="Starting at $180"
+            bgImage="/images/bg/interior-bg.png"
             items={[
               "Full vacuum of all seats, floors, cracks and crevices",
               "Carpet, floor mats, door panels, and trunk cleaned",
@@ -36,6 +37,7 @@ const ServicesPage = () => {
           <ServiceBlock
             title="Wax Packages"
             price="Starting at $150"
+            bgImage="/images/bg/wax-bg.png"
             items={[
               "High-quality professional wax applied by hand",
               "Deep gloss and shine enhancement",
@@ -71,6 +73,7 @@ const ServicesPage = () => {
           <ServiceBlock
             title="Exterior Detail"
             price="Quote Based"
+            bgImage="/images/bg/exterior-bg.png"
             items={[
               "Two-bucket hand wash method to prevent swirl marks",
               "Pre-soak and foam cannon treatment",
@@ -197,20 +200,34 @@ const ServicesPage = () => {
   );
 };
 
-const ServiceBlock = ({ title, price, items }: { title: string; price: string; items: string[] }) => (
-  <div className="grid gap-8 lg:grid-cols-2 items-start">
-    <div>
-      <h2 className="text-2xl font-bold lg:text-3xl mb-2">{title}</h2>
-      <p className="font-mono text-sm text-primary">{price}</p>
+const ServiceBlock = ({ title, price, items, bgImage }: { title: string; price: string; items: string[]; bgImage?: string }) => (
+  <div className="relative overflow-hidden rounded-xl border border-border/50 transition-all hover:border-primary/40 group">
+    {/* Background Image Layer */}
+    {bgImage && (
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      />
+    )}
+    
+    {/* Overlay Layer */}
+    <div className={`absolute inset-0 z-10 ${bgImage ? "bg-gradient-to-r from-black/95 via-black/80 to-black/40" : "bg-card/30"}`} />
+
+    {/* Content Layer */}
+    <div className="relative z-20 grid gap-8 lg:grid-cols-2 items-start p-8 lg:p-12">
+      <div className="space-y-2">
+        <h2 className="text-2xl font-bold lg:text-3xl tracking-tight text-foreground">{title}</h2>
+        <p className="font-mono text-sm text-primary font-semibold tracking-wider uppercase">{price}</p>
+      </div>
+      <ul className="space-y-4">
+        {items.map(item => (
+          <li key={item} className="flex gap-3 text-foreground/90 group-hover:text-foreground transition-colors">
+            <Check className="mt-1 shrink-0 text-primary drop-shadow-[0_0_8px_rgba(var(--primary),0.5)]" size={16} />
+            <span className="text-sm leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
     </div>
-    <ul className="space-y-3">
-      {items.map(item => (
-        <li key={item} className="flex gap-3 text-muted-foreground">
-          <Check className="mt-0.5 shrink-0 text-primary" size={16} />
-          <span className="text-sm">{item}</span>
-        </li>
-      ))}
-    </ul>
   </div>
 );
 
