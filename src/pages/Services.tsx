@@ -50,6 +50,7 @@ const ServicesPage = () => {
           <ServiceBlock
             title="Mini Detail"
             price="Starting at $150"
+            bgImage="/images/bg/mini-detail-bg.png"
             items={[
               "Quick maintenance service for vehicles in good condition",
               "Exterior hand wash and dry",
@@ -62,6 +63,7 @@ const ServicesPage = () => {
           <ServiceBlock
             title="Full Detail"
             price="Starting at $250"
+            bgImage="/images/bg/full-detail-bg.png"
             items={[
               "Complete interior and exterior service combined",
               "Door jambs cleaned and detailed",
