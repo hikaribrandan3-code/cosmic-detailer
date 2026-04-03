@@ -1,66 +1,44 @@
-import { useState, Suspense, lazy } from "react";
+import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Shield, Zap, Award, ClipboardCheck, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import PPFExplorer2D from "@/components/PPFExplorer2D";
 
-// Code-split: 3D libs only load on this route
-const PPFConfigurator = lazy(() => import("@/components/three/PPFConfigurator"));
-
-type PackageKey = "partial" | "full-front" | "full-car";
+type PackageKey = "partial" | "fullFront" | "fullCar";
 
 const packages: Record<PackageKey, {
   title: string;
   price: string;
   zones: string[];
+  legend: string[];
   desc: string;
-  included: string[];
 }> = {
-  "partial": {
+  partial: {
     title: "PARTIAL FRONT",
-    price: "$800",
-    zones: ["hood", "bumper", "mirrors"],
-    desc: "Essential impact protection for high-velocity road debris. Covers the leading 18\" of hood, full front bumper, side mirrors, and door cup areas.",
-    included: [
-      "Hood leading edge (18\")",
-      "Front bumper — full coverage",
-      "Side mirrors",
-      "Door cups & handles",
-    ]
+    zones: ['bumper-front', 'hood-leading', 'fender-front-leading', 'mirror-left', 'mirror-right', 'door-cup'],
+    price: '$800',
+    legend: ['Front Bumper', 'Hood Leading Edge (30%)', 'Fender Leading Edge (30%)', 'Mirror Caps', 'Door Cups'],
+    desc: "Essential impact protection for high-velocity road debris. Covers the leading 18\" of hood, full front bumper, side mirrors, and door cup areas."
   },
-  "full-front": {
+  fullFront: {
     title: "FULL FRONT",
-    price: "$1,400",
-    zones: ["hood", "bumper", "fenders", "headlights", "mirrors"],
-    desc: "Complete front-end preservation. Full hood, both fenders, bumper, headlights, and mirrors — the highest-impact zone of any vehicle.",
-    included: [
-      "Complete hood — edge to edge",
-      "Front bumper — full coverage",
-      "Both front fenders",
-      "Headlight housings",
-      "Side mirrors",
-      "Door cups & handles",
-    ]
+    zones: ['bumper-front', 'hood', 'fender-front', 'mirror-left', 'mirror-right', 'headlight', 'door-cup'],
+    price: '$1,400',
+    legend: ['Front Bumper', 'Full Hood', 'Full Fenders', 'Mirror Caps', 'Headlights', 'Door Cups'],
+    desc: "Complete front-end preservation. Full hood, both fenders, bumper, headlights, and mirrors — the highest-impact zone of any vehicle."
   },
-  "full-car": {
+  fullCar: {
     title: "FULL CAR",
-    price: "$2,800",
-    zones: ["hood", "bumper", "fenders", "headlights", "mirrors", "doors", "roof", "pillars", "rear", "rockers"],
-    desc: "Total protection. Every painted surface sealed in self-healing film. The only option that eliminates paint damage risk entirely.",
-    included: [
-      "Everything in Full Front, plus:",
-      "All four doors — full panels",
-      "Roof panel",
-      "A/B/C pillars",
-      "Rear bumper & trunk lid",
-      "Rocker panels / side skirts",
-      "Rear quarter panels",
-    ]
+    zones: ['hood', 'hood-leading', 'fender-front', 'fender-front-leading', 'bumper-front', 'mirror-left', 'mirror-right', 'door-front', 'door-cup', 'roof', 'trunk', 'bumper-rear', 'fender-rear', 'pillar-a', 'pillar-b', 'pillar-c', 'headlight', 'taillight'],
+    price: '$2,800',
+    legend: ['Full Vehicle Wrap', 'All Painted Panels', 'Bumpers (F/R)', 'Lights', 'Mirrors', 'Pillars'],
+    desc: "Total protection. Every painted surface sealed in self-healing film. The only option that eliminates paint damage risk entirely."
   }
 };
 
 const PPF = () => {
   const { openQuote } = useOutletContext<{ openQuote: (service?: string) => void }>();
-  const [selectedPackage, setSelectedPackage] = useState<PackageKey>("full-front");
+  const [selectedPackage, setSelectedPackage] = useState<PackageKey>("fullFront");
   const [showIncluded, setShowIncluded] = useState(false);
 
   const currentPkg = packages[selectedPackage];
@@ -83,24 +61,20 @@ const PPF = () => {
         </div>
       </div>
 
-      {/* 3D Configurator + UI Overlay */}
+      {/* Configurator + UI Overlay */}
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-6xl mx-auto relative">
+        <div className="max-w-6xl mx-auto relative group">
           
-          {/* 3D Canvas */}
-          <Suspense fallback={
-            <div className="w-full h-[500px] lg:h-[650px] rounded-lg bg-[#0a0a0a] border border-white/5 flex items-center justify-center">
-              <div className="text-center space-y-4">
-                <div className="w-8 h-8 border-2 border-[#39FF14] border-t-transparent rounded-full animate-spin mx-auto" />
-                <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">Loading 3D Model...</p>
-              </div>
-            </div>
-          }>
-            <PPFConfigurator 
-              activeZones={currentPkg.zones} 
-              selectedPackage={selectedPackage}
-            />
-          </Suspense>
+          {/* 2D Schematic */}
+          <PPFExplorer2D 
+            activeZones={currentPkg.zones} 
+          />
+
+          {/* HUD Styled Decorative Overlays */}
+          <div className="absolute top-0 right-0 p-4 font-mono text-[8px] uppercase tracking-[0.3em] text-[#39FF14]/40 flex flex-col items-end pointer-events-none">
+            <span>Current Schematic: SIDE_PROFILE_V2</span>
+            <span>Config ID: CD-PPF-051</span>
+          </div>
 
           {/* UI Overlay — Package Selector */}
           <div className="absolute top-4 left-4 z-20 w-72 bg-black/80 backdrop-blur-xl border border-white/10 p-5 space-y-4 pointer-events-auto" style={{ borderRadius: '2px' }}>
@@ -146,7 +120,7 @@ const PPF = () => {
             
             {showIncluded && (
               <ul className="space-y-1.5 border-t border-white/5 pt-3">
-                {currentPkg.included.map((item, i) => (
+                {currentPkg.legend.map((item, i) => (
                   <li key={i} className="flex gap-2 text-white/60">
                     <span className="text-[#39FF14] font-mono text-[9px] shrink-0 mt-0.5">✓</span>
                     <span className="font-mono text-[9px] leading-relaxed">{item}</span>
