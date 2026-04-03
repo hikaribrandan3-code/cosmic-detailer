@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Environment, ContactShadows, Grid } from '@react-three/drei';
 import * as THREE from 'three';
-import ProceduralCar from './ProceduralCar';
+import ProceduralCarV2 from './ProceduralCarV2';
 
 interface PPFSceneProps {
   activeZones: string[];
@@ -18,8 +18,8 @@ function CameraController({ selectedPackage }: { selectedPackage: string }) {
     switch (selectedPackage) {
       case 'partial':
         // Close-up on hood/front
-        targetPos.current.set(4, 2, 3);
-        targetLook.current.set(1.5, 0, 0);
+        targetPos.current.set(4, 2, 2.5);
+        targetLook.current.set(1.2, 0, 0);
         break;
       case 'full-front':
         // Front 3/4 view
@@ -36,15 +36,13 @@ function CameraController({ selectedPackage }: { selectedPackage: string }) {
 
   useFrame(() => {
     camera.position.lerp(targetPos.current, 0.03);
-    const currentLook = new THREE.Vector3();
-    camera.getWorldDirection(currentLook);
     camera.lookAt(targetLook.current);
   });
 
   return null;
 }
 
-function Scene({ activeZones, selectedPackage }: PPFSceneProps) {
+function Scene({ selectedPackage }: { selectedPackage: 'partial' | 'full-front' | 'full-car' }) {
   return (
     <>
       {/* Lighting */}
@@ -54,11 +52,6 @@ function Scene({ activeZones, selectedPackage }: PPFSceneProps) {
         intensity={1.2} 
         castShadow 
         shadow-mapSize={[2048, 2048]}
-        shadow-camera-far={50}
-        shadow-camera-left={-10}
-        shadow-camera-right={10}
-        shadow-camera-top={10}
-        shadow-camera-bottom={-10}
       />
       <directionalLight position={[-5, 5, -5]} intensity={0.4} />
       <pointLight position={[0, 8, 0]} intensity={0.3} color="#39ff14" />
@@ -70,16 +63,17 @@ function Scene({ activeZones, selectedPackage }: PPFSceneProps) {
       <CameraController selectedPackage={selectedPackage} />
 
       {/* Car */}
-      <ProceduralCar 
+      <ProceduralCarV2 
         selectedPackage={selectedPackage} 
         hoveredZone={null} 
-        scale={0.8}
-        position={[0, -0.5, 0]}
+        scale={0.75}
+        position={[0, -0.2, 0]}
+        rotation={[0, Math.PI / 12, 0]}
       />
 
       {/* Ground */}
       <ContactShadows 
-        position={[0, -0.95, 0]} 
+        position={[0, -0.9, 0]} 
         opacity={0.6} 
         scale={15} 
         blur={2.5} 
@@ -88,7 +82,7 @@ function Scene({ activeZones, selectedPackage }: PPFSceneProps) {
       
       {/* Subtle Grid */}
       <Grid
-        position={[0, -0.96, 0]}
+        position={[0, -0.91, 0]}
         args={[30, 30]}
         cellSize={0.5}
         cellThickness={0.5}
@@ -135,7 +129,7 @@ export default function PPFConfigurator({ activeZones, selectedPackage }: PPFSce
           gl.toneMappingExposure = 1.2;
         }}
       >
-        <Scene activeZones={activeZones} selectedPackage={selectedPackage} />
+        <Scene selectedPackage={selectedPackage} />
       </Canvas>
       
       {/* Drag hint */}
