@@ -90,14 +90,12 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
                   onClick={() => handleCityInteraction(city)}
                   style={{ opacity: isAnyHovered && !isHovered ? 0.3 : 1 }}
                 >
-                  {/* Outer Glow Ring */}
-                  {isSelected && (
-                    <circle 
-                      cx={city.x} cy={city.y} r={isHovered ? "12" : "8"} 
-                      fill="none" stroke="#39FF14" strokeWidth="1" 
-                      className="animate-[ping-slow_3s_cubic-bezier(0,0,0.2,1)_infinite] opacity-30 transition-all duration-300" 
-                    />
-                  )}
+                  {/* Outer Glow Ring (Tactical Pulse) */}
+                  <circle 
+                    cx={city.x} cy={city.y} r={isHovered ? "12" : "8"} 
+                    fill="none" stroke="#39FF14" strokeWidth="1" 
+                    className={`transition-all duration-300 ${isSelected ? 'animate-[slow-radar-pulse_10s_ease-in-out_infinite]' : 'opacity-0'}`} 
+                  />
                   
                   {/* Blip Dot */}
                   <circle 
@@ -184,11 +182,10 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-        @keyframes ping-slow {
-          75%, 100% {
-            transform: scale(2);
-            opacity: 0;
-          }
+        @keyframes slow-radar-pulse {
+          0%, 85% { opacity: 0.3; transform: scale(1); }
+          90% { opacity: 1; transform: scale(1.15); }
+          95%, 100% { opacity: 0.3; transform: scale(1); }
         }
         @keyframes pulse-slow {
           0%, 100% { opacity: 1; }
