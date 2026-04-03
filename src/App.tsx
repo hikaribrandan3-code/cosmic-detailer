@@ -5,12 +5,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
+import PPF from "./pages/services/protective/PPF";
+import PaintCorrection from "./pages/services/protective/PaintCorrection";
+import Ceramic from "./pages/services/protective/Ceramic";
+import Tint from "./pages/services/protective/Tint";
 import Services from "./pages/Services";
 import Gallery from "./pages/Gallery";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
-import PPF from "./pages/PPF";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,7 +29,10 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/ppf" element={<PPF />} />
+            <Route path="/services/protective/ppf" element={<PPF />} />
+            <Route path="/services/protective/ceramic" element={<Ceramic />} />
+            <Route path="/services/protective/tint" element={<Tint />} />
+            <Route path="/services/protective/paint-correction" element={<PaintCorrection />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />

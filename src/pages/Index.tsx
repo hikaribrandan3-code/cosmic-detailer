@@ -90,12 +90,12 @@ const Index = () => {
               { title: "Wax Packages", price: "From $150", image: "/images/bg/wax-bg.png" },
               { title: "Full Detail", price: "From $250", image: "/images/bg/full-detail-bg.png" },
               { title: "Paint Correction", price: "Quote Based", image: "/images/bg/onestep-bg.png" },
-              { title: "Ceramic Coating", price: "From $1,100", image: "/images/bg/ceramic-bg.png" },
-              { title: "PPF & Window Tint", price: "From $1,300", image: "/images/bg/ppf-tint-bg.png" },
+              { title: "Ceramic Coating", price: "From $1,100", image: "/images/bg/ceramic-bg.png", path: "/services/id-protective-ceramic" },
+              { title: "PPF & Window Tint", price: "From $1,300", image: "/images/bg/ppf-tint-bg.png", path: "/services/protective/ppf" },
             ].map(s => (
               <Link 
                 key={s.title} 
-                to="/services"
+                to={s.path || "/services"}
                 className="group relative aspect-square overflow-hidden rounded-xl border border-primary/10 bg-card transition-all duration-500"
               >
                 {/* Specimen Image Layer */}
