@@ -25,7 +25,7 @@ const Navbar = ({ onQuoteClick }: NavbarProps) => {
       <div className="container mx-auto flex items-center justify-between px-4 py-3 lg:px-8">
         <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="Area 51 Detailing" className="h-10 w-10 object-contain" />
-          <span className="font-display text-lg font-bold tracking-wider text-foreground">AREA 51</span>
+          <span className="font-display text-sm font-bold tracking-wider text-foreground sm:text-lg">AREA 51 DETAILING</span>
         </Link>
 
         {/* Desktop */}
