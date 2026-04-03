@@ -87,6 +87,7 @@ const ServicesPage = () => {
           <ServiceBlock
             title="Water Spot Treatment & Removal"
             price="Quote Based"
+            bgImage="/images/bg/waterspot-bg.png"
             items={[
               "Safe chemical and mechanical removal of mineral deposits",
               "Paint-safe process with no damage to clear coat",
@@ -97,6 +98,7 @@ const ServicesPage = () => {
           <ServiceBlock
             title="One-Step Polish"
             price="Quote Based"
+            bgImage="/images/bg/onestep-bg.png"
             items={[
               "Light machine polish removes minor swirls and light scratches",
               "Restores gloss and clarity to dull or oxidized paint",
@@ -107,6 +109,7 @@ const ServicesPage = () => {
           <ServiceBlock
             title="Two-Step Polish — Paint Correction"
             price="Quote Based"
+            bgImage="/images/bg/twostep-bg.png"
             items={[
               "Stage 1: Cutting compound removes heavy scratches and oxidation",
               "Stage 2: Finishing polish refines surface to mirror-like clarity",
