@@ -26,11 +26,10 @@ const About = () => {
             <div>
               <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">About Us</p>
               <h1 className="text-4xl font-bold leading-tight tracking-tight lg:text-5xl mb-6">
-                Meet the Mind Behind <span className="text-primary text-glow">Area 51</span>
+                The difference is <span className="text-primary text-glow">classified.</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                What began as a relentless pursuit of automotive perfection has evolved into Naples' premier mobile detailing experience. 
-                I'm not just detailing cars — I'm preserving high-value investments and exceeding the highest expectations, one vehicle at a time.
+                15 years. One mission. Perfect paint.
               </p>
             </div>
           </div>
@@ -70,13 +69,13 @@ const About = () => {
                 <div className="w-px h-full bg-border mt-4" />
               </div>
               <div className="pb-8">
-                <h3 className="font-display text-lg font-semibold mb-3">Built on a Foundation of Excellence</h3>
+                <h3 className="font-display text-lg font-semibold mb-3">Our Story</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  With over <strong className="text-foreground">15 years in the automotive industry</strong> and 
-                  <strong className="text-foreground"> 7+ years of professional detailing experience</strong>, I've honed my craft 
-                  working on some of the most valuable vehicles in the world. My clients have collectively trusted me with 
-                  over <strong className="text-foreground">$100 million worth of cars</strong> — from daily drivers to rare exotics.
-                  Every vehicle receives the same meticulous attention, regardless of its price tag.
+                  We don't talk about what happens in the bay. But the results speak for themselves.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-4">
+                  <strong className="text-foreground">15 years of automotive obsession.</strong> Fully mobile. Fully self-contained.
+                  We come to you because your garage is the cleanest place to work.
                 </p>
               </div>
             </div>
@@ -90,13 +89,11 @@ const About = () => {
                 <div className="w-px h-full bg-border mt-4" />
               </div>
               <div className="pb-8">
-                <h3 className="font-display text-lg font-semibold mb-3">Above & Beyond is the Standard</h3>
+                <h3 className="font-display text-lg font-semibold mb-3">Above & Beyond Is the Standard</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  I pride myself on always going above and beyond. That's not just a tagline — it's my operating philosophy. 
-                  When you book Area 51 Detailing, you're not getting a quick wash and vacuum. You're getting 
-                  <strong className="text-foreground"> the highest level of detailing expertise</strong>, period. 
-                  I treat every car like it's my own, because I understand that your vehicle is more than transportation — 
-                  it's an investment, a passion, and often a reflection of who you are.
+                  When you book Area 51 Detailing, you're not getting a quick wash and vacuum. You're getting
+                  <strong className="text-foreground"> the highest level of detailing expertise</strong>, period.
+                  We treat every car like it's our own.
                 </p>
               </div>
             </div>
@@ -130,14 +127,13 @@ const About = () => {
                 </div>
               </div>
               <div>
-                <h3 className="font-display text-lg font-semibold mb-3">Never Stop Learning</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  The detailing industry evolves constantly. New products, new techniques, new coatings. 
-                  I <strong className="text-foreground">continue to hone my craft yearly</strong>, staying up to date 
-                  with the latest advancements in paint correction, ceramic coatings, and protection technology. 
-                  When you choose Area 51, you're choosing a detailer who invests in knowledge — so your car gets 
-                  the benefit of cutting-edge expertise combined with time-tested technique.
-                </p>
+                <h3 className="font-display text-lg font-semibold mb-3">Certified</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li className="flex gap-3 items-center"><Shield className="text-primary shrink-0" size={16} />STEK Authorized Installer</li>
+                  <li className="flex gap-3 items-center"><Shield className="text-primary shrink-0" size={16} />XPEL Certified</li>
+                  <li className="flex gap-3 items-center"><Shield className="text-primary shrink-0" size={16} />3M Pro Series Trained</li>
+                  <li className="flex gap-3 items-center"><Shield className="text-primary shrink-0" size={16} />Fully insured &amp; licensed</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -147,13 +143,12 @@ const About = () => {
       {/* CTA Section */}
       <section className="border-t border-border py-24 bg-card/30">
         <div className="container mx-auto px-4 lg:px-8 text-center max-w-2xl">
-          <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">Ready to Experience the Difference?</p>
+          <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">Ready to experience the difference?</p>
           <h2 className="text-3xl font-bold lg:text-4xl mb-6">
-            Let Me Show You What <span className="text-primary">Out-of-This-World</span> Detailing Looks Like
+            Let us show you what <span className="text-primary">perfected</span> looks like.
           </h2>
           <p className="text-muted-foreground mb-8">
-            Whether you drive a daily commuter or a garage queen, your vehicle deserves the Area 51 treatment. 
-            Book your appointment today and discover why Naples trusts me with their most prized possessions.
+            Whether you drive a daily commuter or a garage queen, your vehicle deserves the Area 51 treatment.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a

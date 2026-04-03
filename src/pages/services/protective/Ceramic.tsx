@@ -25,32 +25,32 @@ const packages = {
   entry: { 
     id: 'entry',
     name: 'ENTRY COATING', 
-    subtitle: 'Essential protection for lease returns', 
-    price: '499', 
-    years: '1 Year', 
+    subtitle: '2-year protection', 
+    price: '1,100', 
+    years: '2 Years', 
     layers: '1-Layer SiO2', 
-    warranty: '1 Year', 
-    features: ['Paint surfaces only', 'Basic maintenance guide', '24-hour cure time'] 
+    warranty: '2 Years', 
+    features: ['Single-layer ceramic', 'Paint correction prep', 'Hydrophobic finish'] 
   },
   pro: { 
     id: 'pro',
     name: 'PRO COATING', 
-    subtitle: 'Best for daily driven luxury cars', 
-    price: '1,100', 
-    years: '3 Years', 
+    subtitle: '5-year protection', 
+    price: '1,600', 
+    years: '5 Years', 
     layers: '2-Layer SiO2', 
-    warranty: '3 Years', 
-    features: ['Paint surfaces only', 'Annual inspection included', 'Premium maintenance kit'] 
+    warranty: '5 Years', 
+    features: ['Multi-layer ceramic', 'Enhanced gloss & depth', 'Wheel & glass coating'] 
   },
   elite: { 
     id: 'elite',
     name: 'ELITE COATING', 
-    subtitle: 'Maximum protection for exotics', 
-    price: '1,600', 
-    years: '5 Years', 
+    subtitle: '7-year protection', 
+    price: '2,200', 
+    years: '7 Years', 
     layers: '3-Layer SiO2', 
-    warranty: '5 Years', 
-    features: ['Paint surfaces only', '2 annual inspections', 'Transferable warranty', 'Premium maintenance kit'] 
+    warranty: '7 Years', 
+    features: ['Maximum layer count', 'Interior leather protection', 'Annual maintenance included'] 
   }
 };
 
@@ -108,7 +108,7 @@ const Ceramic = () => {
               CERAMIC<br/><span className="text-[#8eff71]">COATING</span>
             </h1>
             <p className="text-[#adaaaa] text-lg lg:text-2xl font-mono leading-tight max-w-[450px] uppercase tracking-tighter opacity-80">
-              Ultra-High Gloss Protection That Outlasts Wax
+              5 years. Zero wax.
             </p>
             <div className="pt-8 flex flex-col sm:flex-row items-center gap-6">
               <div className="flex items-end gap-3 lg:border-r border-white/10 lg:pr-8">
@@ -322,10 +322,10 @@ const Ceramic = () => {
               <div className="absolute left-[7px] top-6 bottom-6 w-0.5 border-l-2 border-dashed border-[#8eff71]/30"></div>
               
               {[
-                { step: '01', title: 'Decontamination', time: '1-2H', desc: 'Surgical strip-wash to remove old waxes, iron particles, and environmental fall-out.' },
-                { step: '02', title: 'Paint Correction', time: '4-8H', desc: 'Precision machine polishing to eliminate swirls and restore "Level 0" surface gloss.' },
-                { step: '03', title: 'Coating Stage', time: '2-4H', desc: 'Atmosphere-controlled hand application of the ceramic lattice in overlapping sections.' },
-                { step: '04', title: 'Infrared Curing', time: 'IND', desc: 'Bonding phase where the ceramic transforms from liquid to a 9H hardness crystal.' },
+                { step: '01', title: 'Wash & Decontaminate', time: '1-2H', desc: 'Full strip-wash to remove old waxes, iron particles, and environmental fallout.' },
+                { step: '02', title: 'Paint Correction', time: '4-8H', desc: 'Precision machine polishing to eliminate swirls and restore a flawless surface.' },
+                { step: '03', title: 'Ceramic Application', time: '2-4H', desc: 'Hand application of the ceramic coating in controlled, overlapping sections.' },
+                { step: '04', title: '12-Hour Cure', time: '12H', desc: 'Bonding phase where the ceramic transforms into a 9H crystal-hard finish.' },
               ].map((item, i) => (
                 <div key={i} className="relative flex gap-8 group">
                   <div className={`absolute -left-[14px] top-1.5 w-6 h-6 rounded-full border-4 border-[#0e0e0e] z-10 transition-all duration-500 ${

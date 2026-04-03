@@ -19,15 +19,15 @@ const Index = () => {
           <div className="max-w-3xl">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">Naples' Premier Mobile Detailing</p>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
-              Detailing That Is{" "}
-              <span className="text-primary">Precisely Refined</span>
+              Mobile Detailing.{" "}
+              <span className="text-primary">Perfected.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              We come to you. 15+ years of automotive expertise, fully mobile, fully self-sufficient. From ceramic coatings to paint correction — elevated precision, at your doorstep.
+              We come to you. 15 years. Naples.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button onClick={openQuote} size="lg" className="bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90 box-glow">
-                Get a Quote
+                Get Quote
               </Button>
               <Button asChild variant="outline" size="lg" className="border-border font-display uppercase tracking-wider text-sm hover:border-primary hover:text-primary">
                 <Link to="/services">View Services</Link>
@@ -39,8 +39,8 @@ const Index = () => {
         <div className="absolute bottom-0 left-0 right-0 border-t border-border bg-background/80 backdrop-blur-md">
           <div className="container mx-auto grid grid-cols-2 gap-4 px-4 py-6 lg:grid-cols-4 lg:px-8">
             {[
-              { icon: <Award size={20} />, label: "15+ Years Experience" },
-              { icon: <Clock size={20} />, label: "7 Days a Week" },
+              { icon: <Award size={20} />, label: "15+ Years" },
+              { icon: <Clock size={20} />, label: "7 Days/Week" },
               { icon: <Car size={20} />, label: "Fully Mobile" },
               { icon: <Shield size={20} />, label: "Licensed & Insured" },
             ].map(s => (
@@ -53,26 +53,34 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Problem / Solution */}
+      {/* Why We're Different */}
       <section className="py-24 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2">
-            <div className="rounded-lg border border-border bg-card p-8 lg:p-12">
-              <h3 className="font-display text-sm uppercase tracking-wider text-destructive mb-6">The Problem</h3>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="flex gap-3"><X className="mt-1 shrink-0 text-destructive" size={16} />Other detailers make you drive to them — wasting your time</li>
-                <li className="flex gap-3"><X className="mt-1 shrink-0 text-destructive" size={16} />Inconsistent quality from inexperienced operators</li>
-                <li className="flex gap-3"><X className="mt-1 shrink-0 text-destructive" size={16} />Generic, one-size-fits-all results that don't match your vehicle</li>
-              </ul>
-            </div>
-            <div className="rounded-lg border glow-border bg-card p-8 lg:p-12">
-              <h3 className="font-display text-sm uppercase tracking-wider text-primary mb-6">The Solution</h3>
-              <ul className="space-y-4 text-muted-foreground">
-                <li className="flex gap-3"><Zap className="mt-1 shrink-0 text-primary" size={16} />We come to you — fully self-sufficient with generator, pressure washer & water tank</li>
-                <li className="flex gap-3"><Zap className="mt-1 shrink-0 text-primary" size={16} />15+ years of automotive expertise with meticulous attention to detail</li>
-                <li className="flex gap-3"><Zap className="mt-1 shrink-0 text-primary" size={16} />Out-of-this-world results tailored to your specific vehicle</li>
-              </ul>
-            </div>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold lg:text-5xl mb-10">Why We're <span className="text-primary">Different</span></h2>
+            <ul className="space-y-6">
+              <li className="flex gap-4 items-start">
+                <Zap className="mt-1 shrink-0 text-primary" size={20} />
+                <div>
+                  <p className="font-semibold text-foreground">Fully mobile — we bring water &amp; power</p>
+                  <p className="text-muted-foreground text-sm mt-1">Generator, pressure washer, and water tank onboard. No shop, no commute.</p>
+                </div>
+              </li>
+              <li className="flex gap-4 items-start">
+                <Zap className="mt-1 shrink-0 text-primary" size={20} />
+                <div>
+                  <p className="font-semibold text-foreground">15 years expertise, every car custom</p>
+                  <p className="text-muted-foreground text-sm mt-1">No templates. Every detail is tailored to your specific vehicle and paint condition.</p>
+                </div>
+              </li>
+              <li className="flex gap-4 items-start">
+                <Zap className="mt-1 shrink-0 text-primary" size={20} />
+                <div>
+                  <p className="font-semibold text-foreground">Results that speak for themselves</p>
+                  <p className="text-muted-foreground text-sm mt-1">We don't need to oversell it. The finish does the talking.</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -82,7 +90,7 @@ const Index = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Our Services</p>
-            <h2 className="text-3xl font-bold lg:text-5xl">Precision Maintenance Packages</h2>
+            <h2 className="text-3xl font-bold lg:text-5xl">Our Services</h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
@@ -124,19 +132,19 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* Why Us */}
       <section className="py-24 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Why Area 51</p>
-            <h2 className="text-3xl font-bold lg:text-5xl">The Difference Is in the Details</h2>
+            <h2 className="text-3xl font-bold lg:text-5xl">Why Us</h2>
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: <Clock size={28} />, title: "7 Days a Week", desc: "8AM–6PM, by appointment. We work around your schedule." },
-              { icon: <Car size={28} />, title: "Fully Self-Sufficient", desc: "Generator, pressure washer, water tank — all onboard." },
+              { icon: <Clock size={28} />, title: "7 Days/Week", desc: "8AM–6PM, by appointment. We work around your schedule." },
+              { icon: <Car size={28} />, title: "Fully Self-Contained", desc: "Generator, pressure washer, water tank — all onboard." },
               { icon: <Shield size={28} />, title: "Licensed & Insured", desc: "Complete peace of mind for your vehicle." },
-              { icon: <MapPin size={28} />, title: "Up to 30 Miles", desc: "Serving Naples and the entire surrounding area." },
+              { icon: <MapPin size={28} />, title: "30-Mile Radius", desc: "Naples, Bonita Springs, Marco Island, Estero & more." },
             ].map(d => (
               <div key={d.title} className="text-center">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-border bg-secondary text-primary">
@@ -184,9 +192,9 @@ const Index = () => {
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
-              { name: "Michael T.", text: "Jason transformed my black Porsche. Every panel was flawless. Best detailer in Naples, period." },
-              { name: "Sarah K.", text: "The ceramic coating on my Tesla is incredible. Water just rolls right off. Truly out of this world service." },
-              { name: "David R.", text: "Professional, on time, and the results speak for themselves. My boat has never looked this good." },
+              { name: "Michael T., Porsche Owner", text: "Best detailer in Naples, period." },
+              { name: "Sarah K., Tesla Owner", text: "The ceramic coating is incredible. Water just rolls right off. Truly out of this world service." },
+              { name: "David R., Naples", text: "Professional, on time, and the results speak for themselves." },
             ].map(r => (
               <div key={r.name} className="rounded-lg border border-border bg-card p-8">
                 <div className="flex gap-1 mb-4">
@@ -209,9 +217,9 @@ const Index = () => {
           </div>
           <div className="max-w-3xl mx-auto space-y-6">
             {[
-              { q: "How long does a ceramic coating take?", a: "4–12 hours depending on the package. Full cure takes 7 days." },
-              { q: "Are you really fully mobile?", a: "Yes. Our rig has a generator, pressure washer, and water tank — we're completely self-sufficient." },
-              { q: "How far do you travel?", a: "Up to 30 miles from Naples, covering Bonita Springs, Marco Island, Estero, Fort Myers, and more." },
+              { q: "How long does ceramic coating take?", a: "4–12 hours. Full cure in 7 days." },
+              { q: "Are you really fully mobile?", a: "Yes. Generator, water tank, pressure washer — all onboard. We're completely self-sufficient." },
+              { q: "How far do you travel?", a: "Up to 30 miles from Naples." },
             ].map(f => (
               <div key={f.q} className="rounded-lg border border-border bg-card p-6">
                 <h3 className="font-display text-sm font-semibold mb-2">{f.q}</h3>
@@ -231,13 +239,13 @@ const Index = () => {
       <section className="py-24 lg:py-32 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="text-3xl font-bold lg:text-5xl mb-6">
-            Ready For A <span className="text-primary">Professional Transformation?</span>
+            Ready for a <span className="text-primary">Professional Transformation?</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-            Book your appointment today and experience Naples' premier mobile detailing service.
+            Book your appointment today. We come to you.
           </p>
           <Button onClick={openQuote} size="lg" className="bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90 box-glow">
-            Request Your Quote →
+            Get Quote →
           </Button>
         </div>
       </section>

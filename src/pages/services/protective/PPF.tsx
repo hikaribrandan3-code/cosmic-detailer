@@ -98,11 +98,11 @@ export default function PPF() {
           <div className="lg:w-1/2">
             <span className="text-[#00FF41] font-mono font-bold uppercase tracking-[0.2em] text-[10px] lg:text-xs">Just Took Delivery?</span>
             <h2 className="mt-4 text-5xl md:text-7xl font-mono font-black leading-[0.9] uppercase tracking-tighter italic text-white drop-shadow-lg">
-              PROTECT IT BEFORE<br/>
-              <span className="text-[#00FF41]">THE FIRST CHIP</span>
+              YOUR NEW CAR IS PERFECT.<br/>
+              <span className="text-[#00FF41]">FOR NOW.</span>
             </h2>
             <p className="mt-6 text-[#adaaaa] max-w-md font-mono text-xs lg:text-sm uppercase tracking-widest leading-relaxed">
-              That new car smell comes with a countdown. Highway debris hits at <span className="text-white font-bold">140mph</span>. Your factory paint won't survive the drive home.
+              Highway debris hits at <span className="text-white font-bold">140mph</span>. PPF stops it first.
             </p>
           </div>
           <div className="lg:w-1/2 w-full pt-12 lg:pt-0">
@@ -206,9 +206,9 @@ export default function PPF() {
       <section className="px-6 py-20 lg:py-32 bg-[#0e0e0e]" id="funnel" ref={funnelRef}>
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-6xl font-mono font-black uppercase tracking-tighter italic text-white">CONFIGURE <span className="text-[#00FF41]">PROTECTION</span></h2>
+            <h2 className="text-4xl lg:text-6xl font-mono font-black uppercase tracking-tighter italic text-white">NOT SURE? <span className="text-[#00FF41]">WE'LL HELP.</span></h2>
             <div className="h-1 w-12 bg-[#00FF41] mx-auto mt-6 shadow-[0_0_10px_#00FF41]"></div>
-            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] font-bold text-[#adaaaa]">Not sure? Answer 2 questions to auto-calculate your tier.</p>
+            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] font-bold text-[#adaaaa]">Answer 2 questions to find your coverage tier.</p>
           </div>
           
           <div className="space-y-12">

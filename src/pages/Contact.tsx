@@ -18,8 +18,8 @@ const ContactPage = () => {
       <section className="py-24 lg:py-32 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Get In Touch</p>
-          <h1 className="text-4xl font-bold lg:text-6xl">Contact <span className="text-primary text-glow">Area 51</span></h1>
-          <p className="mt-6 text-muted-foreground max-w-xl mx-auto">Concierge-level support for your vehicle. Reach out anytime.</p>
+          <h1 className="text-4xl font-bold lg:text-6xl">Get in <span className="text-primary text-glow">Touch</span></h1>
+          <p className="mt-6 text-muted-foreground max-w-xl mx-auto">We typically respond within 2 hours.</p>
         </div>
       </section>
 
@@ -73,14 +73,20 @@ const ContactPage = () => {
               <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Input placeholder="Your Name" required className="bg-secondary border-border" />
+                  <Input placeholder="Name" required className="bg-secondary border-border" />
                   <Input placeholder="Phone" type="tel" className="bg-secondary border-border" />
                 </div>
-                <Input placeholder="Email" type="email" required className="bg-secondary border-border" />
-                <Input placeholder="Subject" className="bg-secondary border-border" />
-                <Textarea placeholder="Your message..." rows={5} required className="bg-secondary border-border" />
+                <select className="w-full bg-secondary border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary">
+                  <option>Service Needed</option>
+                  <option>Interior Detail</option>
+                  <option>Full Detail</option>
+                  <option>Ceramic Coating</option>
+                  <option>PPF</option>
+                  <option>Window Tint</option>
+                </select>
+                <Textarea placeholder="Message" rows={5} className="bg-secondary border-border" />
                 <Button type="submit" className="w-full bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90">
-                  Send Message →
+                  Send →
                 </Button>
               </form>
             </div>

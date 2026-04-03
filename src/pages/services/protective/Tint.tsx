@@ -119,9 +119,10 @@ const Tint = () => {
              <span className="text-[10px] lg:text-xs font-bold text-[#39ff14] tracking-[0.3em] uppercase">Window Tint</span>
             </div>
             <h2 className="text-5xl lg:text-8xl font-mono font-black italic tracking-tighter text-white uppercase leading-[0.9]">
-              Professional Window Tinting.<br/>
-              <span className="text-[#39ff14]">Block heat. Protect your interior.</span>
+              Cooler. Private.<br/>
+              <span className="text-[#39ff14]">Protected.</span>
             </h2>
+            <p className="text-[#adaaaa] font-mono text-sm uppercase tracking-widest">Block 99% of UV. Reject 60% of heat.</p>
           </div>
         </section>
 
@@ -303,7 +304,7 @@ const Tint = () => {
                 <div className="flex items-start gap-4 p-4 bg-red-950/20 border border-red-500/20 rounded-sm">
                   <AlertTriangle className="text-red-500 w-5 h-5 shrink-0 mt-0.5" />
                   <p className="font-mono text-[10px] text-red-500/80 uppercase tracking-wider leading-relaxed">
-                    <strong className="text-red-500">LEGAL NOTICE:</strong> VLT levels 20% or below may fall beneath legal limits for front side windows in certain jurisdictions.
+                    <strong className="text-red-500">LEGAL NOTICE:</strong> 35% is the legal limit for front windows in Florida. VLT levels 20% or below may not be street-legal on front side windows.
                   </p>
                 </div>
               )}
