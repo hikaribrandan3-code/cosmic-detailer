@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock, Instagram } from "lucide-react";
-import logo from "@/assets/area51logo.png";
+import logo from "@/assets/alien-icon.png";
 
 interface FooterProps {
   onQuoteClick: () => void;
