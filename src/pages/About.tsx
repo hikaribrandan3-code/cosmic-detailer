@@ -29,8 +29,8 @@ const About = () => {
                 Meet the Mind Behind <span className="text-primary text-glow">Area 51</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                What started as a passion for automotive perfection has evolved into Naples' premier mobile detailing experience. 
-                I'm not just detailing cars — I'm preserving investments and exceeding expectations, one vehicle at a time.
+                What began as a relentless pursuit of automotive perfection has evolved into Naples' premier mobile detailing experience. 
+                I'm not just detailing cars — I'm preserving high-value investments and exceeding the highest expectations, one vehicle at a time.
               </p>
             </div>
           </div>
