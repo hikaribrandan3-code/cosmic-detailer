@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock, Instagram } from "lucide-react";
-import logo from "@/assets/area51logo.png";
+import logo from "@/assets/alien-icon.png";
 
 interface FooterProps {
   onQuoteClick: () => void;
@@ -13,7 +13,7 @@ const Footer = ({ onQuoteClick }: FooterProps) => (
         <div>
           <div className="flex items-center gap-3 mb-4">
             <img src={logo} alt="Area 51 Detailing" className="h-12 w-12 object-contain" />
-            <span className="font-display text-lg font-bold tracking-wider">AREA 51</span>
+            <span className="font-display text-lg font-bold tracking-wider">AREA 51 DETAILING</span>
           </div>
           <p className="text-muted-foreground text-sm leading-relaxed">
             Detailing That Is Out of This World. Naples' premier mobile detailing service — we come to you.
