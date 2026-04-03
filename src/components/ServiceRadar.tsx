@@ -95,8 +95,8 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
                 >
                   {/* Outer Glow Ring (Tactical Pulse) */}
                   <circle 
-                    cx={city.x} cy={city.y} r={isHovered ? "12" : "8"} 
-                    fill="none" stroke="#39FF14" strokeWidth="1" 
+                    cx={city.x} cy={city.y} r={isHovered ? "15" : "10"} 
+                    fill="none" stroke="#39FF14" strokeWidth="1.5" 
                     className={`transition-all duration-300 ${isSelected ? '' : 'opacity-0'}`} 
                     style={isSelected ? { animation: 'slow-radar-pulse 8s ease-in-out infinite' } : {}}
                   />
@@ -104,17 +104,18 @@ const ServiceRadar = ({ onCityClick }: ServiceRadarProps) => {
                   {/* Blip Dot */}
                   <circle 
                     cx={city.x} cy={city.y} 
-                    r={city.isCenter ? (isHovered ? "6" : "4") : (isHovered ? "4" : "2.5")} 
+                    r={city.isCenter ? (isHovered ? "8" : "6") : (isHovered ? "6" : "4")} 
                     fill={isSelected || isHovered ? "#39FF14" : "#ffffff"} 
-                    className={`transition-all duration-300 ${isSelected ? 'shadow-[0_0_10px_#39FF14]' : ''}`}
+                    className={`transition-all duration-300 ${isSelected ? 'shadow-[0_0_15px_#39FF14]' : ''}`}
                   />
 
                   {/* Name Label */}
                   <text 
-                    x={city.x + (city.x > 200 ? 10 : -10)} 
-                    y={city.y + 15} 
+                    x={city.x + (city.x > 200 ? 15 : -15)} 
+                    y={city.y + 20} 
                     textAnchor={city.x > 200 ? "start" : "end"}
-                    className={`font-mono text-[7px] uppercase tracking-tighter transition-all duration-300 ${isHovered || isSelected ? 'fill-[#39FF14] font-bold' : 'fill-white/60'}`}
+                    className={`font-mono text-[10px] uppercase tracking-tighter transition-all duration-300 ${isHovered || isSelected ? 'fill-[#39FF14] font-black' : 'fill-white/80 font-bold'}`}
+                    style={{ textShadow: '0 0 10px rgba(0,0,0,0.8)' }}
                   >
                     {city.name}
                   </text>
