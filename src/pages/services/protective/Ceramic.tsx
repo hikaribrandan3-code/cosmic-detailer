@@ -216,7 +216,7 @@ const Ceramic = () => {
                         onClick={() => openQuote(`Ceramic: ${currentPkg.name}`)}
                         className="w-full sm:w-auto bg-[#8eff71] text-[#053900] px-10 py-6 font-black uppercase text-xs tracking-[0.2em] hover:bg-[#7ce065] transition-all"
                       >
-                        Reserve Configuration
+                        REQUEST QUOTE
                       </Button>
                    </div>
                  </div>
@@ -434,7 +434,7 @@ const Ceramic = () => {
           onClick={() => openQuote(`Ceramic: ${currentPkg.name}`)}
           className="bg-[#8eff71] text-[#053900] p-10 font-mono font-black italic text-xl uppercase tracking-[0.2em] rounded-none hover:bg-[#7ce065] shadow-[0_20px_50px_rgba(142,255,113,0.3)] transition-all animate-pulse-subtle"
          >
-           DEPLOY ARMOR CONFIG NOW <ArrowRight className="ml-4 w-6 h-6" />
+           BOOK YOUR APPOINTMENT <ArrowRight className="ml-4 w-6 h-6" />
          </Button>
       </div>
     </div>
