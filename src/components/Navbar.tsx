@@ -6,6 +6,7 @@ import logo from "@/assets/alien-icon.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
+  { label: "About", path: "/about" },
   { label: "Services", path: "/services" },
   { label: "Gallery", path: "/gallery" },
   { label: "FAQ", path: "/faq" },
