@@ -89,25 +89,25 @@ const Ceramic = () => {
       </div>
 
       <main className="w-full max-w-[1400px] mx-auto">
-        {/* HERO SECTION */}
-        <section className="relative h-[65vh] lg:h-[80vh] flex flex-col justify-end px-6 pb-20 lg:pb-32 overflow-hidden bg-[#0e0e0e]">
+        {/* HERO SECTION - Refined to prevent text cropping */}
+        <section className="relative min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-end px-6 pb-20 lg:pb-32 overflow-hidden bg-[#0e0e0e] pt-32">
           <div className="absolute inset-0 z-0">
             <img 
               className="w-full h-full object-cover opacity-60 scale-105 animate-slow-zoom" 
               src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1600&q=80" 
               alt="Ceramic coated car"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/40 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/50 to-transparent"></div>
           </div>
           
           <div className="relative z-10 space-y-6 max-w-4xl mx-auto w-full lg:px-12">
             <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#8eff71]/10 border border-[#8eff71]/20 shadow-[0_0_20px_rgba(142,255,113,0.1)]">
               <span className="text-[10px] lg:text-xs font-bold text-[#8eff71] tracking-[0.3em] uppercase">Ceramic Division</span>
             </div>
-            <h1 className="text-6xl lg:text-9xl font-mono font-black border-l-8 border-[#8eff71] pl-6 leading-[0.85] tracking-tighter uppercase italic drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+            <h1 className="text-5xl md:text-7xl lg:text-9xl font-mono font-black border-l-8 border-[#8eff71] pl-6 leading-[0.8] tracking-tighter uppercase italic drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]">
               CERAMIC<br/><span className="text-[#8eff71]">COATING</span>
             </h1>
-            <p className="text-[#adaaaa] text-xl lg:text-3xl font-mono leading-tight max-w-[450px] uppercase tracking-tighter opacity-80">
+            <p className="text-[#adaaaa] text-lg lg:text-2xl font-mono leading-tight max-w-[450px] uppercase tracking-tighter opacity-80">
               Ultra-High Gloss Protection That Outlasts Wax
             </p>
             <div className="pt-8 flex flex-col sm:flex-row items-center gap-6">
