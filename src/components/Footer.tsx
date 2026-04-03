@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock, Instagram } from "lucide-react";
 import logo from "@/assets/alien-icon.png";
+import ServiceRadar from "./ServiceRadar";
 
 interface FooterProps {
   onQuoteClick: () => void;
@@ -49,6 +50,8 @@ const Footer = ({ onQuoteClick }: FooterProps) => (
           </div>
         </div>
       </div>
+
+      <ServiceRadar />
 
       <div className="mt-12 border-t border-border pt-8 flex flex-col items-center gap-4 md:flex-row md:justify-between">
         <p className="text-muted-foreground text-xs">© {new Date().getFullYear()} Area 51 Detailing LLC. All rights reserved.</p>
