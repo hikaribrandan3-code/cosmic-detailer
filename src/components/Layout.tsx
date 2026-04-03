@@ -3,18 +3,30 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import QuoteModal from "./QuoteModal";
+import SpringPromo from "./SpringPromo";
 
 const Layout = () => {
   const [quoteOpen, setQuoteOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
+
+  const handleOpenQuote = (service?: string) => {
+    if (service) setSelectedService(service);
+    setQuoteOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar onQuoteClick={() => setQuoteOpen(true)} />
+      <Navbar onQuoteClick={() => handleOpenQuote()} />
       <main className="pt-16">
-        <Outlet context={{ openQuote: () => setQuoteOpen(true) }} />
+        <Outlet context={{ openQuote: handleOpenQuote }} />
       </main>
-      <Footer onQuoteClick={() => setQuoteOpen(true)} />
-      <QuoteModal open={quoteOpen} onOpenChange={setQuoteOpen} />
+      <Footer onQuoteClick={() => handleOpenQuote()} />
+      <SpringPromo onClaim={handleOpenQuote} />
+      <QuoteModal 
+        open={quoteOpen} 
+        onOpenChange={setQuoteOpen} 
+        defaultService={selectedService} 
+      />
     </div>
   );
 };

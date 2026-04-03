@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 
 const services = [
+  "Spring Reset Special $249",
   "Interior Detailing",
   "Wax Package",
   "Mini Detail",
@@ -23,10 +24,20 @@ const services = [
 interface QuoteModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  defaultService?: string;
 }
 
-const QuoteModal = ({ open, onOpenChange }: QuoteModalProps) => {
+const QuoteModal = ({ open, onOpenChange, defaultService }: QuoteModalProps) => {
   const [loading, setLoading] = useState(false);
+  const [service, setService] = useState(defaultService || "");
+
+  useEffect(() => {
+    if (open && defaultService) {
+      setService(defaultService);
+    } else if (!open) {
+      setService("");
+    }
+  }, [open, defaultService]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -66,7 +77,7 @@ const QuoteModal = ({ open, onOpenChange }: QuoteModalProps) => {
               ))}
             </SelectContent>
           </Select>
-          <Select>
+          <Select value={service} onValueChange={setService}>
             <SelectTrigger className="bg-secondary border-border">
               <SelectValue placeholder="Service Interested In" />
             </SelectTrigger>
