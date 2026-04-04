@@ -22,11 +22,13 @@ const Navbar = ({ onQuoteClick }: { onQuoteClick: (service?: string) => void }) 
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
+    <nav className="fixed top-0 left-0 right-0 z-[100] border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto flex items-center justify-between px-4 py-3 lg:px-8">
-        <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="Area 51 Detailing" className="h-10 w-10 object-contain" />
-          <span className="font-display text-sm font-bold tracking-wider text-foreground sm:text-lg">AREA 51 DETAILING</span>
+        <Link to="/" className="flex items-center gap-3 shrink-0">
+          <img src={logo} alt="Area 51 Detailing" className="h-8 w-8 object-contain sm:h-10 sm:w-10" />
+          <span className="font-display text-xs font-bold tracking-wider text-foreground sm:text-lg truncate max-w-[160px] sm:max-w-none">
+            AREA 51 DETAILING
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -104,19 +106,22 @@ const Navbar = ({ onQuoteClick }: { onQuoteClick: (service?: string) => void }) 
         </div>
 
         {/* Mobile Toggle */}
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="text-foreground lg:hidden">
+        <button 
+          onClick={() => setMobileOpen(!mobileOpen)} 
+          className="text-foreground lg:hidden p-2 -mr-2 shrink-0 relative z-[110]"
+          aria-label="Toggle menu"
+        >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
         <>
           <div 
-            className="fixed inset-0 bg-black/60 backdrop-blur-md z-40 lg:hidden animate-in fade-in duration-300" 
+            className="fixed inset-0 bg-black/80 backdrop-blur-md z-[90] lg:hidden animate-in fade-in duration-300" 
             onClick={() => setMobileOpen(false)}
           />
-          <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-background/95 backdrop-blur-2xl z-50 p-6 lg:hidden shadow-2xl animate-in slide-in-from-right duration-300">
+          <div className="fixed inset-y-0 right-0 w-full max-w-xs bg-background z-[100] p-6 lg:hidden shadow-2xl animate-in slide-in-from-right duration-300 border-l border-white/5">
             <div className="flex flex-col gap-6 overflow-y-auto h-full pt-16">
                <Link onClick={() => setMobileOpen(false)} to="/" className="text-2xl font-black italic tracking-tighter uppercase text-white hover:text-[#39FF14] transition-colors">Home</Link>
                <Link onClick={() => setMobileOpen(false)} to="/about" className="text-2xl font-black italic tracking-tighter uppercase text-white hover:text-[#39FF14] transition-colors">About</Link>
