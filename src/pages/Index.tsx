@@ -19,15 +19,17 @@ const Index = () => {
           <div className="max-w-3xl">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">Naples' Premier Mobile Detailing</p>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
-              Mobile Detailing.{" "}
-              <span className="text-primary">Perfected.</span>
+              <span className="lg:hidden">Mobile Detailing. Perfected.</span>
+              <span className="hidden lg:inline">Detailing That Is <span className="text-primary">Precisely Refined</span></span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              We come to you. 15 years. Naples.
+              <span className="lg:hidden">We come to you. 15 years. Naples.</span>
+              <span className="hidden lg:inline">We come to you. 15+ years of automotive expertise, fully mobile, fully self-sufficient. From ceramic coatings to paint correction — elevated precision, at your doorstep.</span>
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button onClick={openQuote} size="lg" className="bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90 box-glow">
-                Get Quote
+                <span className="lg:hidden">Get Quote</span>
+                <span className="hidden lg:inline">Request A Quote</span>
               </Button>
               <Button asChild variant="outline" size="lg" className="border-border font-display uppercase tracking-wider text-sm hover:border-primary hover:text-primary">
                 <Link to="/services">View Services</Link>
@@ -53,11 +55,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why We're Different */}
+      {/* Why We're Different / Problem/Solution Hybrid */}
       <section className="py-24 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold lg:text-5xl mb-10">Why We're <span className="text-primary">Different</span></h2>
+          {/* Mobile: Simple List */}
+          <div className="lg:hidden max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-10">Why We're <span className="text-primary">Different</span></h2>
             <ul className="space-y-6">
               <li className="flex gap-4 items-start">
                 <Zap className="mt-1 shrink-0 text-primary" size={20} />
@@ -81,6 +84,26 @@ const Index = () => {
                 </div>
               </li>
             </ul>
+          </div>
+
+          {/* Desktop: Professional Box Layout */}
+          <div className="hidden lg:grid gap-12 lg:grid-cols-2">
+            <div className="rounded-lg border border-border bg-card p-8 lg:p-12">
+              <h3 className="font-display text-sm uppercase tracking-wider text-destructive mb-6">The Problem</h3>
+              <ul className="space-y-4 text-muted-foreground">
+                <li className="flex gap-3"><X className="mt-1 shrink-0 text-destructive" size={16} />Other detailers make you drive to them — wasting your time</li>
+                <li className="flex gap-3"><X className="mt-1 shrink-0 text-destructive" size={16} />Inconsistent quality from inexperienced operators</li>
+                <li className="flex gap-3"><X className="mt-1 shrink-0 text-destructive" size={16} />Generic, one-size-fits-all results that don't match your vehicle</li>
+              </ul>
+            </div>
+            <div className="rounded-lg border glow-border bg-card p-8 lg:p-12">
+              <h3 className="font-display text-sm uppercase tracking-wider text-primary mb-6">The Solution</h3>
+              <ul className="space-y-4 text-muted-foreground">
+                <li className="flex gap-3"><Zap className="mt-1 shrink-0 text-primary" size={16} />We come to you — fully self-sufficient with generator, pressure washer & water tank</li>
+                <li className="flex gap-3"><Zap className="mt-1 shrink-0 text-primary" size={16} />15+ years of automotive expertise with meticulous attention to detail</li>
+                <li className="flex gap-3"><Zap className="mt-1 shrink-0 text-primary" size={16} />Out-of-this-world results tailored to your specific vehicle</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

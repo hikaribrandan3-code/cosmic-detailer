@@ -18,8 +18,14 @@ const ContactPage = () => {
       <section className="py-24 lg:py-32 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Get In Touch</p>
-          <h1 className="text-4xl font-bold lg:text-6xl">Get in <span className="text-primary text-glow">Touch</span></h1>
-          <p className="mt-6 text-muted-foreground max-w-xl mx-auto">We typically respond within 2 hours.</p>
+          <h1 className="text-4xl font-bold lg:text-6xl">
+            <span className="lg:hidden">Get in Touch</span>
+            <span className="hidden lg:inline">Contact <span className="text-primary text-glow">Area 51</span></span>
+          </h1>
+          <p className="mt-6 text-muted-foreground max-w-xl mx-auto">
+            <span className="lg:hidden">We typically respond within 2 hours.</span>
+            <span className="hidden lg:inline">Concierge-level support for your vehicle. Reach out anytime.</span>
+          </p>
         </div>
       </section>
 

@@ -98,11 +98,12 @@ export default function PPF() {
           <div className="lg:w-1/2">
             <span className="text-[#00FF41] font-mono font-bold uppercase tracking-[0.2em] text-[10px] lg:text-xs">Just Took Delivery?</span>
             <h2 className="mt-4 text-5xl md:text-7xl font-mono font-black leading-[0.9] uppercase tracking-tighter italic text-white drop-shadow-lg">
-              YOUR NEW CAR IS PERFECT.<br/>
-              <span className="text-[#00FF41]">FOR NOW.</span>
+              <span className="lg:hidden">YOUR NEW CAR IS PERFECT. FOR NOW.</span>
+              <span className="hidden lg:inline">PROTECT IT BEFORE<br/><span className="text-[#00FF41]">THE FIRST CHIP</span></span>
             </h2>
             <p className="mt-6 text-[#adaaaa] max-w-md font-mono text-xs lg:text-sm uppercase tracking-widest leading-relaxed">
-              Highway debris hits at <span className="text-white font-bold">140mph</span>. PPF stops it first.
+              <span className="lg:hidden">Highway debris hits at 140mph. PPF stops it first.</span>
+              <span className="hidden lg:inline">That new car smell comes with a countdown. Highway debris hits at <span className="text-white font-bold">140mph</span>. Your factory paint won't survive the drive home.</span>
             </p>
           </div>
           <div className="lg:w-1/2 w-full pt-12 lg:pt-0">

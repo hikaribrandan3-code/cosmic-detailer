@@ -108,7 +108,8 @@ const Ceramic = () => {
               CERAMIC<br/><span className="text-[#8eff71]">COATING</span>
             </h1>
             <p className="text-[#adaaaa] text-lg lg:text-2xl font-mono leading-tight max-w-[450px] uppercase tracking-tighter opacity-80">
-              5 years. Zero wax.
+              <span className="lg:hidden">5 years. Zero wax.</span>
+              <span className="hidden lg:inline">Ultra-High Gloss Protection That Outlasts Wax</span>
             </p>
             <div className="pt-8 flex flex-col sm:flex-row items-center gap-6">
               <div className="flex items-end gap-3 lg:border-r border-white/10 lg:pr-8">
@@ -322,10 +323,14 @@ const Ceramic = () => {
               <div className="absolute left-[7px] top-6 bottom-6 w-0.5 border-l-2 border-dashed border-[#8eff71]/30"></div>
               
               {[
-                { step: '01', title: 'Wash & Decontaminate', time: '1-2H', desc: 'Full strip-wash to remove old waxes, iron particles, and environmental fallout.' },
-                { step: '02', title: 'Paint Correction', time: '4-8H', desc: 'Precision machine polishing to eliminate swirls and restore a flawless surface.' },
-                { step: '03', title: 'Ceramic Application', time: '2-4H', desc: 'Hand application of the ceramic coating in controlled, overlapping sections.' },
-                { step: '04', title: '12-Hour Cure', time: '12H', desc: 'Bonding phase where the ceramic transforms into a 9H crystal-hard finish.' },
+                { step: '01', title: 'Wash & Decontaminate', time: '1-2H', 
+                  desc: <><span className="lg:hidden">Full strip-wash to remove old waxes, iron particles, and environmental fallout.</span><span className="hidden lg:inline">Surgical strip-wash to remove old waxes, iron particles, and environmental fall-out.</span></> },
+                { step: '02', title: 'Paint Correction', time: '4-8H', 
+                  desc: <><span className="lg:hidden">Precision machine polishing to eliminate swirls and restore a flawless surface.</span><span className="hidden lg:inline">Precision machine polishing to eliminate swirls and restore "Level 0" surface gloss.</span></> },
+                { step: '03', title: 'Ceramic Application', time: '2-4H', 
+                  desc: <><span className="lg:hidden">Hand application of the ceramic coating in controlled, overlapping sections.</span><span className="hidden lg:inline">Atmosphere-controlled hand application of the ceramic lattice in overlapping sections.</span></> },
+                { step: '04', title: '12-Hour Cure', time: '12H', 
+                  desc: <><span className="lg:hidden">Bonding phase where the ceramic transforms into a 9H crystal-hard finish.</span><span className="hidden lg:inline">Bonding phase where the ceramic transforms from liquid to a 9H hardness crystal.</span></> },
               ].map((item, i) => (
                 <div key={i} className="relative flex gap-8 group">
                   <div className={`absolute -left-[14px] top-1.5 w-6 h-6 rounded-full border-4 border-[#0e0e0e] z-10 transition-all duration-500 ${

@@ -119,10 +119,13 @@ const Tint = () => {
              <span className="text-[10px] lg:text-xs font-bold text-[#39ff14] tracking-[0.3em] uppercase">Window Tint</span>
             </div>
             <h2 className="text-5xl lg:text-8xl font-mono font-black italic tracking-tighter text-white uppercase leading-[0.9]">
-              Cooler. Private.<br/>
-              <span className="text-[#39ff14]">Protected.</span>
+              <span className="lg:hidden">Cooler. Private.<br/><span className="text-[#39ff14]">Protected.</span></span>
+              <span className="hidden lg:inline">Professional Window Tinting.<br/><span className="text-[#39ff14]">Block heat. Protect your interior.</span></span>
             </h2>
-            <p className="text-[#adaaaa] font-mono text-sm uppercase tracking-widest">Block 99% of UV. Reject 60% of heat.</p>
+            <p className="text-[#adaaaa] font-mono text-sm uppercase tracking-widest leading-relaxed">
+              <span className="lg:hidden">Block 99% of UV. Reject 60% of heat.</span>
+              <span className="hidden lg:inline">Block 99% of UV. Reject 60% of heat. Premium ceramic film installation.</span>
+            </p>
           </div>
         </section>
 

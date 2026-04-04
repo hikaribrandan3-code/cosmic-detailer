@@ -26,10 +26,15 @@ const About = () => {
             <div>
               <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">About Us</p>
               <h1 className="text-4xl font-bold leading-tight tracking-tight lg:text-5xl mb-6">
-                The difference is <span className="text-primary text-glow">classified.</span>
+                <span className="lg:hidden">The difference is classified.</span>
+                <span className="hidden lg:inline">Meet the Mind Behind <span className="text-primary text-glow">Area 51</span></span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                15 years. One mission. Perfect paint.
+                <span className="lg:hidden">15 years. One mission. Perfect paint.</span>
+                <span className="hidden lg:inline">
+                  What began as a relentless pursuit of automotive perfection has evolved into Naples' premier mobile detailing experience. 
+                  We're not just detailing cars — we're preserving high-value investments and exceeding the highest expectations, one vehicle at a time.
+                </span>
               </p>
             </div>
           </div>
@@ -69,14 +74,27 @@ const About = () => {
                 <div className="w-px h-full bg-border mt-4" />
               </div>
               <div className="pb-8">
-                <h3 className="font-display text-lg font-semibold mb-3">Our Story</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  We don't talk about what happens in the bay. But the results speak for themselves.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mt-4">
-                  <strong className="text-foreground">15 years of automotive obsession.</strong> Fully mobile. Fully self-contained.
-                  We come to you because your garage is the cleanest place to work.
-                </p>
+                <h3 className="font-display text-lg font-semibold mb-3">
+                  <span className="lg:hidden">Our Story</span>
+                  <span className="hidden lg:inline">Built on a Foundation of Excellence</span>
+                </h3>
+                <div className="lg:hidden">
+                  <p className="text-muted-foreground leading-relaxed">
+                    We don't talk about what happens in the bay. But the results speak for themselves.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mt-4">
+                    <strong className="text-foreground">15 years of automotive obsession.</strong> Fully mobile. Fully self-contained.
+                    We come to you because your garage is the cleanest place to work.
+                  </p>
+                </div>
+                <div className="hidden lg:block text-muted-foreground leading-relaxed">
+                  <p>
+                    With over <strong className="text-foreground">15 years in the automotive industry</strong> and 
+                    <strong className="text-foreground"> 7+ years of professional detailing experience</strong>, I've honed my craft 
+                    working on some of the most valuable vehicles in the world. My clients have collectively trusted me with 
+                    over <strong className="text-foreground">$100 million worth of cars</strong> — from daily drivers to rare exotics.
+                  </p>
+                </div>
               </div>
             </div>
 
