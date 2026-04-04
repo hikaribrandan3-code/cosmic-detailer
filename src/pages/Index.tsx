@@ -66,15 +66,15 @@ const Index = () => {
             <ul className="space-y-6">
               <li className="flex gap-4 items-center">
                 <Zap className="shrink-0 text-primary" size={20} />
-                <p className="font-semibold text-foreground uppercase tracking-tight text-sm italic">Fully mobile — we bring water &amp; power</p>
+                <p className="font-semibold text-foreground">Fully mobile — we bring water &amp; power</p>
               </li>
               <li className="flex gap-4 items-center">
                 <Zap className="shrink-0 text-primary" size={20} />
-                <p className="font-semibold text-foreground uppercase tracking-tight text-sm italic">15 years expertise, every car custom</p>
+                <p className="font-semibold text-foreground">15 years expertise, every car custom</p>
               </li>
               <li className="flex gap-4 items-center">
                 <Zap className="shrink-0 text-primary" size={20} />
-                <p className="font-semibold text-foreground uppercase tracking-tight text-sm italic">Results that speak for themselves</p>
+                <p className="font-semibold text-foreground">Results that speak for themselves</p>
               </li>
             </ul>
           </div>
