@@ -1,4 +1,5 @@
 import { Award, Star, Shield, Zap, Car, Heart, Target, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import jasonPhoto from "/jason.png";
 
 const About = () => {
@@ -169,18 +170,18 @@ const About = () => {
             Whether you drive a daily commuter or a garage queen, your vehicle deserves the Area 51 treatment.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 font-display text-sm uppercase tracking-wider text-primary-foreground hover:opacity-90 transition-opacity"
             >
               Get in Touch
-            </a>
-            <a
-              href="/services"
+            </Link>
+            <Link
+              to="/services"
               className="inline-flex items-center justify-center rounded-md border border-border px-6 py-3 font-display text-sm uppercase tracking-wider hover:border-primary hover:text-primary transition-colors"
             >
               View Services
-            </a>
+            </Link>
           </div>
         </div>
       </section>

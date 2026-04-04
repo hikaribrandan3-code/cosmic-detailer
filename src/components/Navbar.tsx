@@ -42,9 +42,12 @@ const Navbar = ({ onQuoteClick }: { onQuoteClick: (service?: string) => void }) 
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
-            <button className={`flex items-center gap-1 font-mono text-xs uppercase tracking-widest transition-colors hover:text-[#39FF14] ${location.pathname.startsWith("/services") ? "text-[#39FF14]" : "text-muted-foreground"}`}>
-              Services <ChevronDown size={14} className={`transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`} />
-            </button>
+          <Link 
+            to="/services"
+            className={`flex items-center gap-1 font-mono text-xs uppercase tracking-widest transition-colors hover:text-[#39FF14] ${location.pathname.startsWith("/services") ? "text-[#39FF14]" : "text-muted-foreground"}`}
+          >
+            Services <ChevronDown size={14} className={`transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`} />
+          </Link>
             
             {/* Dropdown Menu */}
             <div className={`absolute top-full left-1/2 -translate-x-1/2 w-[480px] pt-4 transition-all duration-300 ${servicesOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}>
