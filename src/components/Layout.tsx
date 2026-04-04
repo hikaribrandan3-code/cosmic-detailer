@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import QuoteModal from "./QuoteModal";
 import SpringPromo from "./SpringPromo";
+import StickyCallBar from "./StickyCallBar";
 import { AmbientUFO } from "./AmbientUFO";
 
 const Layout = () => {
@@ -26,6 +27,7 @@ const Layout = () => {
       <Footer onQuoteClick={handleOpenQuote} />
       <SpringPromo onClaim={handleOpenQuote} />
       <AmbientUFO />
+      <StickyCallBar />
       <QuoteModal 
         open={quoteOpen} 
         onOpenChange={setQuoteOpen} 

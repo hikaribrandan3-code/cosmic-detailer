@@ -105,7 +105,7 @@ const Index = () => {
       <section className="border-t border-border py-24 lg:py-32 bg-card/50">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Our Services</p>
+            <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">What We Offer</p>
             <h2 className="text-3xl font-bold lg:text-5xl">Our Services</h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -204,7 +204,18 @@ const Index = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Social Proof</p>
-            <h2 className="text-3xl font-bold lg:text-5xl">What Our Clients Say</h2>
+            <h2 className="text-3xl font-bold lg:text-5xl mb-6">What Our Clients Say</h2>
+            <a 
+              href="https://www.google.com/search?q=Area+51+Detailing+Naples+Reviews" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 rounded-full border border-border bg-card/50 px-6 py-3 transition-all hover:border-primary/50 active:scale-95"
+            >
+              <div className="flex gap-1">
+                {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} className="fill-primary text-primary" />)}
+              </div>
+              <span className="font-mono text-sm font-bold tracking-tight text-foreground">4.9/5 <span className="text-muted-foreground font-normal">(127 Google Reviews)</span></span>
+            </a>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[

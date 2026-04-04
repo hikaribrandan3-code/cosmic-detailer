@@ -29,12 +29,14 @@ interface QuoteModalProps {
 }
 
 const QuoteModal = ({ open, onOpenChange, defaultService, defaultLocation }: QuoteModalProps) => {
+  const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [service, setService] = useState(defaultService || "");
   const [location, setLocation] = useState(defaultLocation || "");
 
   useEffect(() => {
     if (open) {
+      setStep(1);
       if (defaultService) setService(defaultService);
       if (defaultLocation) setLocation(defaultLocation);
     } else {
@@ -45,6 +47,10 @@ const QuoteModal = ({ open, onOpenChange, defaultService, defaultLocation }: Quo
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (step === 1) {
+      setStep(2);
+      return;
+    }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -57,56 +63,88 @@ const QuoteModal = ({ open, onOpenChange, defaultService, defaultLocation }: Quo
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-lg border-border bg-card">
         <DialogHeader>
-          <DialogTitle className="text-2xl text-glow">Launch My Quote</DialogTitle>
-          <p className="text-muted-foreground text-sm">Fill in your details and we'll get back to you within 24 hours.</p>
+          <div className="flex items-center justify-between">
+            <DialogTitle className="text-2xl text-glow">Launch My Quote</DialogTitle>
+            <span className="font-mono text-xs text-[#39FF14] bg-[#39FF14]/10 px-2 py-1 rounded">STEP {step}/2</span>
+          </div>
+          <p className="text-muted-foreground text-sm">
+            {step === 1 
+              ? "Tell us what you need and how to reach you." 
+              : "Help us understand your vehicle's specific needs."}
+          </p>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Input placeholder="First Name" required className="bg-secondary border-border" />
-            <Input placeholder="Phone" type="tel" required className="bg-secondary border-border" />
-          </div>
-          <Input 
-            placeholder="Email" 
-            type="email" 
-            required 
-            className="bg-secondary border-border" 
-          />
-          <Input 
-            placeholder="Location / City" 
-            value={location} 
-            onChange={(e) => setLocation(e.target.value)} 
-            required 
-            className="bg-secondary border-primary/20 text-[#39FF14]" 
-          />
-          <div className="grid grid-cols-3 gap-3">
-            <Input placeholder="Year" className="bg-secondary border-border" />
-            <Input placeholder="Make" className="bg-secondary border-border" />
-            <Input placeholder="Model" className="bg-secondary border-border" />
-          </div>
-          <Select>
-            <SelectTrigger className="bg-secondary border-border">
-              <SelectValue placeholder="Vehicle Condition (1-10)" />
-            </SelectTrigger>
-            <SelectContent>
-              {Array.from({ length: 10 }, (_, i) => (
-                <SelectItem key={i + 1} value={String(i + 1)}>{i + 1} — {i < 3 ? "Needs Heavy Work" : i < 6 ? "Fair Condition" : i < 9 ? "Good Shape" : "Showroom"}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select value={service} onValueChange={setService}>
-            <SelectTrigger className="bg-secondary border-border">
-              <SelectValue placeholder="Service Interested In" />
-            </SelectTrigger>
-            <SelectContent>
-              {services.map(s => (
-                <SelectItem key={s} value={s}>{s}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Textarea placeholder="Additional notes..." className="bg-secondary border-border" rows={3} />
-          <Button type="submit" disabled={loading} className="w-full bg-primary text-primary-foreground font-display uppercase tracking-wider hover:opacity-90">
-            {loading ? "Launching..." : "Launch My Quote →"}
-          </Button>
+          {step === 1 ? (
+            <>
+              <div className="grid grid-cols-1 gap-4">
+                <Input placeholder="First Name" required className="bg-secondary border-border" />
+                <Input placeholder="Phone" type="tel" required className="bg-secondary border-border" />
+                <Select value={service} onValueChange={setService} required>
+                  <SelectTrigger className="bg-secondary border-border">
+                    <SelectValue placeholder="Service Interested In" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {services.map(s => (
+                      <SelectItem key={s} value={s}>{s}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <Button type="submit" className="w-full bg-primary text-primary-foreground font-display uppercase tracking-wider hover:opacity-90">
+                Continue to Vehicle Details →
+              </Button>
+            </>
+          ) : (
+            <>
+              <Input 
+                placeholder="Email Address" 
+                type="email" 
+                required 
+                className="bg-secondary border-border" 
+              />
+              <Input 
+                placeholder="Location / City" 
+                value={location} 
+                onChange={(e) => setLocation(e.target.value)} 
+                required 
+                className="bg-secondary border-primary/20 text-[#39FF14]" 
+              />
+              <div className="grid grid-cols-3 gap-3">
+                <Input placeholder="Year" className="bg-secondary border-border" />
+                <Input placeholder="Make" className="bg-secondary border-border" />
+                <Input placeholder="Model" className="bg-secondary border-border" />
+              </div>
+              <Select>
+                <SelectTrigger className="bg-secondary border-border">
+                  <SelectValue placeholder="Vehicle Condition (1-10)" />
+                </SelectTrigger>
+                <SelectContent>
+                  {Array.from({ length: 10 }, (_, i) => (
+                    <SelectItem key={i + 1} value={String(i + 1)}>{i + 1} — {i < 3 ? "Needs Heavy Work" : i < 6 ? "Fair Condition" : i < 9 ? "Good Shape" : "Showroom"}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Textarea placeholder="Additional notes or specific requests..." className="bg-secondary border-border" rows={3} />
+              
+              <div className="flex gap-3">
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={() => setStep(1)}
+                  className="flex-1 border-border"
+                >
+                  Back
+                </Button>
+                <Button 
+                  type="submit" 
+                  disabled={loading} 
+                  className="flex-[2] bg-primary text-primary-foreground font-display uppercase tracking-wider hover:opacity-90 box-glow"
+                >
+                  {loading ? "Launching..." : "Launch Quote Request →"}
+                </Button>
+              </div>
+            </>
+          )}
         </form>
       </DialogContent>
     </Dialog>
