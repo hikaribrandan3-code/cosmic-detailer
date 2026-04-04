@@ -64,26 +64,17 @@ const Index = () => {
           <div className="lg:hidden max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-10">Why We're <span className="text-primary">Different</span></h2>
             <ul className="space-y-6">
-              <li className="flex gap-4 items-start">
-                <Zap className="mt-1 shrink-0 text-primary" size={20} />
-                <div>
-                  <p className="font-semibold text-foreground">Fully mobile — we bring water &amp; power</p>
-                  <p className="text-muted-foreground text-sm mt-1">Generator, pressure washer, and water tank onboard. No shop, no commute.</p>
-                </div>
+              <li className="flex gap-4 items-center">
+                <Zap className="shrink-0 text-primary" size={20} />
+                <p className="font-semibold text-foreground uppercase tracking-tight text-sm italic">Fully mobile — we bring water &amp; power</p>
               </li>
-              <li className="flex gap-4 items-start">
-                <Zap className="mt-1 shrink-0 text-primary" size={20} />
-                <div>
-                  <p className="font-semibold text-foreground">15 years expertise, every car custom</p>
-                  <p className="text-muted-foreground text-sm mt-1">No templates. Every detail is tailored to your specific vehicle and paint condition.</p>
-                </div>
+              <li className="flex gap-4 items-center">
+                <Zap className="shrink-0 text-primary" size={20} />
+                <p className="font-semibold text-foreground uppercase tracking-tight text-sm italic">15 years expertise, every car custom</p>
               </li>
-              <li className="flex gap-4 items-start">
-                <Zap className="mt-1 shrink-0 text-primary" size={20} />
-                <div>
-                  <p className="font-semibold text-foreground">Results that speak for themselves</p>
-                  <p className="text-muted-foreground text-sm mt-1">We don't need to oversell it. The finish does the talking.</p>
-                </div>
+              <li className="flex gap-4 items-center">
+                <Zap className="shrink-0 text-primary" size={20} />
+                <p className="font-semibold text-foreground uppercase tracking-tight text-sm italic">Results that speak for themselves</p>
               </li>
             </ul>
           </div>
