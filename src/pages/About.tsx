@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative border-b border-border bg-card/30 py-24 lg:py-32">
+      <section className="relative border-b border-border bg-card/30 py-16 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             {/* Photo */}
@@ -63,7 +63,7 @@ const About = () => {
       </section>
 
       {/* Story Section */}
-      <section className="py-24 lg:py-32">
+      <section className="py-16 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
           <div className="space-y-12">
             {/* Block 1 */}
@@ -160,7 +160,7 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-border py-24 bg-card/30">
+      <section className="border-t border-border py-16 bg-card/30">
         <div className="container mx-auto px-4 lg:px-8 text-center max-w-2xl">
           <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">Ready to experience the difference?</p>
           <h2 className="text-3xl font-bold lg:text-4xl mb-6">

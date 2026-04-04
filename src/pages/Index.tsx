@@ -38,25 +38,27 @@ const Index = () => {
           </div>
         </div>
         {/* Stats bar */}
-        <div className="absolute bottom-0 left-0 right-0 border-t border-border bg-background/80 backdrop-blur-md">
-          <div className="container mx-auto grid grid-cols-2 gap-4 px-4 py-6 lg:grid-cols-4 lg:px-8">
-            {[
-              { icon: <Award size={20} />, label: "15+ Years" },
-              { icon: <Clock size={20} />, label: "7 Days/Week" },
-              { icon: <Car size={20} />, label: "Fully Mobile" },
-              { icon: <Shield size={20} />, label: "Licensed & Insured" },
-            ].map(s => (
-              <div key={s.label} className="flex items-center gap-3">
-                <span className="text-primary">{s.icon}</span>
-                <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{s.label}</span>
-              </div>
-            ))}
+        <div className="absolute bottom-0 left-0 right-0 border-t border-border bg-background/80 backdrop-blur-md overflow-hidden">
+          <div className="container mx-auto">
+            <div className="flex lg:grid lg:grid-cols-4 items-center gap-8 lg:gap-4 px-4 py-6 lg:px-8 overflow-x-auto lg:overflow-x-visible no-scrollbar snap-x">
+              {[
+                { icon: <Award size={20} />, label: "15+ Years" },
+                { icon: <Clock size={20} />, label: "7 Days/Week" },
+                { icon: <Car size={20} />, label: "Fully Mobile" },
+                { icon: <Shield size={20} />, label: "Licensed & Insured" },
+              ].map(s => (
+                <div key={s.label} className="flex items-center gap-3 shrink-0 snap-center">
+                  <span className="text-primary">{s.icon}</span>
+                  <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-muted-foreground whitespace-nowrap">{s.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Why We're Different / Problem/Solution Hybrid */}
-      <section className="py-24 lg:py-32">
+      <section className="py-16 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Mobile: Simple List */}
           <div className="lg:hidden max-w-3xl mx-auto">
@@ -127,7 +129,7 @@ const Index = () => {
               <Link 
                 key={s.title} 
                 to={s.path || "/services"}
-                className="group relative aspect-square overflow-hidden rounded-xl border border-primary/10 bg-card transition-all duration-500"
+                className="group relative aspect-square overflow-hidden rounded-xl border border-primary/10 bg-card transition-all duration-500 active:scale-[0.98]"
               >
                 {/* Specimen Image Layer */}
                 <img 
@@ -156,7 +158,7 @@ const Index = () => {
       </section>
 
       {/* Why Us */}
-      <section className="py-24 lg:py-32">
+      <section className="py-16 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Why Area 51</p>
@@ -207,7 +209,7 @@ const Index = () => {
       </section>
 
       {/* Reviews */}
-      <section className="py-24 lg:py-32">
+      <section className="py-16 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Social Proof</p>
@@ -259,7 +261,7 @@ const Index = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 lg:py-32 hero-gradient grid-bg">
+      <section className="py-16 lg:py-32 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="text-3xl font-bold lg:text-5xl mb-6">
             Ready for a <span className="text-primary">Professional Transformation?</span>

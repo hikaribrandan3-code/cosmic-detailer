@@ -15,7 +15,7 @@ const ContactPage = () => {
 
   return (
     <div>
-      <section className="py-24 lg:py-32 hero-gradient grid-bg">
+      <section className="py-16 lg:py-32 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Get In Touch</p>
           <h1 className="text-4xl font-bold lg:text-6xl">
@@ -29,7 +29,7 @@ const ContactPage = () => {
         </div>
       </section>
 
-      <section className="py-24 lg:py-32">
+      <section className="py-16 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
             {/* Contact Info */}

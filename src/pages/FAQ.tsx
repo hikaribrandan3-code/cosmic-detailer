@@ -13,14 +13,14 @@ const faqs = [
 
 const FAQPage = () => (
   <div>
-    <section className="py-24 lg:py-32 hero-gradient grid-bg">
+    <section className="py-16 lg:py-32 hero-gradient grid-bg">
       <div className="container mx-auto px-4 text-center lg:px-8">
         <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Knowledge Base</p>
         <h1 className="text-4xl font-bold lg:text-6xl">Frequently Asked <span className="text-primary text-glow">Questions</span></h1>
       </div>
     </section>
 
-    <section className="py-24 lg:py-32">
+    <section className="py-16 lg:py-32">
       <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
         <Accordion type="single" collapsible className="space-y-4">
           {faqs.map((f, i) => (

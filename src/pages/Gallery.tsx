@@ -3,7 +3,7 @@ import { Sparkles } from "lucide-react";
 const GalleryPage = () => {
   return (
     <div>
-      <section className="py-24 lg:py-32 hero-gradient grid-bg">
+      <section className="py-16 lg:py-32 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Portfolio</p>
           <h1 className="text-4xl font-bold lg:text-6xl">Our <span className="text-primary">Work</span></h1>
@@ -11,7 +11,7 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      <section className="py-24 lg:py-32">
+      <section className="py-16 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }, (_, i) => (
