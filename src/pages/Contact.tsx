@@ -82,6 +82,8 @@ const ContactPage = () => {
                   <Input placeholder="Name" required className="bg-secondary border-border" />
                   <Input placeholder="Phone" type="tel" className="bg-secondary border-border" />
                 </div>
+                <Input placeholder="Email (Optional)" type="email" className="bg-secondary border-border" />
+                <Input placeholder="Vehicle Year / Make / Model" required className="bg-secondary border-border" />
                 <select className="w-full bg-secondary border border-border rounded-md px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary">
                   <option>Service Needed</option>
                   <option>Interior Detail</option>
@@ -90,10 +92,13 @@ const ContactPage = () => {
                   <option>PPF</option>
                   <option>Window Tint</option>
                 </select>
-                <Textarea placeholder="Message" rows={5} className="bg-secondary border-border" />
+                <Textarea placeholder="Tell us about your vehicle — current condition, what you'd like done, any problem areas." rows={5} className="bg-secondary border-border" />
                 <Button type="submit" className="w-full bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90">
-                  Send →
+                  Get My Quote →
                 </Button>
+                <p className="font-mono text-[9px] text-muted-foreground text-center uppercase tracking-widest mt-2">
+                  We reply within 2 hours — usually faster.
+                </p>
               </form>
             </div>
           </div>
