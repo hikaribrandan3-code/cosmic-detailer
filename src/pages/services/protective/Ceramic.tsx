@@ -237,19 +237,28 @@ const Ceramic = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { icon: <Timer className="w-6 h-6 text-[#8eff71]" />, title: 'Wheel & Caliper', price: '+$299', 
+                  image: 'https://images.unsplash.com/photo-1551522435-a13afa10f103?w=800&q=80',
                   desc: { mobile: 'Brake dust bonds to bare metal fast. Ceramic-coated wheels clean in seconds and resist the iron buildup that turns wheels brown.', desktop: 'Protects against brake dust' } },
                 { icon: <User className="w-6 h-6 text-[#8eff71]" />, title: 'Interior Leather', price: '+$199', 
+                  image: 'https://images.unsplash.com/photo-1617469767053-d3b508a0d182?w=800&q=80',
                   desc: { mobile: 'Leather in Naples heat cracks and fades fast. Ceramic coating bonds to the surface and keeps it supple, stain-resistant, and looking new.', desktop: 'Prevents stains and wear' } },
                 { icon: <Waves className="w-6 h-6 text-[#8eff71]" />, title: 'Plastic Trim', price: '+$149', 
+                  image: 'https://images.unsplash.com/photo-1620891549027-942fdc95d3f5?w=800&q=80',
                   desc: { mobile: 'Faded grey trim drops your car\'s whole look. We restore it black and coat it so it stays that way — not for a week, for years.', desktop: 'Restores and protects trim' } },
                 { icon: <Droplets className="w-6 h-6 text-[#8eff71]" />, title: 'Glass Coating', price: '+$99', 
+                  image: 'https://images.unsplash.com/photo-1557401592-340788647087?w=800&q=80',
                   desc: { mobile: 'Rain beads off at speed. No more squinting through a smeared windshield on 75. Visibility up, wiper use down.', desktop: 'Improves rain visibility' } },
               ].map((addon, i) => (
-                <div key={i} className="p-6 bg-[#191a1a] border border-white/5 hover:border-[#8eff71]/30 transition-all group flex flex-col gap-4">
-                  <div className="w-12 h-12 bg-[#0e0e0e] flex items-center justify-center border border-white/10 group-hover:bg-[#8eff71]/10 group-hover:border-[#8eff71]/20 transition-all">
+                <div key={i} className="p-6 bg-[#191a1a] border border-white/5 hover:border-[#8eff71]/30 transition-all group flex flex-col gap-4 relative overflow-hidden">
+                  <div className="absolute inset-0 z-0 opacity-20 transition-transform duration-700 group-hover:scale-110">
+                    <img src={addon.image} alt={addon.title} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="absolute inset-0 bg-[#0e0e0e]/40 z-1" />
+                  
+                  <div className="relative z-10 w-12 h-12 bg-[#0e0e0e] flex items-center justify-center border border-white/10 group-hover:bg-[#8eff71]/10 group-hover:border-[#8eff71]/20 transition-all">
                     {addon.icon}
                   </div>
-                  <div>
+                  <div className="relative z-10">
                     <h4 className="font-mono font-black text-sm uppercase tracking-wider text-white mb-1">{addon.title}</h4>
                     <p className="text-[10px] text-[#adaaaa] font-bold uppercase tracking-widest mb-3">
                       <span className="lg:hidden">{addon.desc.mobile}</span>
@@ -370,36 +379,63 @@ const Ceramic = () => {
         {/* PERFORMANCE VS WAX TABLE */}
         <section className="py-20 px-6 lg:px-12 bg-[#191a1a]">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-center mb-4">Performance <span className="text-[#8eff71]">Benchmark</span></h2>
+            <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-center mb-4">Ceramic <span className="text-[#8eff71]">vs Wax</span></h2>
             <p className="lg:hidden text-center font-mono text-[10px] text-[#8eff71] uppercase font-bold tracking-[0.2em] mb-12">Here's what nano ceramic delivers by the numbers:</p>
-          <div className="overflow-x-auto no-scrollbar">
-            <div className="rounded-none border border-white/10 shadow-2xl min-w-[700px]">
-              <table className="w-full text-left text-sm border-collapse bg-[#131313]">
-                <thead className="bg-[#202020] font-mono font-black text-[10px] uppercase tracking-[0.3em]">
-                  <tr>
-                    <th className="p-6 border-b border-white/5">Armor Feature</th>
-                    <th className="p-6 border-b border-white/5 text-[#8eff71]">Nano Ceramic</th>
-                    <th className="p-6 border-b border-white/5 text-[#adaaaa]">Standard Wax</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-white/5 font-mono">
-                  {[
-                    { feature: 'Service Life', ceramic: '1-5 YEARS', wax: '2-3 MONTHS' },
-                    { feature: 'Mirror Gloss Depth', ceramic: 'MAX-DEF', wax: 'LOW/DULL' },
-                    { feature: 'Self-Cleaning Effect', ceramic: 'SELF-WASH', wax: 'DIRT MAGNET' },
-                    { feature: 'Bug/Acid Resistance', ceramic: 'COMPLETE', wax: 'NONE/LOW' },
-                  ].map((row, i) => (
-                    <tr key={i} className="hover:bg-white/[0.02] transition-colors">
-                      <td className="p-6 font-black text-xs uppercase tracking-widest border-r border-white/5">{row.feature}</td>
-                      <td className="p-6 text-[#8eff71] font-black text-lg italic tracking-tighter">{row.ceramic}</td>
-                      <td className="p-6 text-[#adaaaa]/60 font-medium text-xs tracking-widest">{row.wax}</td>
+            <div className="overflow-x-auto no-scrollbar">
+              <div className="rounded-none border border-white/10 shadow-2xl min-w-[700px]">
+                <table className="w-full text-left text-sm border-collapse bg-[#131313]">
+                  <thead className="bg-[#202020] font-mono font-black text-[10px] uppercase tracking-[0.3em]">
+                    <tr>
+                      <th className="p-6 border-b border-white/5">Armor Feature</th>
+                      <th className="p-6 border-b border-white/5 text-[#8eff71]">Nano Ceramic</th>
+                      <th className="p-6 border-b border-white/5 text-[#adaaaa]">Standard Wax</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-white/5 font-mono">
+                    {[
+                      { feature: 'Service Life', ceramic: '1-5 YEARS', wax: '2-3 MONTHS' },
+                      { feature: 'Mirror Gloss Depth', ceramic: 'MAX-DEF', wax: 'LOW/DULL' },
+                      { feature: 'Self-Cleaning Effect', ceramic: 'SELF-WASH', wax: 'DIRT MAGNET' },
+                      { feature: 'Bug/Acid Resistance', ceramic: 'COMPLETE', wax: 'NONE/LOW' },
+                    ].map((row, i) => (
+                      <tr key={i} className="hover:bg-white/[0.02] transition-colors">
+                        <td className="p-6 font-black text-xs uppercase tracking-widest border-r border-white/5">{row.feature}</td>
+                        <td className="p-6 text-[#8eff71] font-black text-lg italic tracking-tighter">{row.ceramic}</td>
+                        <td className="p-6 text-[#adaaaa]/60 font-medium text-xs tracking-widest">{row.wax}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div className="mt-12 text-center lg:hidden">
+              <Button 
+                onClick={() => openQuote(`Ceramic: ${currentPkg.name}`)}
+                className="bg-[#8eff71] text-[#053900] px-10 py-6 font-black uppercase text-xs tracking-[0.2em] hover:bg-[#7ce065] transition-all"
+              >
+                GET A QUOTE
+              </Button>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* PPF + COATING BUNDLE SECTION */}
+        <section className="py-20 px-6 lg:px-12 bg-gradient-to-b from-[#0e0e0e] to-[#131313]">
+           <div className="max-w-4xl mx-auto bg-card border border-[#8eff71]/20 p-8 lg:p-12 text-center">
+              <span className="text-[10px] font-black text-[#8eff71] uppercase tracking-[0.4em] block mb-4 italic animate-pulse">The Perfect Pairing</span>
+              <h2 className="font-mono text-4xl lg:text-7xl font-black uppercase tracking-tighter mb-6">PPF + <span className="text-[#8eff71]">COATING</span></h2>
+              <p className="text-[#adaaaa] font-mono text-sm leading-relaxed mb-8 uppercase tracking-widest italic">
+                Bundle <span className="text-white">XPEL PPF</span> + <span className="text-white">Nano Ceramic</span> for 100% rock chip protection and a permanent mirror gloss. The only way to truly "set it and forget it."
+              </p>
+              <Button 
+                onClick={() => navigate('/services/protective/ppf')}
+                variant="outline" 
+                className="w-full sm:w-auto border-[#8eff71] text-[#8eff71] hover:bg-[#8eff71] hover:text-[#053900] px-12 py-8 font-black uppercase tracking-[0.2em] transition-all"
+              >
+                EXPLAIN THE COMBO →
+              </Button>
+           </div>
         </section>
 
         {/* FAQ SECTION */}
@@ -429,23 +465,7 @@ const Ceramic = () => {
           </div>
         </section>
 
-        {/* BUNDLE UPSELL SECTION */}
-        <section className="py-20 px-6 lg:px-12 bg-gradient-to-b from-[#0e0e0e] to-[#131313]">
-           <div className="max-w-4xl mx-auto bg-card border border-[#8eff71]/20 p-8 lg:p-12 text-center">
-              <span className="text-[10px] font-black text-[#8eff71] uppercase tracking-[0.4em] block mb-4 italic animate-pulse">The Perfect Pairing</span>
-              <h2 className="font-mono text-4xl lg:text-7xl font-black uppercase tracking-tighter mb-6">THE ULTIMATE <span className="text-[#8eff71]">ARMOR</span></h2>
-              <p className="text-[#adaaaa] font-mono text-sm leading-relaxed mb-8 uppercase tracking-widest italic">
-                Bundle <span className="text-white">XPEL PPF</span> + <span className="text-white">Nano Ceramic</span> for 100% rock chip protection and a permanent mirror gloss. The only way to truly "set it and forget it."
-              </p>
-              <Button 
-                onClick={() => navigate('/services/protective/ppf')}
-                variant="outline" 
-                className="w-full sm:w-auto border-[#8eff71] text-[#8eff71] hover:bg-[#8eff71] hover:text-[#053900] px-12 py-8 font-black uppercase tracking-[0.2em] transition-all"
-              >
-                EXPLAIN THE COMBO →
-              </Button>
-           </div>
-        </section>
+
       </main>
 
       {/* STICKY BOTTOM CONVERSION BAR (MOBILE) */}
