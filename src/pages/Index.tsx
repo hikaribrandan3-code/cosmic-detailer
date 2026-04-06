@@ -19,11 +19,15 @@ const Index = () => {
           <div className="max-w-3xl">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">Naples' #1 Mobile Detailing</p>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
-              <span className="lg:hidden">Mobile Detailing. Perfected.</span>
+              <div className="lg:hidden flex flex-col">
+                <span>We Show Up.</span>
+                <span>We Detail.</span>
+                <span className="text-primary font-black italic">Done.</span>
+              </div>
               <span className="hidden lg:inline">Detailing That Is <span className="text-primary">Precisely Refined</span></span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              <span className="lg:hidden">15 years perfecting every inch, in your driveway. We bring the water, power, and expertise.</span>
+              <span className="lg:hidden text-white/90">One call and we're at your door — water, power, and 15 years of expertise loaded in the truck. You don't lift a finger.</span>
               <span className="hidden lg:inline">We come to you. 15+ years of automotive expertise, fully mobile, fully self-sufficient. From ceramic coatings to paint correction — elevated precision, at your doorstep.</span>
             </p>
             
@@ -35,12 +39,32 @@ const Index = () => {
               <span className="text-white/40 text-[12px] font-medium">200+ five-star reviews · Naples, FL</span>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-4 mb-6 lg:mb-0">
-              <Button onClick={openQuote} size="lg" className="bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90 box-glow">
-                <span className="lg:hidden">Get Quote</span>
-                <span className="hidden lg:inline">Request A Quote</span>
+            <div className="mt-8 flex flex-col lg:flex-row gap-4 mb-6 lg:mb-0">
+              {/* Mobile Primary Phone Button */}
+              <Button asChild size="lg" className="lg:hidden w-full h-auto py-4 bg-primary text-primary-foreground hover:opacity-90 flex flex-col gap-1 box-glow">
+                <a href="tel:9143295929">
+                  <div className="flex items-center gap-2 font-black text-xl italic tracking-tighter">
+                    <Phone size={20} className="fill-current" />
+                    (914) 329-5929
+                  </div>
+                  <div className="text-[9px] uppercase tracking-[0.15em] font-mono font-bold text-black/60">
+                    WE PICK UP · 7 DAYS A WEEK · 8AM–6PM
+                  </div>
+                </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-border font-display uppercase tracking-wider text-sm hover:border-primary hover:text-primary">
+
+              {/* Existing Desktop Primary Button */}
+              <Button onClick={openQuote} size="lg" className="hidden lg:flex bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90 box-glow">
+                Request A Quote
+              </Button>
+
+              {/* Mobile Secondary Get Quote Button */}
+              <Button onClick={openQuote} variant="outline" size="lg" className="lg:hidden w-full border-border font-display uppercase tracking-wider text-sm hover:border-primary hover:text-primary py-6">
+                GET QUOTE
+              </Button>
+
+              {/* Existing Desktop Secondary Button */}
+              <Button asChild variant="outline" size="lg" className="hidden lg:flex border-border font-display uppercase tracking-wider text-sm hover:border-primary hover:text-primary">
                 <Link to="/services">View Services</Link>
               </Button>
             </div>
