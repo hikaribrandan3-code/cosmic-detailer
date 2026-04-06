@@ -17,16 +17,25 @@ const Index = () => {
         </div>
         <div className="container relative mx-auto px-4 py-32 lg:px-8">
           <div className="max-w-3xl">
-            <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">Naples' Premier Mobile Detailing</p>
+            <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">Naples' #1 Mobile Detailing</p>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
               <span className="lg:hidden">Mobile Detailing. Perfected.</span>
               <span className="hidden lg:inline">Detailing That Is <span className="text-primary">Precisely Refined</span></span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              <span className="lg:hidden">We come to you. 15 years. Naples.</span>
+              <span className="lg:hidden">15 years perfecting every inch, in your driveway. We bring the water, power, and expertise.</span>
               <span className="hidden lg:inline">We come to you. 15+ years of automotive expertise, fully mobile, fully self-sufficient. From ceramic coatings to paint correction — elevated precision, at your doorstep.</span>
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            
+            {/* Mobile Star Rating */}
+            <div className="lg:hidden mt-4 flex items-center gap-2">
+              <div className="flex gap-1 text-primary">
+                {[1, 2, 3, 4, 5].map(s => <Star key={s} size={12} className="fill-current" />)}
+              </div>
+              <span className="text-white/40 text-[12px] font-medium">200+ five-star reviews · Naples, FL</span>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-4 mb-12 lg:mb-0">
               <Button onClick={openQuote} size="lg" className="bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90 box-glow">
                 <span className="lg:hidden">Get Quote</span>
                 <span className="hidden lg:inline">Request A Quote</span>
@@ -40,14 +49,14 @@ const Index = () => {
         {/* Stats bar */}
         <div className="absolute bottom-0 left-0 right-0 border-t border-border bg-background/80 backdrop-blur-md overflow-hidden">
           <div className="container mx-auto">
-            <div className="flex lg:grid lg:grid-cols-4 items-center gap-8 lg:gap-4 px-4 py-6 lg:px-8 overflow-x-auto lg:overflow-x-visible no-scrollbar snap-x">
+            <div className="grid grid-cols-2 md:grid-cols-4 items-center gap-4 px-4 py-4 lg:px-8">
               {[
                 { icon: <Award size={20} />, label: "15+ Years" },
                 { icon: <Clock size={20} />, label: "7 Days/Week" },
                 { icon: <Car size={20} />, label: "Fully Mobile" },
-                { icon: <Shield size={20} />, label: "Licensed & Insured" },
+                { icon: <Star size={20} />, label: "200+ REVIEWS" },
               ].map(s => (
-                <div key={s.label} className="flex items-center gap-3 shrink-0 snap-center">
+                <div key={s.label} className="flex items-center gap-3">
                   <span className="text-primary">{s.icon}</span>
                   <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-muted-foreground whitespace-nowrap">{s.label}</span>
                 </div>
@@ -63,18 +72,33 @@ const Index = () => {
           {/* Mobile: Simple List */}
           <div className="lg:hidden max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-10">Why We're <span className="text-primary">Different</span></h2>
-            <ul className="space-y-6">
-              <li className="flex gap-4 items-center">
-                <Zap className="shrink-0 text-primary" size={20} />
-                <p className="font-semibold text-foreground">Fully mobile — we bring water &amp; power</p>
+            <ul className="grid gap-8">
+              <li className="flex gap-4 items-start">
+                <div className="shrink-0 w-[34px] h-[34px] bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center">
+                  <Zap className="text-primary" size={18} />
+                </div>
+                <div>
+                  <p className="font-bold text-foreground text-lg leading-none mb-2">Fully mobile</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">We bring water & power — no hookups needed at your home.</p>
+                </div>
               </li>
-              <li className="flex gap-4 items-center">
-                <Zap className="shrink-0 text-primary" size={20} />
-                <p className="font-semibold text-foreground">15 years expertise, every car custom</p>
+              <li className="flex gap-4 items-start">
+                <div className="shrink-0 w-[34px] h-[34px] bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center">
+                  <Zap className="text-primary" size={18} />
+                </div>
+                <div>
+                  <p className="font-bold text-foreground text-lg leading-none mb-2">15 years expertise</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">15 years means we know exactly what your paint needs.</p>
+                </div>
               </li>
-              <li className="flex gap-4 items-center">
-                <Zap className="shrink-0 text-primary" size={20} />
-                <p className="font-semibold text-foreground">Results that speak for themselves</p>
+              <li className="flex gap-4 items-start">
+                <div className="shrink-0 w-[34px] h-[34px] bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center">
+                  <Zap className="text-primary" size={18} />
+                </div>
+                <div>
+                  <p className="font-bold text-foreground text-lg leading-none mb-2">Results that speak for themselves</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">Not happy? We come back. Simple as that.</p>
+                </div>
               </li>
             </ul>
           </div>
@@ -110,12 +134,12 @@ const Index = () => {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: "Interior Detailing", price: "From $180", image: "/images/bg/interior-bg.png", path: "/services#interior" },
-              { title: "Wax Packages", price: "From $150", image: "/images/bg/wax-bg.png", path: "/services#other-services" },
-              { title: "Full Detail", price: "From $250", image: "/images/bg/full-detail-bg.png", path: "/services#full-detail" },
-              { title: "Paint Correction", price: "Quote Based", image: "/images/bg/onestep-bg.png", path: "/services#paint-correction" },
-              { title: "Ceramic Coating", price: "From $1,100", image: "/images/bg/ceramic-bg.png", path: "/services/protective/ceramic" },
-              { title: "PPF & Window Tint", price: "From $1,300", image: "/images/bg/ppf-tint-bg.png", path: "/services/protective/ppf" },
+              { title: "Interior Detailing", price: "From $180", desc: "Full vacuum, leather treatment, steam clean & more.", image: "/images/bg/interior-bg.png", path: "/services#interior" },
+              { title: "Wax Packages", price: "From $150", desc: "Hand wax, polish & UV protection for lasting shine.", image: "/images/bg/wax-bg.png", path: "/services#other-services" },
+              { title: "Full Detail", price: "From $250", desc: "Deep exterior wash & interior rejuvenation.", image: "/images/bg/full-detail-bg.png", path: "/services#full-detail" },
+              { title: "Paint Correction", price: "Quote Based", desc: "Remove swirls & restore that showroom floor gloss.", image: "/images/bg/onestep-bg.png", path: "/services#paint-correction" },
+              { title: "Ceramic Coating", price: "From $1,100", desc: "Ultimate protection & permanent hydrophobic shine.", image: "/images/bg/ceramic-bg.png", path: "/services/protective/ceramic" },
+              { title: "PPF & Window Tint", price: "From $1,300", desc: "Invisible protection against chips & heat.", image: "/images/bg/ppf-tint-bg.png", path: "/services/protective/ppf" },
             ].map(s => (
               <Link 
                 key={s.title} 
@@ -136,7 +160,8 @@ const Index = () => {
                 <div className="relative z-20 flex h-full flex-col justify-end p-8">
                   <div className="space-y-1">
                     <h3 className="font-display text-lg font-bold tracking-tight text-white group-hover:text-primary transition-colors">{s.title}</h3>
-                    <p className="font-mono text-sm text-primary font-bold drop-shadow-[0_0_10px_rgba(var(--primary),0.5)]">{s.price}</p>
+                    <p className="font-mono text-sm text-primary font-bold drop-shadow-[0_0_10px_rgba(var(--primary),0.5)] mb-1">{s.price}</p>
+                    <p className="text-white/60 text-[11px] leading-tight font-medium uppercase tracking-wider">{s.desc}</p>
                   </div>
                   <div className="mt-4 flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors">
                     Explore Details <ChevronRight size={12} className="transition-transform group-hover:translate-x-1" />
@@ -155,19 +180,19 @@ const Index = () => {
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Why Area 51</p>
             <h2 className="text-3xl font-bold lg:text-5xl">Why Us</h2>
           </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: <Clock size={28} />, title: "7 Days/Week", desc: "8AM–6PM, by appointment. We work around your schedule." },
-              { icon: <Car size={28} />, title: "Fully Self-Contained", desc: "Generator, pressure washer, water tank — all onboard." },
-              { icon: <Shield size={28} />, title: "Licensed & Insured", desc: "Complete peace of mind for your vehicle." },
-              { icon: <MapPin size={28} />, title: "30-Mile Radius", desc: "Naples, Bonita Springs, Marco Island, Estero & more." },
+              { icon: <Clock size={24} />, title: "7 Days/Week", desc: "8AM–6PM, by appt." },
+              { icon: <Car size={24} />, title: "Self-Contained", desc: "Water & power onboard." },
+              { icon: <Shield size={24} />, title: "Insured", desc: "Complete peace of mind." },
+              { icon: <MapPin size={24} />, title: "30-Mile Radius", desc: "Naples & surrounding." },
             ].map(d => (
-              <div key={d.title} className="text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-border bg-secondary text-primary">
+              <div key={d.title} className="flex flex-col items-center text-center bg-[#111111] border border-white/7 rounded-lg p-4">
+                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-secondary text-primary">
                   {d.icon}
                 </div>
-                <h3 className="font-display text-sm font-semibold uppercase tracking-wider mb-2">{d.title}</h3>
-                <p className="text-muted-foreground text-sm">{d.desc}</p>
+                <h3 className="font-display text-xs font-bold uppercase tracking-wider mb-1">{d.title}</h3>
+                <p className="text-muted-foreground text-[10px] leading-tight">{d.desc}</p>
               </div>
             ))}
           </div>
@@ -179,22 +204,22 @@ const Index = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Portfolio</p>
-            <h2 className="text-3xl font-bold lg:text-5xl">Our Work Speaks for Itself</h2>
+            <h2 className="text-3xl font-bold lg:text-5xl">Our Work</h2>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[1, 2, 3, 4].map(i => (
-              <div key={i} className="group aspect-[4/3] rounded-lg border border-border bg-secondary flex items-center justify-center overflow-hidden">
-                <div className="text-center">
-                  <Sparkles className="mx-auto mb-2 text-primary/40" size={32} />
-                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Project Coming Soon</p>
-                </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-primary/5 border border-primary/20 rounded-[14px] p-8 lg:p-12 text-center relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-10">
+                <Sparkles size={120} className="text-primary" />
               </div>
-            ))}
-          </div>
-          <div className="text-center mt-8">
-            <Button asChild variant="outline" className="border-border font-display uppercase tracking-wider text-sm hover:border-primary hover:text-primary">
-              <Link to="/gallery">View Full Gallery</Link>
-            </Button>
+              <h3 className="text-2xl font-bold mb-4">Real Results Coming Soon</h3>
+              <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
+                Every car we touch tells a story. Check back shortly — or book now and be our next showcase.
+              </p>
+              <Button onClick={openQuote} className="bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90 box-glow">
+                BOOK YOUR DETAIL
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -219,18 +244,28 @@ const Index = () => {
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
-              { name: "Michael T., Porsche Owner", text: "Best detailer in Naples, period." },
-              { name: "Sarah K., Tesla Owner", text: "The ceramic coating is incredible. Water just rolls right off. Truly out of this world service." },
-              { name: "David R., Naples", text: "Professional, on time, and the results speak for themselves." },
+              { name: "Michael T. · Porsche 911", text: "Best detailer in Naples, period." },
+              { name: "Sarah K. · Tesla Model Y", text: "Truly out of this world service — water just rolls right off." },
+              { name: "David R. · BMW M3", text: "Professional, on time, and the results speak for themselves." },
             ].map(r => (
               <div key={r.name} className="rounded-lg border border-border bg-card p-8">
                 <div className="flex gap-1 mb-4">
                   {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} className="fill-primary text-primary" />)}
                 </div>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">"{r.text}"</p>
-                <p className="font-mono text-xs uppercase tracking-wider text-primary">{r.name}</p>
+                <p className="font-mono text-[10px] uppercase tracking-wider text-primary font-bold">{r.name}</p>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-12">
+            <a 
+              href="https://www.google.com/search?q=Area+51+Detailing+Naples+Reviews" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-mono text-sm uppercase tracking-wider text-primary hover:underline"
+            >
+              View all 127 Google Reviews →
+            </a>
           </div>
         </div>
       </section>
@@ -265,15 +300,23 @@ const Index = () => {
       {/* Final CTA */}
       <section className="py-16 lg:py-32 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
+          <div className="inline-block mb-4 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-primary">LIMITED SPOTS THIS WEEK</p>
+          </div>
           <h2 className="text-3xl font-bold lg:text-5xl mb-6">
-            Ready for a <span className="text-primary">Professional Transformation?</span>
+            Ready for a <span className="text-primary">Detail?</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto mb-8">
-            Book your appointment today. We come to you.
+            Book in 60 seconds. We come to you.
           </p>
-          <Button onClick={openQuote} size="lg" className="bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90 box-glow">
-            Get Quote →
-          </Button>
+          <div className="flex flex-col items-center gap-4">
+            <Button onClick={openQuote} size="lg" className="bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90 box-glow min-w-[240px]">
+              GET MY FREE QUOTE →
+            </Button>
+            <p className="text-white/25 text-[11px] font-mono uppercase tracking-wider">
+              No commitment · Responds within 1 hour
+            </p>
+          </div>
         </div>
       </section>
     </div>
