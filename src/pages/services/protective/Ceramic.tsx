@@ -58,6 +58,7 @@ type PackageKey = keyof typeof packages;
 
 const Ceramic = () => {
   const { openQuote } = useOutletContext<{ openQuote: (service?: string) => void }>();
+  const navigate = useNavigate();
   const [selectedPackage, setSelectedPackage] = useState<PackageKey>('pro');
   const [openAccordion, setOpenAccordion] = useState<string | null>('hydrophobic');
   const packagesRef = useRef<HTMLDivElement>(null);
@@ -279,7 +280,7 @@ const Ceramic = () => {
                     icon: <Droplets className="w-5 h-5" />, 
                     title: 'EASY CLEANING', 
                     desc: { 
-                      mobile: 'Ceramic-coated paint is hydrophobic — water sheets off, dirt barely bonds. Your wash time drops in half and your car stays cleaner longer between washes.',
+                      mobile: 'Ceramic is hydrophobic — water sheets off, dirt barely bonds. Your wash time drops in half and your car stays cleaner longer between washes.',
                       desktop: 'Ceramic coatings repel water and dirt, making your vehicle much easier to wash and keep clean.'
                     }
                   },
@@ -288,7 +289,7 @@ const Ceramic = () => {
                     icon: <Sun className="w-5 h-5" />, 
                     title: 'UV PROTECTION', 
                     desc: {
-                      mobile: 'Naples sun degrades clear coat fast. Ceramic creates a sacrificial layer that absorbs UV before it reaches your paint. Your color stays deep and rich for years.',
+                      mobile: 'Florida sun destroys paint. Nano-ceramic creates a mirror finish that shields your clear coat from the intense UV radiation that causes fading and oxidation.',
                       desktop: 'Protects your paint from sun damage, preventing fading and oxidation over time.'
                     }
                   },
@@ -297,7 +298,7 @@ const Ceramic = () => {
                     icon: <Beaker className="w-5 h-5" />, 
                     title: 'CHEMICAL RESISTANCE', 
                     desc: {
-                      mobile: 'Bird drops, tree sap, brake dust, road salt — ceramic takes the hit so your clear coat doesn\'t. The coating sacrifices itself. Your paint stays perfect.',
+                      mobile: 'Naples bugs and bird drops etch into paint fast. The ceramic sacrificial layer takes the hit so your paint doesn\'t. Acids literally slide off.',
                       desktop: 'Acts as a protective layer against bird droppings, road salt, and other environmental contaminants.'
                     }
                   }
@@ -384,9 +385,9 @@ const Ceramic = () => {
                 <tbody className="divide-y divide-white/5 font-mono">
                   {[
                     { feature: 'Service Life', ceramic: '1-5 YEARS', wax: '2-3 MONTHS' },
-                    { feature: 'Hardness Rating', ceramic: '9H DIAMOND', wax: 'ORGANIC SOFT' },
-                    { feature: 'Thermal Peak', ceramic: '1100°F+', wax: '180°F' },
-                    { feature: 'Thickness', ceramic: '8.5 MICRON+', wax: '< 1 MICRON' },
+                    { feature: 'Mirror Gloss Depth', ceramic: 'MAX-DEF', wax: 'LOW/DULL' },
+                    { feature: 'Self-Cleaning Effect', ceramic: 'SELF-WASH', wax: 'DIRT MAGNET' },
+                    { feature: 'Bug/Acid Resistance', ceramic: 'COMPLETE', wax: 'NONE/LOW' },
                   ].map((row, i) => (
                     <tr key={i} className="hover:bg-white/[0.02] transition-colors">
                       <td className="p-6 font-black text-xs uppercase tracking-widest border-r border-white/5">{row.feature}</td>
@@ -428,7 +429,23 @@ const Ceramic = () => {
           </div>
         </section>
 
-        {/* SECTION SPACER */}
+        {/* BUNDLE UPSELL SECTION */}
+        <section className="py-20 px-6 lg:px-12 bg-gradient-to-b from-[#0e0e0e] to-[#131313]">
+           <div className="max-w-4xl mx-auto bg-card border border-[#8eff71]/20 p-8 lg:p-12 text-center">
+              <span className="text-[10px] font-black text-[#8eff71] uppercase tracking-[0.4em] block mb-4 italic animate-pulse">The Perfect Pairing</span>
+              <h2 className="font-mono text-4xl lg:text-7xl font-black uppercase tracking-tighter mb-6">THE ULTIMATE <span className="text-[#8eff71]">ARMOR</span></h2>
+              <p className="text-[#adaaaa] font-mono text-sm leading-relaxed mb-8 uppercase tracking-widest italic">
+                Bundle <span className="text-white">XPEL PPF</span> + <span className="text-white">Nano Ceramic</span> for 100% rock chip protection and a permanent mirror gloss. The only way to truly "set it and forget it."
+              </p>
+              <Button 
+                onClick={() => navigate('/services/protective/ppf')}
+                variant="outline" 
+                className="w-full sm:w-auto border-[#8eff71] text-[#8eff71] hover:bg-[#8eff71] hover:text-[#053900] px-12 py-8 font-black uppercase tracking-[0.2em] transition-all"
+              >
+                EXPLAIN THE COMBO →
+              </Button>
+           </div>
+        </section>
       </main>
 
       {/* STICKY BOTTOM CONVERSION BAR (MOBILE) */}
@@ -444,7 +461,7 @@ const Ceramic = () => {
           onClick={() => openQuote(`Ceramic: ${currentPkg.name}`)}
           className="bg-[#8eff71] px-8 py-4 rounded-none text-[#053900] font-black uppercase text-xs tracking-[0.3em] active:scale-90 transition-all shadow-[0_0_20px_#8eff7155]"
         >
-          BOOK NOW
+          GET QUOTE
         </button>
       </div>
 

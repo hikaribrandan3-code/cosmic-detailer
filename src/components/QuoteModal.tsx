@@ -103,11 +103,11 @@ const QuoteModal = ({ open, onOpenChange, defaultService, defaultLocation }: Quo
                 className="bg-secondary border-border" 
               />
               <Input 
-                placeholder="Location / City" 
+                placeholder="City or Neighborhood (e.g. Naples, Pelican Bay)" 
                 value={location} 
                 onChange={(e) => setLocation(e.target.value)} 
                 required 
-                className="bg-secondary border-primary/20 text-[#39FF14]" 
+                className="bg-secondary border-border" 
               />
               <div className="grid grid-cols-3 gap-3">
                 <Input placeholder="Year" className="bg-secondary border-border" />
