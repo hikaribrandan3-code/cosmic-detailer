@@ -235,10 +235,14 @@ const Ceramic = () => {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { icon: <Timer className="w-6 h-6 text-[#8eff71]" />, title: 'Wheel & Caliper', price: '+$299', desc: 'Protects against brake dust' },
-                { icon: <User className="w-6 h-6 text-[#8eff71]" />, title: 'Interior Leather', price: '+$199', desc: 'Prevents stains and wear' },
-                { icon: <Waves className="w-6 h-6 text-[#8eff71]" />, title: 'Plastic Trim', price: '+$149', desc: 'Restores and protects trim' },
-                { icon: <Droplets className="w-6 h-6 text-[#8eff71]" />, title: 'Glass Coating', price: '+$99', desc: 'Improves rain visibility' },
+                { icon: <Timer className="w-6 h-6 text-[#8eff71]" />, title: 'Wheel & Caliper', price: '+$299', 
+                  desc: { mobile: 'Brake dust bonds to bare metal fast. Ceramic-coated wheels clean in seconds and resist the iron buildup that turns wheels brown.', desktop: 'Protects against brake dust' } },
+                { icon: <User className="w-6 h-6 text-[#8eff71]" />, title: 'Interior Leather', price: '+$199', 
+                  desc: { mobile: 'Leather in Naples heat cracks and fades fast. Ceramic coating bonds to the surface and keeps it supple, stain-resistant, and looking new.', desktop: 'Prevents stains and wear' } },
+                { icon: <Waves className="w-6 h-6 text-[#8eff71]" />, title: 'Plastic Trim', price: '+$149', 
+                  desc: { mobile: 'Faded grey trim drops your car\'s whole look. We restore it black and coat it so it stays that way — not for a week, for years.', desktop: 'Restores and protects trim' } },
+                { icon: <Droplets className="w-6 h-6 text-[#8eff71]" />, title: 'Glass Coating', price: '+$99', 
+                  desc: { mobile: 'Rain beads off at speed. No more squinting through a smeared windshield on 75. Visibility up, wiper use down.', desktop: 'Improves rain visibility' } },
               ].map((addon, i) => (
                 <div key={i} className="p-6 bg-[#191a1a] border border-white/5 hover:border-[#8eff71]/30 transition-all group flex flex-col gap-4">
                   <div className="w-12 h-12 bg-[#0e0e0e] flex items-center justify-center border border-white/10 group-hover:bg-[#8eff71]/10 group-hover:border-[#8eff71]/20 transition-all">
@@ -246,7 +250,10 @@ const Ceramic = () => {
                   </div>
                   <div>
                     <h4 className="font-mono font-black text-sm uppercase tracking-wider text-white mb-1">{addon.title}</h4>
-                    <p className="text-[10px] text-[#adaaaa] font-bold uppercase tracking-widest mb-3">{addon.desc}</p>
+                    <p className="text-[10px] text-[#adaaaa] font-bold uppercase tracking-widest mb-3">
+                      <span className="lg:hidden">{addon.desc.mobile}</span>
+                      <span className="hidden lg:inline">{addon.desc.desktop}</span>
+                    </p>
                     <span className="text-[#8eff71] font-mono font-black text-sm italic">{addon.price}</span>
                   </div>
                 </div>
@@ -271,19 +278,28 @@ const Ceramic = () => {
                     id: 'hydrophobic', 
                     icon: <Droplets className="w-5 h-5" />, 
                     title: 'EASY CLEANING', 
-                    desc: 'Ceramic coatings repel water and dirt, making your vehicle much easier to wash and keep clean.' 
+                    desc: { 
+                      mobile: 'Ceramic-coated paint is hydrophobic — water sheets off, dirt barely bonds. Your wash time drops in half and your car stays cleaner longer between washes.',
+                      desktop: 'Ceramic coatings repel water and dirt, making your vehicle much easier to wash and keep clean.'
+                    }
                   },
                   { 
                     id: 'uv', 
                     icon: <Sun className="w-5 h-5" />, 
                     title: 'UV PROTECTION', 
-                    desc: 'Protects your paint from sun damage, preventing fading and oxidation over time.' 
+                    desc: {
+                      mobile: 'Naples sun degrades clear coat fast. Ceramic creates a sacrificial layer that absorbs UV before it reaches your paint. Your color stays deep and rich for years.',
+                      desktop: 'Protects your paint from sun damage, preventing fading and oxidation over time.'
+                    }
                   },
                   { 
                     id: 'chemical', 
                     icon: <Beaker className="w-5 h-5" />, 
                     title: 'CHEMICAL RESISTANCE', 
-                    desc: 'Acts as a protective layer against bird droppings, road salt, and other environmental contaminants.' 
+                    desc: {
+                      mobile: 'Bird drops, tree sap, brake dust, road salt — ceramic takes the hit so your clear coat doesn\'t. The coating sacrifices itself. Your paint stays perfect.',
+                      desktop: 'Acts as a protective layer against bird droppings, road salt, and other environmental contaminants.'
+                    }
                   }
                 ].map((spec) => (
                   <div 
@@ -302,7 +318,8 @@ const Ceramic = () => {
                     </div>
                     <div className={`transition-all duration-500 overflow-hidden ${openAccordion === spec.id ? 'max-h-40 opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
                       <p className="font-mono text-xs text-[#adaaaa] leading-relaxed uppercase tracking-widest bg-[#0e0e0e] p-4 border border-white/5">
-                        {spec.desc}
+                        <span className="lg:hidden">{spec.desc.mobile}</span>
+                        <span className="hidden lg:inline">{spec.desc.desktop}</span>
                       </p>
                     </div>
                   </div>
@@ -324,13 +341,13 @@ const Ceramic = () => {
               
               {[
                 { step: '01', title: 'Wash & Decontaminate', time: '1-2H', 
-                  desc: <><span className="lg:hidden">Full strip-wash to remove old waxes, iron particles, and environmental fallout.</span><span className="hidden lg:inline">Surgical strip-wash to remove old waxes, iron particles, and environmental fall-out.</span></> },
+                  desc: <><span className="lg:hidden">We strip everything — old wax, iron particles, road fallout. Your paint needs a clean slate before a single pad touches it.</span><span className="hidden lg:inline">Surgical strip-wash to remove old waxes, iron particles, and environmental fall-out.</span></> },
                 { step: '02', title: 'Paint Correction', time: '4-8H', 
-                  desc: <><span className="lg:hidden">Precision machine polishing to eliminate swirls and restore a flawless surface.</span><span className="hidden lg:inline">Precision machine polishing to eliminate swirls and restore "Level 0" surface gloss.</span></> },
+                  desc: <><span className="lg:hidden">Machine polishing removes clear coat defects at the micron level. This is where swirls, scratches, and oxidation get eliminated — not covered.</span><span className="hidden lg:inline">Precision machine polishing to eliminate swirls and restore "Level 0" surface gloss.</span></> },
                 { step: '03', title: 'Ceramic Application', time: '2-4H', 
-                  desc: <><span className="lg:hidden">Hand application of the ceramic coating in controlled, overlapping sections.</span><span className="hidden lg:inline">Atmosphere-controlled hand application of the ceramic lattice in overlapping sections.</span></> },
+                  desc: <><span className="lg:hidden">Hand application of the ceramic coating in controlled, overlapping sections. Perfect lighting ensures zero high spots.</span><span className="hidden lg:inline">Atmosphere-controlled hand application of the ceramic lattice in overlapping sections.</span></> },
                 { step: '04', title: '12-Hour Cure', time: '12H', 
-                  desc: <><span className="lg:hidden">Bonding phase where the ceramic transforms into a 9H crystal-hard finish.</span><span className="hidden lg:inline">Bonding phase where the ceramic transforms from liquid to a 9H hardness crystal.</span></> },
+                  desc: <><span className="lg:hidden">Bonding phase where the ceramic transforms into a 9H crystal-hard finish. Keep it dry during this window.</span><span className="hidden lg:inline">Bonding phase where the ceramic transforms from liquid to a 9H hardness crystal.</span></> },
               ].map((item, i) => (
                 <div key={i} className="relative flex gap-8 group">
                   <div className={`absolute -left-[14px] top-1.5 w-6 h-6 rounded-full border-4 border-[#0e0e0e] z-10 transition-all duration-500 ${
@@ -352,7 +369,8 @@ const Ceramic = () => {
         {/* PERFORMANCE VS WAX TABLE */}
         <section className="py-20 px-6 lg:px-12 bg-[#191a1a]">
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-center mb-12">Performance <span className="text-[#8eff71]">Benchmark</span></h2>
+            <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-center mb-4">Performance <span className="text-[#8eff71]">Benchmark</span></h2>
+            <p className="lg:hidden text-center font-mono text-[10px] text-[#8eff71] uppercase font-bold tracking-[0.2em] mb-12">Here's what nano ceramic delivers by the numbers:</p>
           <div className="overflow-x-auto no-scrollbar">
             <div className="rounded-none border border-white/10 shadow-2xl min-w-[700px]">
               <table className="w-full text-left text-sm border-collapse bg-[#131313]">
@@ -389,9 +407,9 @@ const Ceramic = () => {
             <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter mb-12 border-l-4 border-[#8eff71] pl-8">Common <span className="text-[#8eff71]">Questions</span></h2>
             <div className="divide-y divide-white/10 border-t border-white/10">
               {[
-                { q: 'How long does the application take?', a: 'Typically 1-2 days. Most of that time is spent on paint correction — getting the surface flawless before the coating goes on. The coating itself cures within 24–48 hours.' },
-                { q: 'When can I wash the car after coating?', a: 'Wait at least 7 days before the first wash. After that, maintenance is much easier — a pH-neutral rinse is all you usually need.' },
-                { q: 'Does ceramic coating prevent rock chips?', a: 'No — ceramic coating is designed for paint protection against UV, chemicals, and washing swirls. For rock chip protection, pair it with PPF on the front end.' },
+                { q: 'How long does the application take?', a: { mobile: 'Typically 1–2 days depending on the correction stage and vehicle size. We come to you — just tell us where to show up.', desktop: 'Typically 1-2 days. Most of that time is spent on paint correction — getting the surface flawless before the coating goes on. The coating itself cures within 24–48 hours.' } },
+                { q: 'When can I wash the car after coating?', a: { mobile: 'Wait 7 days for the coating to fully cure. No car washes, no rain exposure if possible. After that — wash it and watch the water bead like nothing you\'ve seen.', desktop: 'Wait at least 7 days before the first wash. After that, maintenance is much easier — a pH-neutral rinse is all you usually need.' } },
+                { q: 'Does ceramic coating prevent rock chips?', a: { mobile: 'No — ceramic is not PPF. It hardens the surface and resists light scratches, but won\'t stop a rock chip. For chip protection, pair it with PPF. Ask us about the combo.', desktop: 'No — ceramic coating is designed for paint protection against UV, chemicals, and washing swirls. For rock chip protection, pair it with PPF on the front end.' } },
               ].map((faq, i) => (
                 <div key={i} className="py-6 group cursor-pointer overflow-hidden">
                   <div className="flex justify-between items-center" onClick={() => toggleAccordion(`faq-${i}`)}>
@@ -400,7 +418,8 @@ const Ceramic = () => {
                   </div>
                   <div className={`transition-all duration-500 overflow-hidden ${openAccordion === `faq-${i}` ? 'max-height-40 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
                     <p className="font-mono text-[11px] lg:text-xs text-[#adaaaa] leading-relaxed uppercase tracking-widest bg-[#131313] p-6 border-l-2 border-[#8eff71]">
-                      {faq.a}
+                      <span className="lg:hidden">{faq.a.mobile}</span>
+                      <span className="hidden lg:inline">{faq.a.desktop}</span>
                     </p>
                   </div>
                 </div>
