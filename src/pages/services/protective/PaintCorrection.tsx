@@ -18,7 +18,7 @@ const PaintCorrection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-24 pb-32 selection:bg-[#39FF14] selection:text-black w-full">
+    <div className="min-h-screen bg-background pt-24 pb-32 selection:bg-[#39FF14] selection:text-black w-full overflow-x-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         
         <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
@@ -114,7 +114,7 @@ const PaintCorrection = () => {
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
            <div className="space-y-8">
               <div className="space-y-4">
-                 <h3 className="text-3xl font-black italic uppercase tracking-tighter text-white">THE CORRECTION PROCESS</h3>
+                 <h3 className="text-2xl lg:text-3xl font-black italic uppercase tracking-tighter text-white">THE CORRECTION PROCESS</h3>
                  <p className="text-muted-foreground leading-relaxed">
                     <span className="lg:hidden text-xs uppercase tracking-widest">We take a surgical approach. Before a pad touches your car, we measure clear coat depth and analyze paint hardness. We don't hide scratches with fillers — we level the surface through precision mechanical restoration. The result? A true Level-0 mirror finish.</span>
                     <span className="hidden lg:inline">Master-level paint correction is the strategic removal of surface imperfections through surgical machine polishing. Backed by 15 years of experience, we restore your paint to Level-0 clarity — removing defects forever, never hiding them.</span>
@@ -146,7 +146,7 @@ const PaintCorrection = () => {
               </div>
 
               <div className="space-y-4">
-                <p className="lg:hidden text-[10px] text-[#39FF14] uppercase font-bold tracking-[0.3em] font-mono text-center animate-pulse">We come to you. Most corrections completed in a single visit.</p>
+                <p className="lg:hidden text-xs text-[#39FF14] uppercase font-black tracking-[0.2em] font-mono text-center animate-pulse">We come to you. Most corrections completed in a single visit.</p>
                 <Button 
                   onClick={() => openQuote("Paint Correction")}
                   size="lg" 
@@ -178,21 +178,12 @@ const PaintCorrection = () => {
         {/* MASTER LEVEL WET SANDING SECTION */}
         <div className="mt-32 max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#39FF14] to-transparent opacity-20 blur group-hover:opacity-40 transition-all"></div>
-              <div className="relative aspect-square lg:aspect-video bg-[#111] border border-white/10 overflow-hidden">
-                 <img src="https://images.unsplash.com/photo-1599256621730-53513222384c?w=800&q=80" alt="Wet sanding" className="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700" />
-                 <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-mono text-[10px] text-[#39FF14] uppercase tracking-[0.5em] font-black italic">Show-Ready Mastery</span>
-                 </div>
-              </div>
-            </div>
             <div className="order-1 lg:order-2 space-y-6">
                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#39FF14]/30 bg-[#39FF14]/5 text-[#39FF14] font-mono text-[9px] uppercase tracking-[0.3em]">
                   <Target size={12} />
                   <span>ADVANCED SERVICE</span>
                </div>
-               <h3 className="text-4xl lg:text-6xl font-black italic uppercase tracking-tighter leading-none text-white">MASTER LEVEL <br/><span className="text-[#39FF14]">WET SANDING</span></h3>
+               <h3 className="text-3xl lg:text-6xl font-black italic uppercase tracking-tighter leading-none text-white text-center lg:text-left">MASTER LEVEL <br/><span className="text-[#39FF14]">WET SANDING</span></h3>
                <p className="font-mono text-xs text-muted-foreground leading-relaxed uppercase tracking-widest italic">
                  Most detailers won't touch a sanding block. We specialize in it. To achieve a true "show-ready" mirror finish without "orange peel" texture, we level the clear coat through multi-stage precision wet sanding. Level 0 perfection for the most discerning Naples owners.
                </p>
@@ -211,8 +202,8 @@ const PaintCorrection = () => {
         {/* PRECISION PAINT CHIP REPAIR SECTION */}
         <div className="mt-32 max-w-6xl mx-auto border-t border-white/5 pt-24 pb-12">
             <div className="text-center mb-16 space-y-4">
-              <h3 className="text-4xl lg:text-7xl font-black italic uppercase tracking-tighter leading-none text-white">PRECISION <span className="text-[#39FF14]">PAINT CHIP</span> REPAIR</h3>
-              <p className="font-mono text-xs text-muted-foreground uppercase tracking-[0.4em] max-w-2xl mx-auto">NAPLES' DR. COLORCHIP & HAND-LEVELING SPECIALISTS</p>
+              <h3 className="text-3xl lg:text-7xl font-black italic uppercase tracking-tighter leading-none text-white">PRECISION <span className="text-[#39FF14]">PAINT CHIP</span> REPAIR</h3>
+              <p className="font-mono text-[10px] lg:text-xs text-muted-foreground uppercase tracking-[0.3em] lg:tracking-[0.4em] max-w-2xl mx-auto">NAPLES' DR. COLORCHIP & HAND-LEVELING SPECIALISTS</p>
             </div>
             
             <div className="grid md:grid-cols-3 gap-6">
@@ -232,7 +223,7 @@ const PaintCorrection = () => {
             <div className="mt-16 text-center">
               <Button 
                 onClick={() => openQuote("Paint Restoration Bundle")}
-                className="bg-transparent border border-[#39FF14] text-[#39FF14] hover:bg-[#39FF14] hover:text-black px-12 py-8 font-black uppercase tracking-[0.3em] transition-all"
+                className="bg-transparent border border-[#39FF14] text-[#39FF14] hover:bg-[#39FF14] hover:text-black px-6 lg:px-12 py-8 font-black uppercase tracking-[0.3em] transition-all text-xs lg:text-base"
               >
                 REQUEST RESTORATION BUNDLE →
               </Button>
