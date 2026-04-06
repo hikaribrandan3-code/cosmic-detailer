@@ -21,7 +21,7 @@ const Layout = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar onQuoteClick={() => handleOpenQuote()} />
-      <main className="pt-16">
+      <main className="pt-20">
         <Outlet context={{ openQuote: handleOpenQuote }} />
       </main>
       <Footer onQuoteClick={handleOpenQuote} />

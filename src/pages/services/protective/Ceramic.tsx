@@ -353,13 +353,14 @@ const Ceramic = () => {
         <section className="py-20 px-6 lg:px-12 bg-[#191a1a]">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-center mb-12">Performance <span className="text-[#8eff71]">Benchmark</span></h2>
-            <div className="rounded-none overflow-hidden border border-white/10 shadow-2xl">
+          <div className="overflow-x-auto no-scrollbar">
+            <div className="rounded-none border border-white/10 shadow-2xl min-w-[700px]">
               <table className="w-full text-left text-sm border-collapse bg-[#131313]">
                 <thead className="bg-[#202020] font-mono font-black text-[10px] uppercase tracking-[0.3em]">
                   <tr>
-                    <th className="p-6 border-b border-white/5">Armor_Feature</th>
-                    <th className="p-6 border-b border-white/5 text-[#8eff71]">Nano_Ceramic</th>
-                    <th className="p-6 border-b border-white/5 text-[#adaaaa]">Standard_Wax</th>
+                    <th className="p-6 border-b border-white/5">Armor Feature</th>
+                    <th className="p-6 border-b border-white/5 text-[#8eff71]">Nano Ceramic</th>
+                    <th className="p-6 border-b border-white/5 text-[#adaaaa]">Standard Wax</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5 font-mono">
@@ -379,6 +380,7 @@ const Ceramic = () => {
               </table>
             </div>
           </div>
+        </div>
         </section>
 
         {/* FAQ SECTION */}
