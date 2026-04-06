@@ -102,9 +102,23 @@ export default function PPF() {
               <span className="hidden lg:inline">PROTECT IT BEFORE<br/><span className="text-[#00FF41]">THE FIRST CHIP</span></span>
             </h2>
             <p className="mt-6 text-[#adaaaa] max-w-md font-mono text-xs lg:text-sm uppercase tracking-widest leading-relaxed">
-              <span className="lg:hidden">Highway debris hits at 140mph. PPF stops it first.</span>
+              <span className="lg:hidden text-white/90">One rock chip at highway speed and you're looking at a $800 body shop visit — if they can even match the paint. PPF stops it before it starts. Professionally applied, virtually invisible, and if it ever takes a hit — just peel it off and replace it. Your paint underneath stays factory perfect.</span>
               <span className="hidden lg:inline">That new car smell comes with a countdown. Highway debris hits at <span className="text-white font-bold">140mph</span>. Your factory paint won't survive the drive home.</span>
             </p>
+            {/* Mobile Trust Bar */}
+            <div className="lg:hidden mt-8 grid grid-cols-2 gap-3 py-6 border-y border-white/5 bg-[#131313]/50">
+              {[
+                "NEW CAR? PROTECT IT NOW",
+                "PROFESSIONAL APPLICATION",
+                "10-YEAR WARRANTY",
+                "PEEL & REPLACE IF DAMAGED"
+              ].map(trust => (
+                <div key={trust} className="flex items-center gap-2 px-1">
+                  <span className="text-[#00FF41] text-xs">✓</span>
+                  <span className="text-[8px] font-mono font-black tracking-widest text-[#adaaaa] leading-tight uppercase">{trust}</span>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="lg:w-1/2 w-full pt-12 lg:pt-0">
              {/* PAIN POINTS */}
@@ -116,7 +130,8 @@ export default function PPF() {
                 </div>
                 <h3 className="text-xl lg:text-2xl font-mono font-black uppercase leading-tight italic text-white">BODY SHOPS CAN'T MATCH ROBOTS</h3>
                 <p className="mt-2 text-[#adaaaa] font-mono text-[9px] uppercase tracking-widest leading-relaxed opacity-80">
-                  Factory: 3-stage electrostatic precision. Body shop: Gravity-fed spray gun + hope. Your metallic pearl will never lay the same way twice.
+                  <span className="lg:hidden">Factory paint is applied by robots in a controlled environment. Body shops use spray guns and hope. One chip leads to a panel respray. One respray leads to a Carfax flag. Protect the original — it's worth more.</span>
+                  <span className="hidden lg:inline">Factory: 3-stage electrostatic precision. Body shop: Gravity-fed spray gun + hope. Your metallic pearl will never lay the same way twice.</span>
                 </p>
               </div>
               <div className="bg-[#131313] p-6 lg:p-8 border-l-4 border-[#ff725e] group hover:border-[#ff725e]/50 transition-all">
@@ -126,9 +141,19 @@ export default function PPF() {
                 </div>
                 <h3 className="text-xl lg:text-2xl font-mono font-black uppercase leading-tight italic text-white">A RESPRAY IS A RED FLAG</h3>
                 <p className="mt-2 text-[#adaaaa] font-mono text-[9px] uppercase tracking-widest leading-relaxed opacity-80">
-                  One "minor" chip leads to a panel respray. One respray leads to a "Minor Accident" flag on CARFAX. Resale value drops 15% instantly.
+                  <span className="lg:hidden">A single paint correction or respray shows up on Carfax as a damage flag. That drops resale value by 15% instantly. PPF means your paint never needs repainting — it stays original, clean, and full value.</span>
+                  <span className="hidden lg:inline">One "minor" chip leads to a panel respray. One respray leads to a "Minor Accident" flag on CARFAX. Resale value drops 15% instantly.</span>
                 </p>
               </div>
+            </div>
+
+            {/* Mobile-only "Even Easier to Clean" Section */}
+            <div className="lg:hidden mt-8 bg-[#131313] p-6 border border-[#39ff14]/20 shadow-[0_0_20px_rgba(57,255,20,0.05)]">
+              <h3 className="text-xl font-mono font-black uppercase italic text-white mb-1">EVEN EASIER TO CLEAN</h3>
+              <p className="text-[10px] font-mono font-bold text-[#00FF41] uppercase tracking-[0.2em] mb-3">ADD PAINT PROTECTION + CERAMIC COATING</p>
+              <p className="text-[#adaaaa] font-mono text-[9px] uppercase tracking-widest leading-relaxed">
+                PPF alone is great. PPF + ceramic coating is next level. The coating bonds to the film — water beads off, dirt slides off, and your car stays cleaner longer between washes. Ask us about the combo package.
+              </p>
             </div>
           </div>
         </div>
@@ -186,6 +211,12 @@ export default function PPF() {
                       <span className={`font-mono text-4xl font-black italic tracking-tighter ${isActive ? 'text-white' : 'text-[#adaaaa]'}`}>
                         {pkg.price !== 'GET QUOTE' && '$'}{pkg.price}
                       </span>
+                      {/* Mobile One-liners */}
+                      <p className="lg:hidden mt-2 font-mono text-[8px] font-bold text-[#00FF41] uppercase tracking-widest leading-tight">
+                        {pkgKey === 'partial' ? 'Best for daily drivers. Covers the highest-impact zones.' : 
+                         pkgKey === 'fullFront' ? 'The most popular choice. Full front-end protection, 10-year warranty.' : 
+                         'Full vehicle wrapped in matte or satin PPF. Zero paint visible. Zero compromise.'}
+                      </p>
                     </div>
                     <ul className="space-y-4">
                       {pkg.features.map((feature, i) => (
@@ -209,7 +240,10 @@ export default function PPF() {
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-6xl font-mono font-black uppercase tracking-tighter italic text-white">NOT SURE? <span className="text-[#00FF41]">WE'LL HELP.</span></h2>
             <div className="h-1 w-12 bg-[#00FF41] mx-auto mt-6 shadow-[0_0_10px_#00FF41]"></div>
-            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] font-bold text-[#adaaaa]">Answer 2 questions to find your coverage tier.</p>
+            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] font-bold text-[#adaaaa]">
+              <span className="lg:hidden">Answer 2 quick questions and we'll tell you exactly what your car needs.</span>
+              <span className="hidden lg:inline">Answer 2 questions to find your coverage tier.</span>
+            </p>
           </div>
           
           <div className="space-y-12">
@@ -280,6 +314,7 @@ export default function PPF() {
       {/* STICKY BOTTOM CTA */}
       <div className="fixed bottom-0 w-full z-[60] bg-[#1a1b1a]/95 backdrop-blur-2xl border-t border-[#00FF41]/20 px-6 py-4 flex items-center justify-between shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="flex flex-col max-w-[50%]">
+          <span className="lg:hidden text-[8px] text-[#00FF41] uppercase font-bold tracking-[0.3em] font-mono mb-1 animate-pulse">We come to you. Most installs same week.</span>
           <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-[0.3em] text-[#adaaaa] mb-1">Selected Plan</span>
           <span className="font-mono text-sm lg:text-xl font-black italic uppercase tracking-tighter text-white truncate">
           {selectedPackage ? packages[selectedPackage].name : 'No package selected'}
@@ -294,7 +329,14 @@ export default function PPF() {
             selectedPackage ? 'bg-[#00FF41] text-[#053900] hover:bg-[#32e612]' : 'bg-[#262626] text-white hover:bg-[#333]'
           }`}
         >
-          {selectedPackage ? `Book — ${currentPkg?.price !== 'GET QUOTE' ? '$' : ''}${currentPkg?.price}` : 'Choose Your Coverage'}
+          {selectedPackage ? (
+            <span className="lg:hidden">GET YOUR FREE PPF QUOTE →</span>
+          ) : (
+            <span className="lg:hidden">CHOOSE YOUR COVERAGE</span>
+          )}
+          <span className="hidden lg:inline">
+            {selectedPackage ? `Book — ${currentPkg?.price !== 'GET QUOTE' ? '$' : ''}${currentPkg?.price}` : 'Choose Your Coverage'}
+          </span>
         </button>
       </div>
 

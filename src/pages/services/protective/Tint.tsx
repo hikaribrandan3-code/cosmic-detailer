@@ -123,9 +123,23 @@ const Tint = () => {
               <span className="hidden lg:inline">Professional Window Tinting.<br/><span className="text-[#39ff14]">Block heat. Protect your interior.</span></span>
             </h2>
             <p className="text-[#adaaaa] font-mono text-sm uppercase tracking-widest leading-relaxed">
-              <span className="lg:hidden">Block 99% of UV. Reject 60% of heat.</span>
+              <span className="lg:hidden text-white/90">Naples heat is brutal. One professional tint install blocks 99% of UV, drops your cabin temp by up to 60%, and protects your leather and dash from cracking. Installed right — once.</span>
               <span className="hidden lg:inline">Block 99% of UV. Reject 60% of heat. Premium ceramic film installation.</span>
             </p>
+          </div>
+
+          {/* Mobile Trust Bar */}
+          <div className="lg:hidden mt-8 grid grid-cols-3 gap-2 py-4 border-y border-white/5 bg-[#131313]/50">
+            {[
+              "LIFETIME WARRANTY",
+              "PROFESSIONALLY INSTALLED",
+              "LEGAL IN FLORIDA"
+            ].map(trust => (
+              <div key={trust} className="flex flex-col items-center text-center px-1">
+                <span className="text-[#39ff14] text-[10px] mb-1">✓</span>
+                <span className="text-[7px] font-mono font-black tracking-widest text-[#adaaaa] leading-tight">{trust}</span>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -245,6 +259,11 @@ const Tint = () => {
                     }`}
                   >
                     <span className={`font-mono text-xs font-black uppercase ${film === f ? 'text-[#39ff14]' : 'text-white'}`}>{f}</span>
+                    <span className="lg:hidden font-mono text-[7px] text-[#adaaaa] uppercase font-bold leading-tight line-clamp-2">
+                      {f === 'carbon' ? 'Great protection, clean matte look. Best value.' : 
+                       f === 'ceramic' ? 'Top-tier heat rejection + signal-safe. Most popular.' : 
+                       'Maximum clarity + performance. The full package.'}
+                    </span>
                     <span className={`font-mono text-[10px] font-bold italic ${film === f ? 'text-[#39ff14]/70' : 'text-[#adaaaa]'}`}>
                       {f === 'carbon' ? '$' : f === 'ceramic' ? '$$' : '$$$'}
                     </span>
@@ -320,10 +339,30 @@ const Tint = () => {
         <section className="px-6 lg:px-12 py-16">
            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
              {[
-               { icon: <ShieldCheck className="text-[#39ff14] w-6 h-6" />, title: 'PRIVACY', desc: 'Protects valuables inside your vehicle from outside view.' },
-               { icon: <ThermometerSun className="text-[#39ff14] w-6 h-6" />, title: 'HEAT REDUCTION', desc: 'Keeps your cabin cooler — especially during summer.' },
-               { icon: <Sun className="text-[#39ff14] w-6 h-6" />, title: 'UV REJECTION', desc: 'Blocks 99.9% of UV rays. Protects your skin and prevents leather from fading.' },
-               { icon: <EyeOff className="text-[#39ff14] w-6 h-6" />, title: 'GLARE REDUCTION', desc: 'Reduces glare from direct sunlight and oncoming headlights.' },
+               { icon: <ShieldCheck className="text-[#39ff14] w-6 h-6" />, title: 'PRIVACY', 
+                 desc: { 
+                   mobile: 'See out clearly. Nobody sees in. Keeps valuables hidden and adds a clean, aggressive look.',
+                   desktop: 'Protects valuables inside your vehicle from outside view.'
+                 }
+               },
+               { icon: <ThermometerSun className="text-[#39ff14] w-6 h-6" />, title: 'HEAT REDUCTION', 
+                 desc: {
+                   mobile: 'Cut cabin heat by up to 60%. Your AC stops working overtime. Your passengers stop complaining.',
+                   desktop: 'Keeps your cabin cooler — especially during summer.'
+                 }
+               },
+               { icon: <Sun className="text-[#39ff14] w-6 h-6" />, title: 'UV REJECTION', 
+                 desc: {
+                   mobile: '99.9% of UV blocked. Your skin, your leather seats, and your dashboard stay protected for years.',
+                   desktop: 'Blocks 99.9% of UV rays. Protects your skin and prevents leather from fading.'
+                 }
+               },
+               { icon: <EyeOff className="text-[#39ff14] w-6 h-6" />, title: 'GLARE REDUCTION', 
+                 desc: {
+                   mobile: 'Drive into the Naples sun without squinting. Safer driving, cleaner look.',
+                   desktop: 'Reduces glare from direct sunlight and oncoming headlights.'
+                 }
+               },
              ].map((adv, i) => (
                 <div key={i} className="bg-[#131313] p-6 border-l-2 border-white/5 hover:border-[#39ff14] transition-all space-y-4 shadow-lg group">
                   <div className="w-12 h-12 flex flex-col justify-center bg-[#191a1a] border border-white/5 pl-3 group-hover:bg-[#39ff14]/10 transition-colors">
@@ -331,7 +370,8 @@ const Tint = () => {
                   </div>
                   <h5 className="font-mono text-xs font-black uppercase tracking-widest text-white">{adv.title}</h5>
                   <p className="font-mono text-[9px] lg:text-[10px] text-[#adaaaa] uppercase tracking-widest leading-relaxed">
-                    {adv.desc}
+                    <span className="lg:hidden">{adv.desc.mobile}</span>
+                    <span className="hidden lg:inline">{adv.desc.desktop}</span>
                   </p>
                 </div>
              ))}
@@ -345,6 +385,7 @@ const Tint = () => {
         <div className="px-6 py-4 flex flex-col gap-3">
           <div className="flex justify-between items-end">
             <div className="flex flex-col">
+              <span className="text-[9px] text-[#39ff14] uppercase font-bold tracking-[0.3em] font-mono mb-1 animate-pulse">Most installs same week. We come to you.</span>
               <span className="text-[9px] text-[#adaaaa] uppercase font-bold tracking-[0.3em] font-mono mb-1">Configuration</span>
               <span className="text-xs font-black font-mono italic uppercase tracking-tighter text-white">{vlt}% {filmNames[film].split(' ')[0]} / {coverage}</span>
             </div>
@@ -354,7 +395,7 @@ const Tint = () => {
             onClick={() => openQuote(configString)}
             className="w-full bg-[#39ff14] text-[#053900] py-6 font-mono font-black uppercase text-sm tracking-[0.3em] shadow-[0_0_20px_rgba(57,255,20,0.15)] rounded-none"
           >
-             BOOK APPOINTMENT
+             BOOK YOUR TINT INSTALL →
           </Button>
         </div>
       </footer>
