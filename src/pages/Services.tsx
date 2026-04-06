@@ -11,12 +11,12 @@ const ServicesPage = () => {
       {/* Header */}
       <section className="pt-32 pb-16 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.4em] text-primary mb-4">// SERVICE SPECIFICATIONS</p>
+          <p className="font-mono text-xs uppercase tracking-[0.4em] text-primary mb-4">// OUR SERVICES</p>
           <h1 className="text-5xl font-black italic lg:text-7xl tracking-tighter uppercase">
-            Technical <span className="text-primary text-glow">Execution</span>
+            What We <span className="text-primary text-glow">Do</span>
           </h1>
           <p className="mt-6 text-muted-foreground max-w-2xl mx-auto font-mono text-xs uppercase tracking-widest leading-relaxed">
-            Each service below is documented step-by-step. Read the inclusion list — that's where your money goes.
+            Every detail documented. Every result guaranteed.
           </p>
         </div>
       </section>
@@ -27,103 +27,65 @@ const ServicesPage = () => {
         badge="MOST RECOMMENDED"
         serviceNumber="01"
         title="FULL DETAIL"
-        tagline="The Complete Package. Interior + Exterior + Everything Most Shops Skip."
-        price="Starting at $250"
+        tagline="Interior. Exterior. The works."
+        price="From $250"
         time="5–6 hours"
         ctaLabel="Book Full Detail"
         ctaService="Full Detail"
         openQuote={openQuote}
         bgImage="/images/bg/full-detail-bg.png"
-        experience="Your vehicle leaves in a state that requires documentation — not because it needs it, but because the result is measurable. The Full Detail combines every interior and exterior process into a single appointment, including the tasks that deteriorate resale value over time: engine bay buildup, wheel well contamination, and the silicone-stripped rubber seals most shops ignore entirely."
+        experience="Six months of neglect, gone in one appointment. We hit the spots that cost you at trade-in: engine bay, wheel wells, door seals — the details that separate 'clean' from *new*."
         sections={[
           {
             category: "INTERIOR",
             items: [
-              { label: "Vacuum", detail: "All seating surfaces, carpets, floor mats, trunk/cargo area, and crevices via dedicated extraction tool" },
-              { label: "Surface Treatment", detail: "Dashboard, door panels, and trim conditioned; center console sanitized; cup holders, switches, controls, and air vents cleared" },
-              { label: "Seat Restoration", detail: "Leather cleaned and conditioned; fabric seats extracted and stain-treated; Alcantara/suede handled with dry-clean process; headliner spot-cleaned" },
-              { label: "Finishing Pass", detail: "Interior glass cleaned streak-free with two-towel method; door jambs wiped and dressed; floor mats shampooed; UV light final inspection" },
+              { label: "Full seat extraction", detail: "leather conditioned, fabric steam-cleaned" },
+              { label: "Dashboard, vents, console", detail: "dust-free and UV-protected" },
+              { label: "Door jambs", detail: "glass streak-free, mats shampooed" },
+              { label: "UV inspection", detail: "before we sign off" },
             ]
           },
           {
             category: "EXTERIOR",
             items: [
-              { label: "Pre-Wash", detail: "Foam cannon pre-soak to loosen surface contamination before contact wash" },
-              { label: "Two-Bucket Hand Wash", detail: "Dedicated wash and rinse buckets with grit guards — prevents cross-contamination and swirl introduction" },
-              { label: "Iron Decontamination", detail: "Chemical fallout remover applied to all painted surfaces to dissolve embedded brake dust and metallic contamination" },
-              { label: "Clay Bar Treatment", detail: "Full paint decontamination pass for bonded contaminants clay cannot be removed by wash alone" },
-              { label: "Wheel & Tire Detail", detail: "Face, spokes, barrel, and caliper faces cleaned; tire sidewalls dressed; lug nut wells cleared" },
-              { label: "Exterior Glass", detail: "Polished and sealed with glass-safe product; streak-free exterior and interior surfaces" },
-              { label: "Door & Trunk Jambs", detail: "All jamb surfaces wiped and dressed — one of the first areas inspectors and buyers check" },
-            ]
-          },
-          {
-            category: "THE EXTRAS",
-            items: [
-              { label: "Engine Bay", detail: "Surface wiped, dressed, and degreased where accessible — extends the life of rubber components and prevents corrosion" },
-              { label: "Wheel Wells", detail: "Cleaned and dressed to prevent accelerated rust and contamination buildup" },
-              { label: "Exhaust Tips", detail: "Polished to remove carbon deposits" },
-              { label: "Gas Cap Recess", detail: "Cleaned — oxidation here is a common resale red flag" },
-              { label: "Rubber Seals", detail: "All door and trunk seals conditioned to prevent cracking and improve weatherproofing" },
-              { label: "Final Paint Inspection", detail: "LED light walkthrough to verify no missed areas; panel-by-panel sign-off" },
+              { label: "Foam pre-soak", detail: "two-bucket hand wash (no swirl marks)" },
+              { label: "Iron decontamination", detail: "clay bar (paint glass-smooth)" },
+              { label: "Wheels", detail: "face, barrel, calipers, tires dressed" },
+              { label: "Engine bay", detail: "wiped and dressed" },
+              { label: "LED walkthrough", detail: "every panel verified" },
             ]
           }
         ]}
-        difference="Choose this if your vehicle hasn't had a comprehensive detail in the last 6 months, if you're preparing for sale or trade-in, or if you simply want a complete baseline reset. Everything else on the menu is a subset of this service."
+        difference="Book this if your car hasn't seen a detail in 6+ months. It's also our most popular pre-sale service — because buyers open the hood and check the door jambs."
       />
 
       {/* ─────────── SERVICE 02: INTERIOR ─────────── */}
       <ServiceDetail
         id="interior"
         serviceNumber="02"
-        title="INTERIOR DETAILING"
-        tagline="Cabin Restoration. Deep Extraction and Surface Treatment — Not Vacuum-and-Wipe."
-        price="Starting at $180"
-        time="2–4 hours (condition-dependent)"
+        title="INTERIOR DETAIL"
+        tagline="Deep clean. Not just a vacuum."
+        price="From $180"
+        time="2–4 hours"
         ctaLabel="Book Interior Detail"
-        ctaService="Interior Detailing"
+        ctaService="Interior Detail"
         openQuote={openQuote}
         bgImage="/images/bg/interior-bg.png"
-        experience="The interior sees more accumulated contamination than any other part of the vehicle — food residue, body oils, pet dander, salt, and UV degradation that standard cleaning misses by design. This service goes surface-by-surface with the correct tool for each substrate: extraction equipment for upholstery, dedicated conditioners for leather, specialized process for Alcantara. The result is a cabin that's measurably cleaner, not just visually tidier."
+        experience="The seats you sit in every day. The steering wheel you touch. We extract what grocery-store cleaners leave behind — the oils, the salt, the grit ground into seams."
         sections={[
           {
-            category: "VACUUM & DEEP CLEAN",
+            category: "WHAT'S INCLUDED",
             items: [
-              { label: "Full Seat Extraction", detail: "All seating surfaces vacuumed including crevice tool extraction for seat rail channels, under-seat, and between cushions" },
-              { label: "Carpet & Mats", detail: "Carpets, floor mats, and trunk/cargo liners extracted; pet hair removal included" },
-              { label: "Crevice Tool Pass", detail: "Door pockets, console gaps, seatbelt channels, cup holder bases, and vent interiors cleared" },
-            ]
-          },
-          {
-            category: "SURFACE TREATMENT",
-            items: [
-              { label: "Dashboard & Trim", detail: "Cleaned and conditioned with UV-protective product — prevents fading and cracking" },
-              { label: "Door Panels", detail: "All card surfaces, armrests, and map pockets wiped and treated" },
-              { label: "Center Console", detail: "Sanitized throughout including lid, storage compartment, base, and gear surround" },
-              { label: "Controls & Switches", detail: "All buttons, toggles, and rocker switches cleaned with appropriate applicator — no liquid pooling" },
-              { label: "Air Vents", detail: "Blade-by-blade cleaned using detail brush; particularly important for musty odor sources" },
-            ]
-          },
-          {
-            category: "SEAT RESTORATION",
-            items: [
-              { label: "Leather", detail: "pH-balanced leather cleaner applied, agitated, and extracted; leather conditioner applied to prevent cracking" },
-              { label: "Fabric / Cloth", detail: "Hot water extraction with stain pre-treatment; drying time 1–2 hours post-service" },
-              { label: "Alcantara / Suede", detail: "Dry-clean process only — no water; specialized brush and suede-safe product" },
-              { label: "Headliner", detail: "Spot cleaning for stains and marks; full saturation avoided to prevent delamination" },
-            ]
-          },
-          {
-            category: "FINISHING PASS",
-            items: [
-              { label: "Interior Glass", detail: "All windows cleaned with two-towel method to eliminate streaking — including windshield haze" },
-              { label: "Door Jambs", detail: "Sill plates, jamb faces, and striker housings wiped" },
-              { label: "Floor Mat Shampoo", detail: "Rubber and carpet mats extracted separately; rubber mats washed and dried; carpet mats brushed and extracted" },
-              { label: "UV Inspection", detail: "Light pass to identify missed areas before sign-off" },
+              { label: "Full seat extraction", detail: "crevice tool under rails, between cushions" },
+              { label: "Leather", detail: "pH-balanced clean + conditioner (prevents cracking)" },
+              { label: "Fabric", detail: "hot water extraction, stain treatment" },
+              { label: "Dashboard, door panels, console", detail: "conditioned and UV-protected" },
+              { label: "Vents brushed", detail: "blade-by-blade" },
+              { label: "Glass", detail: "two-towel method, streak-free. Drying time: 1–2 hours post-service." },
             ]
           }
         ]}
-        difference="Interior-only when the exterior is maintained and doesn't need full decontamination. If the outside needs work too, the Full Detail is the more efficient booking — it adds exterior + the extras at a fraction of the sum of both separately."
+        difference="Interior-only when the outside is already maintained. If both need work, the Full Detail saves you money."
       />
 
       {/* ─────────── SERVICE 03: ONE-STEP POLISH ─────────── */}
@@ -131,44 +93,33 @@ const ServicesPage = () => {
         id="one-step"
         serviceNumber="03"
         title="ONE-STEP POLISH"
-        tagline="Single-Stage Machine Polish. Light Correction for Maintenance or Newer Paint."
+        tagline="Paint refresh. Not a full correction."
         price="Quote-Based"
         time="2–3 hours"
         ctaLabel="Get Polish Quote"
         ctaService="One-Step Polish"
         openQuote={openQuote}
         bgImage="/images/bg/onestep-bg.png"
-        experience="Not every vehicle needs a multi-stage correction process. The One-Step Polish uses a single-stage machine application with a light-to-medium compound to address minor surface defects without removing excess clear coat. It delivers 60–70% defect correction and meaningful gloss improvement in a fraction of the time and cost of full paint correction."
+        experience="Swirls in your black paint. Haze on the hood. One machine pass restores 60–70% of gloss without going deep into your clear coat. Perfect for newer cars or maintenance between full corrections."
         sections={[
           {
-            category: "THE PROCESS",
+            category: "ADDRESSES",
             items: [
-              { label: "Prep Wash", detail: "Full decontamination wash before any machine work — no polish applied to a contaminated surface" },
-              { label: "Panel Tape-Off", detail: "Trim, rubber, and plastic protected prior to machine work" },
-              { label: "Machine Application", detail: "Dual-action or rotary application (vehicle-dependent) with light compound on appropriate foam or microfiber pad" },
-              { label: "Single Correction Pass", detail: "Panel-by-panel; compound worked until clear, wiped, and inspected under LED light" },
-              { label: "Final Wipe-Down", detail: "Panel wipe with IPA solution to remove any remaining oils before optional protection step" },
+              { label: "Light swirl marks", detail: "wash-induced, not deep scratches" },
+              { label: "Surface haze", detail: "and early oxidation" },
+              { label: "Light water spot etching", detail: "shallow mineral deposits" },
             ]
           },
           {
-            category: "DEFECTS ADDRESSED",
+            category: "DOES NOT FIX",
             items: [
-              { label: "Minor Swirl Marks", detail: "Light wash-induced marring and fine scratches — the most common complaint on dark vehicles" },
-              { label: "Light Oxidation", detail: "Surface haze and early-stage dullness on single-stage paint or neglected clear coats" },
-              { label: "Water Spot Etching", detail: "Mineral deposit etching at light depth; deeper etching requires multi-stage correction" },
-              { label: "Light Scratches", detail: "Surface scratches that don't catch a fingernail — below that threshold requires compounding" },
-            ]
-          },
-          {
-            category: "WHAT IT DOESN'T DO",
-            items: [
-              { label: "Deep Scratches", detail: "Scratches visible under fingernail, or scratches into the paint layer — require Paint Correction" },
-              { label: "Heavy Oxidation", detail: "Chalking or severe fade from prolonged UV exposure — requires compounding stage" },
-              { label: "Holograms", detail: "Machine-induced marring from improper prior polishing — requires compounding to remove" },
+              { label: "Deep scratches", detail: "fingernail catches" },
+              { label: "Heavy oxidation", detail: "or sun damage" },
+              { label: "Buffer holograms", detail: "from bad prior work" },
             ]
           }
         ]}
-        difference="Use the One-Step for newer vehicles (under 3 years), maintenance polish between full corrections, or as prep step before ceramic or PPF. If a fingernail catches on the defects you're trying to fix, book Paint Correction instead."
+        difference="Newer vehicles (under 3 years). Prep before ceramic or PPF. If your fingernail catches the scratch, you need Paint Correction instead."
       />
 
       {/* ─────────── SERVICE 04: PAINT CORRECTION ─────────── */}
@@ -176,56 +127,35 @@ const ServicesPage = () => {
         id="paint-correction"
         serviceNumber="04"
         title="PAINT CORRECTION"
-        tagline="Permanent Defect Removal. Multi-Stage. Wet Sanding When Required."
-        price="Quote-Based — Size, Condition, Correction Level"
+        tagline="Permanent defect removal. Multi-stage."
+        price="Quote-Based — Size, Condition, Level"
         time="4–12 hours"
         ctaLabel="Book Correction Consultation"
         ctaService="Paint Correction"
         openQuote={openQuote}
         bgImage="/images/bg/twostep-bg.png"
-        experience="Paint correction is not polishing. It's a controlled removal of damaged clear coat to eliminate defects permanently — not fill them. Every vehicle is measured with a paint depth gauge before work begins to confirm there's material to work with. The process is documented, and the result is confirmed under LED inspection before any protection is applied. This is the prerequisite step before ceramic coating or PPF on any vehicle with visible paint defects."
+        experience="Swirls that show in sunlight. Scratches you can feel. We measure your paint depth first, then remove damage at the micron level — permanently. This is the step before ceramic or PPF on any car with visible paint issues."
         sections={[
           {
-            category: "BEFORE WORK BEGINS",
+            category: "THE PROCESS",
             items: [
-              { label: "Clear Coat Measurement", detail: "Paint depth gauge used on every panel — establishes baseline and confirms correction is safe to perform" },
-              { label: "LED Light Inspection", detail: "Full-panel inspection under correction lighting to catalog all defects prior to starting" },
-              { label: "Full Decontamination Wash", detail: "Iron decontamination + clay bar before machine work — no compounds applied to contaminated paint" },
-              { label: "Panel Tape-Off", detail: "All trim, badging, and rubber masked to prevent compound damage" },
+              { label: "Measure", detail: "Paint depth gauge on every panel (safety first)" },
+              { label: "Stage One", detail: "Heavy compound removes defects, wet sanding if needed" },
+              { label: "Stage Two", detail: "Fine polish restores mirror clarity" },
+              { label: "Verify", detail: "LED inspection before sign-off" },
             ]
           },
           {
-            category: "STAGE ONE — COMPOUNDING",
+            category: "REMOVES PERMANENTLY",
             items: [
-              { label: "Heavy Compound Application", detail: "Cutting compound + appropriate cutting or foam pad applied via dual-action or rotary — selected per panel hardness and defect depth" },
-              { label: "Wet Sanding (When Required)", detail: "1500–3000 grit wet sand for severe orange peel, deep scratches, or paint runs; always followed by compounding to remove sanding marks" },
-              { label: "Clear Coat Leveling", detail: "Establishes flat surface required for Stage Two to achieve mirror finish" },
-              { label: "LED Verification", detail: "Panel-by-panel check after compounding; second pass applied where defects remain" },
-            ]
-          },
-          {
-            category: "STAGE TWO — FINISHING",
-            items: [
-              { label: "Fine Polish Application", detail: "Fine finishing polish + soft foam or microfiber pad to remove any micro-marring left by Stage One compound" },
-              { label: "Clarity Restoration", detail: "This stage is what produces the mirror-like depth — compounding alone leaves haze visible under light" },
-              { label: "Correction Verification", detail: "LED light pass confirms defect removal; any remaining marks re-addressed before sign-off" },
-              { label: "IPA Final Wipe", detail: "Panel wipe with isopropyl solution removes polish residue and prepares surface for protection" },
-            ]
-          },
-          {
-            category: "DEFECTS PERMANENTLY REMOVED",
-            items: [
-              { label: "Swirl Marks", detail: "Fine circular marring from improper wash technique or automated car washes" },
-              { label: "Water Spot Etching", detail: "Mineral deposits that have etched into the clear coat below surface level" },
-              { label: "Oxidation", detail: "UV-induced surface degradation; moderate to heavy on single-stage paint and older clear coats" },
-              { label: "Light to Moderate Scratches", detail: "Any scratch that doesn't penetrate through the clear coat to primer or bare metal" },
-              { label: "Buffer Holograms", detail: "Marring left by prior improper machine polishing" },
-              { label: "Chemical Etching", detail: "Bird dropping or industrial fallout etching into the clear coat" },
-              { label: "RIDS / Deep Scratches", detail: "Random isolated deep scratches addressed via wet sanding where clear coat depth permits" },
+              { label: "Swirl marks", detail: "buffer holograms" },
+              { label: "Water spot etching", detail: "below surface level" },
+              { label: "Light to moderate scratches", detail: "within clear coat" },
+              { label: "Oxidation", detail: "and chemical etching" },
             ]
           }
         ]}
-        difference="Paint Correction is required when defects are visible in direct sunlight, when a fingernail catches on scratches, or when you're preparing a vehicle for ceramic coating or PPF. If defects are limited to light swirls and the paint is in good overall condition, start with the One-Step Polish."
+        difference="Required when defects show in direct sun, or when a fingernail catches the scratch. Also mandatory prep for ceramic coating if your paint isn't perfect."
       />
 
       {/* ADDITIONAL SERVICES GRID */}
@@ -237,12 +167,12 @@ const ServicesPage = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: "Wax Package", price: "From $150", desc: "Hand-applied professional wax. UV protection and gloss enhancement. Not a substitute for paint correction — a maintenance layer for paint in good condition." },
-              { title: "Mini Detail", price: "From $150", desc: "Quick maintenance service for vehicles already in good condition. Exterior hand wash, interior vacuum and wipe-down, interior/exterior glass." },
-              { id: "exterior", title: "Exterior Detail", price: "Quote-Based", desc: "Two-bucket hand wash, foam pre-soak, iron decontamination, clay bar, wheel/tire detail. Exterior-only when the interior is maintained." },
-              { title: "Water Spot Treatment", price: "Quote-Based", desc: "Chemical and mechanical removal of mineral deposit etching. Paint-safe process — clear coat measurement confirmed before work begins." },
-              { title: "Ceramic Coating", price: "From $1,100", desc: "Nano-ceramic molecular bond to the clear coat. 3–5 year protection layer against contamination, UV, and water etching. Requires paint correction if defects are present.", link: "/services/protective/ceramic" },
-              { title: "PPF / Window Tint", price: "From $1,300", desc: "Physical film protection and infrared-blocking tint. Both outsourced to certified installation partners — XPEL and STEK film exclusively.", link: "/services/protective/ppf" },
+              { title: "Wax Package", price: "From $150", desc: "Hand-applied protection. 2–3 months of gloss and UV defense. For paint that's already in good shape." },
+              { title: "Mini Detail", price: "From $150", desc: "Quick maintenance. Exterior hand wash, interior vacuum and wipe, glass inside and out." },
+              { id: "exterior", title: "Exterior Detail", price: "Quote-Based", desc: "Wash, decontaminate, clay bar, wheels and tires. Exterior-only when the inside is already clean." },
+              { title: "Water Spot Treatment", price: "Quote-Based", desc: "Mineral deposit removal. Paint-safe process — we measure clear coat before we start." },
+              { title: "Ceramic Coating", price: "From $1,100", desc: "3–5 year protection. Nano-ceramic molecular bond. Requires paint correction first if defects exist.", link: "/services/protective/ceramic", linkText: "Full Details" },
+              { title: "PPF / Window Tint", price: "From $1,300", desc: "XPEL and STEK film. Outsourced to certified installers we trust.", link: "/services/protective/ppf", linkText: "Full Details" },
             ].map(s => (
               <div key={s.title} id={s.id} className="p-6 border border-border/40 bg-card/20 space-y-3 hover:border-primary/30 transition-all group">
                 <h3 className="font-display font-black uppercase tracking-wider text-sm text-foreground">{s.title}</h3>
@@ -251,7 +181,7 @@ const ServicesPage = () => {
                 {s.link ? (
                   <Link to={s.link}>
                     <Button variant="ghost" size="sm" className="mt-2 text-xs uppercase tracking-widest font-mono text-primary hover:text-primary/80 p-0 h-auto">
-                      Full Details <ChevronRight size={12} className="ml-1" />
+                      {s.linkText} <ChevronRight size={12} className="ml-1" />
                     </Button>
                   </Link>
                 ) : (
@@ -270,8 +200,8 @@ const ServicesPage = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16 space-y-4">
             <p className="font-mono text-xs uppercase tracking-[0.4em] text-primary">// LONG-TERM PROTECTION</p>
-            <h2 className="text-4xl lg:text-6xl font-black italic uppercase tracking-tighter">PROTECTIVE <span className="text-[#39FF14] text-glow">SERVICES</span></h2>
-            <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground italic font-bold">OUTSOURCED TO CERTIFIED XPEL & STEK INSTALLATION PARTNERS</p>
+            <h2 className="text-4xl lg:text-6xl font-black italic uppercase tracking-tighter">Ceramic • PPF • <span className="text-[#39FF14] text-glow">Tint</span></h2>
+            <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground italic font-bold max-w-2xl mx-auto">We partner with certified XPEL and STEK installers for film and coating that lasts years, not months.</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -425,7 +355,7 @@ const ServiceDetail = ({ id, badge, serviceNumber, title, tagline, price, time, 
               <div className="h-px bg-border/30" />
               <Button
                 onClick={() => openQuote(ctaService)}
-                className="w-full bg-primary text-primary-foreground font-display uppercase tracking-widest text-xs font-black hover:opacity-90 box-glow py-6"
+                className="w-full bg-primary text-primary-foreground font-display uppercase tracking-widest text-xs font-black hover:opacity-90 box-glow py-6 text-center"
               >
                 {ctaLabel} →
               </Button>
