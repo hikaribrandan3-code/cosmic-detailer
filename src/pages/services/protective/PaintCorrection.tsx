@@ -18,29 +18,29 @@ const PaintCorrection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-24 pb-32 selection:bg-[#39FF14] selection:text-black">
+    <div className="min-h-screen bg-background pt-24 pb-32 selection:bg-[#39FF14] selection:text-black w-full">
       <div className="container mx-auto px-4 lg:px-8">
         
         <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#39FF14]/30 bg-[#39FF14]/5 text-[#39FF14] font-mono text-[10px] uppercase tracking-[0.3em]">
              <Gauge size={12} className="animate-pulse" />
-             <span className="lg:hidden text-[9px]">MOBILE · NAPLES' PAINT CORRECTION SPECIALISTS</span>
-             <span className="hidden lg:inline">RESTORATION / STAGE 2 CLARITY</span>
+             <span className="lg:hidden text-[9px]">MOBILE · 15+ YEARS MASTERY · NAPLES' ELITE</span>
+             <span className="hidden lg:inline">RESTORATION / 15+ YEARS MASTERY</span>
           </div>
           <h1 className="text-4xl lg:text-7xl font-black italic uppercase tracking-tighter leading-none">
             PAINT <span className="text-[#39FF14] text-glow">CORRECTION</span>
           </h1>
           <p className="font-mono text-xs lg:text-sm uppercase tracking-[0.4em] text-muted-foreground max-w-2xl mx-auto italic">
-            <span className="lg:hidden text-white/90 normal-case tracking-widest not-italic leading-relaxed">Naples sun doesn't lie. Every swirl, scratch, and oxidation mark shows up crystal clear in direct light. We remove them permanently — not fill them, not hide them. Gone.</span>
-            <span className="hidden lg:inline">PROFESSIONAL CLEAR COAT RESURFACING / MIRROR FINISH</span>
+            <span className="lg:hidden text-white/90 normal-case tracking-widest not-italic leading-relaxed">Naples sun is relentless. Every swirl, scratch, and oxidation mark is exposed in high-def. After 15 years in the game, we don't just "buff" — we diagnose. We remove defects permanently to restore Level-0 surface clarity. Done.</span>
+            <span className="hidden lg:inline">PROFESSIONAL CLEAR COAT RESURFACING / 15-YEAR MASTER LEVEL FINISH</span>
           </p>
           
           {/* Mobile Trust Bar */}
           <div className="lg:hidden mt-8 grid grid-cols-2 gap-3 py-4 border-y border-white/5 bg-white/5">
             {[
-              "MACHINE POLISHED",
-              "NOT FILLED — REMOVED",
-              "CERAMIC-READY FINISH",
+              "15+ YEARS EXPERIENCE",
+              "CLEAR COAT DIAGNOSTICS",
+              "WET SANDING CAPABLE",
               "WE COME TO YOU"
             ].map(trust => (
               <div key={trust} className="flex items-center gap-2 px-1">
@@ -78,7 +78,7 @@ const PaintCorrection = () => {
                <img 
                  src="/images/paint-correction-split.png" 
                  alt="Swirl Marks Before" 
-                 className="absolute inset-0 w-[100vw] h-full object-cover" 
+                 className="absolute inset-0 w-full h-full object-cover" 
                />
                <div className="absolute inset-0 bg-red-500/10 mix-blend-overlay" />
             </div>
@@ -116,8 +116,8 @@ const PaintCorrection = () => {
               <div className="space-y-4">
                  <h3 className="text-3xl font-black italic uppercase tracking-tighter text-white">THE CORRECTION PROCESS</h3>
                  <p className="text-muted-foreground leading-relaxed">
-                    <span className="lg:hidden text-xs uppercase tracking-widest">Every swirl mark, bird dropping etch, and oxidation patch is physically removed through precision machine polishing. We are not filling scratches — we are removing them forever. What's left is your actual paint, restored to better than showroom.</span>
-                    <span className="hidden lg:inline">Paint correction is the strategic removal of surface imperfections (swirl marks, bird dropping etching, oxidation) through mechanical polishing. We are not filling scratches—we are removing them forever.</span>
+                    <span className="lg:hidden text-xs uppercase tracking-widest">We take a surgical approach. Before a pad touches your car, we measure clear coat depth and analyze paint hardness. We don't hide scratches with fillers — we level the surface through precision mechanical restoration. The result? A true Level-0 mirror finish.</span>
+                    <span className="hidden lg:inline">Master-level paint correction is the strategic removal of surface imperfections through surgical machine polishing. Backed by 15 years of experience, we restore your paint to Level-0 clarity — removing defects forever, never hiding them.</span>
                  </p>
               </div>
 
@@ -174,6 +174,71 @@ const PaintCorrection = () => {
               ))}
            </div>
         </div>
+
+        {/* MASTER LEVEL WET SANDING SECTION */}
+        <div className="mt-32 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1 relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#39FF14] to-transparent opacity-20 blur group-hover:opacity-40 transition-all"></div>
+              <div className="relative aspect-square lg:aspect-video bg-[#111] border border-white/10 overflow-hidden">
+                 <img src="https://images.unsplash.com/photo-1599256621730-53513222384c?w=800&q=80" alt="Wet sanding" className="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-700" />
+                 <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-mono text-[10px] text-[#39FF14] uppercase tracking-[0.5em] font-black italic">Show-Ready Mastery</span>
+                 </div>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2 space-y-6">
+               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#39FF14]/30 bg-[#39FF14]/5 text-[#39FF14] font-mono text-[9px] uppercase tracking-[0.3em]">
+                  <Target size={12} />
+                  <span>ADVANCED SERVICE</span>
+               </div>
+               <h3 className="text-4xl lg:text-6xl font-black italic uppercase tracking-tighter leading-none text-white">MASTER LEVEL <br/><span className="text-[#39FF14]">WET SANDING</span></h3>
+               <p className="font-mono text-xs text-muted-foreground leading-relaxed uppercase tracking-widest italic">
+                 Most detailers won't touch a sanding block. We specialize in it. To achieve a true "show-ready" mirror finish without "orange peel" texture, we level the clear coat through multi-stage precision wet sanding. Level 0 perfection for the most discerning Naples owners.
+               </p>
+               <ul className="space-y-3">
+                  {['Orange Peel Removal', 'Deep Scratch Leveling', 'Show-Ready Texture Correction', 'Precision Hand Block Finishing'].map(item => (
+                    <li key={item} className="flex items-center gap-3 text-[10px] font-mono font-black uppercase tracking-widest text-[#e5e1e0]">
+                      <div className="w-1.5 h-1.5 bg-[#39FF14] rounded-full shadow-[0_0_8px_#39FF14]"></div>
+                      {item}
+                    </li>
+                  ))}
+               </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* PRECISION PAINT CHIP REPAIR SECTION */}
+        <div className="mt-32 max-w-6xl mx-auto border-t border-white/5 pt-24 pb-12">
+            <div className="text-center mb-16 space-y-4">
+              <h3 className="text-4xl lg:text-7xl font-black italic uppercase tracking-tighter leading-none text-white">PRECISION <span className="text-[#39FF14]">PAINT CHIP</span> REPAIR</h3>
+              <p className="font-mono text-xs text-muted-foreground uppercase tracking-[0.4em] max-w-2xl mx-auto">NAPLES' DR. COLORCHIP & HAND-LEVELING SPECIALISTS</p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+               {[
+                 { title: 'DIAGNOSE & PREP', desc: 'Surgically cleaning the chip and surrounding paint to ensure permanent bond.' },
+                 { title: 'LAYERED FILL', desc: 'Precision color-matching for your factory paint code. We layer to build height.' },
+                 { title: 'LEVEL & POLISH', desc: 'The most critical step. We level the repair to the clear coat and polish to match texture.' }
+               ].map((step, i) => (
+                 <div key={i} className="p-8 bg-white/5 border border-white/5 space-y-4 hover:bg-[#39FF14]/5 hover:border-[#39FF14]/20 transition-all group">
+                    <span className="font-mono text-2xl font-black italic text-[#39FF14] opacity-50 group-hover:opacity-100 transition-all">0{i+1}</span>
+                    <h4 className="font-mono text-sm font-black uppercase tracking-widest text-white">{step.title}</h4>
+                    <p className="text-[10px] font-mono text-muted-foreground leading-relaxed uppercase italic tracking-widest">{step.desc}</p>
+                 </div>
+               ))}
+            </div>
+            
+            <div className="mt-16 text-center">
+              <Button 
+                onClick={() => openQuote("Paint Restoration Bundle")}
+                className="bg-transparent border border-[#39FF14] text-[#39FF14] hover:bg-[#39FF14] hover:text-black px-12 py-8 font-black uppercase tracking-[0.3em] transition-all"
+              >
+                REQUEST RESTORATION BUNDLE →
+              </Button>
+            </div>
+        </div>
+
 
       </div>
     </div>

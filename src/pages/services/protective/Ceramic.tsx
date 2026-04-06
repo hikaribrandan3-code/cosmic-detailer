@@ -240,13 +240,13 @@ const Ceramic = () => {
                   image: 'https://images.unsplash.com/photo-1551522435-a13afa10f103?w=800&q=80',
                   desc: { mobile: 'Brake dust bonds to bare metal fast. Ceramic-coated wheels clean in seconds and resist the iron buildup that turns wheels brown.', desktop: 'Protects against brake dust' } },
                 { icon: <User className="w-6 h-6 text-[#8eff71]" />, title: 'Interior Leather', price: '+$199', 
-                  image: 'https://images.unsplash.com/photo-1617469767053-d3b508a0d182?w=800&q=80',
+                  image: 'https://images.unsplash.com/photo-1596733430284-f7437734f1ad?w=800&q=80',
                   desc: { mobile: 'Leather in Naples heat cracks and fades fast. Ceramic coating bonds to the surface and keeps it supple, stain-resistant, and looking new.', desktop: 'Prevents stains and wear' } },
                 { icon: <Waves className="w-6 h-6 text-[#8eff71]" />, title: 'Plastic Trim', price: '+$149', 
                   image: 'https://images.unsplash.com/photo-1620891549027-942fdc95d3f5?w=800&q=80',
                   desc: { mobile: 'Faded grey trim drops your car\'s whole look. We restore it black and coat it so it stays that way — not for a week, for years.', desktop: 'Restores and protects trim' } },
                 { icon: <Droplets className="w-6 h-6 text-[#8eff71]" />, title: 'Glass Coating', price: '+$99', 
-                  image: 'https://images.unsplash.com/photo-1557401592-340788647087?w=800&q=80',
+                  image: 'https://images.unsplash.com/photo-1471341971476-3d85de19671f?w=800&q=80',
                   desc: { mobile: 'Rain beads off at speed. No more squinting through a smeared windshield on 75. Visibility up, wiper use down.', desktop: 'Improves rain visibility' } },
               ].map((addon, i) => (
                 <div key={i} className="p-6 bg-[#191a1a] border border-white/5 hover:border-[#8eff71]/30 transition-all group flex flex-col gap-4 relative overflow-hidden">
