@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Clock, Instagram, Radar, ChevronDown, ChevronUp } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Instagram } from "lucide-react";
 import logo from "@/assets/alien-icon.png";
 import ServiceRadar from "./ServiceRadar";
 import { Button } from "./ui/button";
@@ -10,8 +9,6 @@ interface FooterProps {
 }
 
 const Footer = ({ onQuoteClick }: FooterProps) => {
-  const [radarOpen, setRadarOpen] = useState(false);
-
   return (
     <footer className="border-t border-border bg-card">
       <div className="container mx-auto px-4 py-16 lg:px-8">
@@ -56,23 +53,9 @@ const Footer = ({ onQuoteClick }: FooterProps) => {
           </div>
         </div>
 
-        {/* Tactical Service Radar - Collapsible on Mobile */}
+        {/* Tactical Service Radar - Always Visible */}
         <div className="mt-16 border-t border-border pt-12">
-          <div className="lg:hidden mb-4">
-            <Button 
-              variant="outline" 
-              onClick={() => setRadarOpen(!radarOpen)}
-              className="w-full flex items-center justify-between border-border bg-secondary/30 h-14"
-            >
-              <div className="flex items-center gap-3">
-                <Radar size={18} className="text-primary animate-pulse" />
-                <span className="font-mono text-xs uppercase tracking-widest">Toggle Service Radar</span>
-              </div>
-              {radarOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-            </Button>
-          </div>
-          
-          <div className={`${radarOpen ? 'block' : 'hidden lg:block'} animate-in fade-in duration-500`}>
+          <div className="animate-in fade-in duration-500">
             <ServiceRadar onCityClick={(city) => onQuoteClick(undefined, city)} />
           </div>
         </div>

@@ -35,7 +35,7 @@ const Index = () => {
               <span className="text-white/40 text-[12px] font-medium">200+ five-star reviews · Naples, FL</span>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-4 mb-12 lg:mb-0">
+            <div className="mt-6 flex flex-wrap gap-4 mb-6 lg:mb-0">
               <Button onClick={openQuote} size="lg" className="bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm hover:opacity-90 box-glow">
                 <span className="lg:hidden">Get Quote</span>
                 <span className="hidden lg:inline">Request A Quote</span>
@@ -49,14 +49,13 @@ const Index = () => {
         {/* Stats bar */}
         <div className="absolute bottom-0 left-0 right-0 border-t border-border bg-background/80 backdrop-blur-md overflow-hidden">
           <div className="container mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 items-center gap-4 px-4 py-4 lg:px-8">
+            <div className="grid grid-cols-3 items-center gap-4 px-4 py-4 lg:px-8">
               {[
                 { icon: <Award size={20} />, label: "15+ Years" },
                 { icon: <Clock size={20} />, label: "7 Days/Week" },
                 { icon: <Car size={20} />, label: "Fully Mobile" },
-                { icon: <Star size={20} />, label: "200+ REVIEWS" },
               ].map(s => (
-                <div key={s.label} className="flex items-center gap-3">
+                <div key={s.label} className="flex items-center justify-center gap-3">
                   <span className="text-primary">{s.icon}</span>
                   <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-muted-foreground whitespace-nowrap">{s.label}</span>
                 </div>
