@@ -8,7 +8,7 @@ import {
   CheckCircle2,
   TrendingDown
 } from 'lucide-react';
-import PPFFrontSVG from '@/components/PPFFrontSVG';
+
 
 type PpfPackage = 'partial' | 'fullFront' | 'trackPackage' | 'stealth';
 type Usage = 'city' | 'highway' | null;
@@ -52,15 +52,12 @@ const packages = {
 export default function PPF() {
   const { openQuote } = useOutletContext<{ openQuote: (service?: string) => void }>();
   
-  // Master State
-  const [selectedPackage, setSelectedPackage] = useState<PpfPackage | null>(null);
+  // Default to fullFront so the visualizer always has something to show
+  const [selectedPackage, setSelectedPackage] = useState<PpfPackage>('fullFront');
   
   // Quiz State
   const [usage, setUsage] = useState<Usage>(null);
   const [threat, setThreat] = useState<Threat>(null);
-
-  // Interaction State
-  const [hoveredZone, setHoveredZone] = useState<string | null>(null);
   
   const funnelRef = useRef<HTMLDivElement>(null);
 
@@ -72,33 +69,13 @@ export default function PPF() {
       } else {
         setSelectedPackage('partial');
       }
-      
-      // Give DOM time to un-hide the recommendation box
       setTimeout(() => {
         funnelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 100);
     }
   }, [usage, threat]);
 
-  // Engine: Zone click mapping
-  const handleZoneClick = (zoneId: string) => {
-    if (packages.partial.zones.includes(zoneId)) setSelectedPackage('partial');
-    else if (packages.fullFront.zones.includes(zoneId)) setSelectedPackage('fullFront');
-    else if (packages.trackPackage.zones.includes(zoneId)) setSelectedPackage('trackPackage');
-    else setSelectedPackage('stealth');
-  };
-
-  const isZoneActive = (zoneId: string) => {
-    if (!selectedPackage) return false;
-    return packages[selectedPackage].zones.includes(zoneId);
-  };
-
-  // Label formatting
-  const formatZoneLabel = (zoneId: string) => {
-    return zoneId.replace(/-/g, ' ').toUpperCase();
-  };
-
-  const currentPkg = selectedPackage ? packages[selectedPackage] : null;
+  const currentPkg = packages[selectedPackage];
 
   return (
     <div className="min-h-screen bg-[#0e0e0e] text-[#adaaaa] font-sans pt-16 pb-32 overflow-x-hidden selection:bg-[#00FF41] selection:text-black">
@@ -171,100 +148,113 @@ export default function PPF() {
         </div>
       </section>
 
-      {/* COVERAGE VISUALIZER */}
-      <section className="py-20 lg:py-32 px-6 bg-[#0e0e0e] border-b border-white/5">
-        <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <h3 className="text-center font-mono font-bold uppercase tracking-[0.3em] text-[10px] mb-8 lg:mb-12 text-[#adaaaa]">Coverage Visual Reference</h3>
-          
-          <div className="relative w-full max-w-4xl aspect-[16/9] mb-16 overflow-hidden bg-[#131313] border border-white/5 group">
-             {/* Dynamic Image Overlay */}
-             <div className="absolute inset-0 z-0">
-               {selectedPackage ? (
-                 <img 
-                   src={packages[selectedPackage].image} 
-                   alt={packages[selectedPackage].name}
-                   className="w-full h-full object-contain animate-in fade-in zoom-in duration-500"
-                 />
-               ) : (
-                 <div className="w-full h-full flex items-center justify-center opacity-20 grayscale">
-                    <Shield size={120} className="text-[#adaaaa]" />
-                 </div>
-               )}
-             </div>
-             
-             {/* Interactive SVG Overlay (Keeping for interaction but making it subtle) */}
-             <div className="absolute inset-0 z-10 opacity-20 hover:opacity-100 transition-opacity duration-500">
-               <PPFFrontSVG 
-                 currentPackage={selectedPackage || ''}
-                 isZoneActive={isZoneActive}
-                 handleZoneClick={handleZoneClick}
-                 setHoveredZone={setHoveredZone}
-               />
-             </div>
+      {/* ─── PPF PACKAGE VISUALIZER (unified, clean) ─── */}
+      <section className="bg-[#0e0e0e] border-b border-white/5">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-14 pb-0">
+          <p className="text-center font-mono font-bold uppercase tracking-[0.3em] text-[10px] mb-6 text-[#adaaaa]">Our PPF Packages</p>
+          <h2 className="text-center font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-white mb-10">Choose Your <span className="text-[#00FF41]">Coverage</span></h2>
 
-             {hoveredZone && (
-               <div className="absolute top-4 left-1/2 -translate-x-1/2 pointer-events-none bg-[#131313]/90 backdrop-blur-sm border border-[#00FF41]/30 text-[#00FF41] px-4 py-2 text-[10px] font-mono uppercase tracking-[0.3em] font-black shadow-[0_0_20px_rgba(0,255,65,0.15)] flex flex-col items-center gap-1 z-20">
-                 <span>{formatZoneLabel(hoveredZone)}</span>
-                 {hoveredZone === 'bumper-front' && <span className="text-[#ff725e] text-[8px] animate-pulse whitespace-nowrap">60% IMPACT RISK</span>}
-               </div>
-             )}
-          </div>
-          
-          <p className="text-center font-mono text-[9px] uppercase tracking-widest text-[#00FF41] animate-pulse">
-            {selectedPackage ? `Showing: ${packages[selectedPackage].name}` : 'Select a package below to see coverage area'}
-          </p>
-        </div>
-      </section>
-
-      {/* PACKAGE CARDS */}
-      <section className="py-20 px-6 lg:px-12 bg-[#131313]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          {/* ── TAB STRIP ── */}
+          <div className="flex overflow-x-auto no-scrollbar gap-2 pb-2 mb-0">
             {(Object.keys(packages) as PpfPackage[]).map((pkgKey) => {
               const pkg = packages[pkgKey];
               const isActive = selectedPackage === pkgKey;
               return (
-                <div 
+                <button
                   key={pkgKey}
                   onClick={() => setSelectedPackage(pkgKey)}
-                  className={`cursor-pointer transition-all duration-300 border-l-4 relative overflow-hidden ${
-                    isActive 
-                      ? 'bg-[#1a1b1a] border-[#00FF41] shadow-[0_0_30px_rgba(0,255,65,0.1)] -translate-y-2' 
-                      : 'bg-[#191a1a] border-white/5 hover:bg-[#202020]'
+                  className={`relative flex-shrink-0 px-5 py-3 font-mono font-black text-[10px] lg:text-xs uppercase tracking-[0.2em] transition-all duration-200 border-b-2 ${
+                    isActive
+                      ? 'border-[#00FF41] text-[#00FF41] bg-[#00FF41]/5'
+                      : 'border-transparent text-[#adaaaa] hover:text-white hover:border-white/20'
                   }`}
                 >
                   {pkgKey === 'fullFront' && (
-                    <div className="absolute top-0 right-0 bg-[#00FF41] text-[#053900] px-4 py-1">
-                      <span className="font-mono text-[9px] font-black uppercase tracking-widest">Industry Standard ★</span>
-                    </div>
+                    <span className="absolute -top-2 right-1 text-[8px] bg-[#00FF41] text-[#053900] px-1.5 font-black uppercase tracking-wider">★ Popular</span>
                   )}
-                  <div className="p-8">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] opacity-50 block mb-2">{pkgKey === 'stealth' ? 'Premium Tier' : 'Clear Bra'}</span>
-                    <h3 className={`text-3xl font-mono font-black italic uppercase leading-none tracking-tighter ${isActive ? 'text-[#00FF41]' : 'text-white'}`}>{pkg.name}</h3>
-                    <div className="mt-8 mb-8">
-                      <span className={`font-mono text-4xl font-black italic tracking-tighter ${isActive ? 'text-white' : 'text-[#adaaaa]'}`}>
-                        {pkg.price !== 'GET QUOTE' && '$'}{pkg.price}
-                      </span>
-                      {/* Mobile One-liners */}
-                      <p className="lg:hidden mt-2 font-mono text-[8px] font-bold text-[#00FF41] uppercase tracking-widest leading-tight">
-                        {pkgKey === 'partial' ? 'Best for daily drivers. Covers the highest-impact zones.' : 
-                         pkgKey === 'fullFront' ? 'The most popular choice. Full front-end protection.' : 
-                         pkgKey === 'trackPackage' ? 'Adds rockers and impact zones for spirited driving.' :
-                         'Full vehicle wrap. Zero paint visible. Zero compromise.'}
-                      </p>
-                    </div>
-                    <ul className="space-y-4">
-                      {pkg.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                           <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 transition-colors ${isActive ? 'text-[#00FF41]' : 'text-[#484847]'}`} />
-                           <span className="font-mono text-[9px] lg:text-[10px] text-[#e5e2e1] uppercase tracking-wider">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                  {pkg.name}
+                </button>
               );
             })}
+          </div>
+        </div>
+
+        {/* ── FULL-WIDTH IMAGE PANEL ── */}
+        <div className="relative w-full bg-[#111] overflow-hidden" style={{ minHeight: '280px' }}>
+          {/* Green colour-shift filter over the image — hue-rotate turns the blue coverage zones green */}
+          <div
+            className="w-full transition-opacity duration-500"
+            style={{
+              filter: 'hue-rotate(100deg) saturate(1.8) brightness(1.05)',
+            }}
+          >
+            <img
+              key={selectedPackage}
+              src={currentPkg.image}
+              alt={currentPkg.name + ' PPF coverage'}
+              className="w-full h-auto object-contain mx-auto block"
+              style={{ maxHeight: '480px', objectPosition: 'center' }}
+            />
+          </div>
+
+          {/* Subtle dark vignette edges so image blends into dark bg */}
+          <div className="absolute inset-0 pointer-events-none" style={{
+            background: 'radial-gradient(ellipse at center, transparent 50%, #0e0e0e 100%)'
+          }} />
+
+          {/* Coverage label badge */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#0e0e0e]/80 backdrop-blur-sm border border-[#00FF41]/30 px-5 py-2">
+            <span className="font-mono font-black text-[#00FF41] text-xs uppercase tracking-[0.25em]">
+              {currentPkg.name} — {currentPkg.price !== 'GET QUOTE' ? `$${currentPkg.price}` : 'Get Quote'}
+            </span>
+          </div>
+        </div>
+
+        {/* ── DETAIL PANEL ── */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 lg:py-14">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
+            
+            {/* Left: name + description */}
+            <div className="lg:w-1/2">
+              <h3 className="font-mono text-4xl lg:text-5xl font-black italic uppercase tracking-tighter text-white leading-none mb-3">
+                {currentPkg.name}
+              </h3>
+              <p className="font-mono text-[10px] lg:text-xs uppercase tracking-widest text-[#adaaaa] leading-relaxed">
+                {selectedPackage === 'partial'
+                  ? 'Covers the highest-impact front zones: bumper, hood leading edge, mirrors and door cups. Ideal for daily drivers who want smart protection on a tighter budget.'
+                  : selectedPackage === 'fullFront'
+                  ? 'The industry standard choice. Full hood, fenders, bumper, headlights, mirrors — everything at the front of the car that takes the punishment of the road.'
+                  : selectedPackage === 'trackPackage'
+                  ? 'Everything in Full Front, plus extended rocker panels and A-pillars for drivers who push harder. Built for highway commuters and track-day enthusiasts.'
+                  : 'Complete head-to-toe protection. Every painted surface wrapped. Available in gloss, matte, or satin. The only way to truly set it and forget it.'}
+              </p>
+            </div>
+
+            {/* Right: features + CTA */}
+            <div className="lg:w-1/2">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-8">
+                {currentPkg.features.map((feature, i) => (
+                  <li key={i} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 shrink-0 text-[#00FF41]" />
+                    <span className="font-mono text-[10px] lg:text-xs text-[#e5e2e1] uppercase tracking-wider">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-[#adaaaa] font-mono text-[10px] uppercase tracking-widest">Starting at</span>
+                  <span className="font-mono font-black italic text-3xl lg:text-4xl tracking-tighter text-white">
+                    {currentPkg.price !== 'GET QUOTE' ? `$${currentPkg.price}` : 'Custom'}
+                  </span>
+                </div>
+                <button
+                  onClick={() => openQuote(`PPF: ${currentPkg.name}`)}
+                  className="w-full sm:w-auto bg-[#00FF41] text-[#053900] font-mono font-black uppercase tracking-[0.2em] text-xs px-8 py-4 hover:bg-[#32e612] active:scale-95 transition-all shadow-[0_0_24px_rgba(0,255,65,0.3)]"
+                >
+                  GET FREE QUOTE →
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -346,31 +336,21 @@ export default function PPF() {
         </div>
       </section>
 
-      {/* STICKY BOTTOM CTA */}
       <div className="fixed bottom-0 w-full z-[60] bg-[#1a1b1a]/95 backdrop-blur-2xl border-t border-[#00FF41]/20 px-6 py-4 flex items-center justify-between shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="flex flex-col max-w-[50%]">
           <span className="lg:hidden text-[8px] text-[#00FF41] uppercase font-bold tracking-[0.3em] font-mono mb-1 animate-pulse">We come to you. Most installs same week.</span>
           <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-[0.3em] text-[#adaaaa] mb-1">Selected Plan</span>
           <span className="font-mono text-sm lg:text-xl font-black italic uppercase tracking-tighter text-white truncate">
-          {selectedPackage ? packages[selectedPackage].name : 'No package selected'}
+            {currentPkg.name}
           </span>
         </div>
-        <button 
-          onClick={() => {
-            if (currentPkg) openQuote(`PPF: ${currentPkg.name} (${currentPkg.price})`);
-            else document.getElementById('funnel')?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          className={`px-8 lg:px-12 py-4 lg:py-5 font-mono font-black uppercase italic tracking-[0.2em] text-[10px] lg:text-sm rounded-none transition-all shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] ${
-            selectedPackage ? 'bg-[#00FF41] text-[#053900] hover:bg-[#32e612]' : 'bg-[#262626] text-white hover:bg-[#333]'
-          }`}
+        <button
+          onClick={() => openQuote(`PPF: ${currentPkg.name} (${currentPkg.price})`)}
+          className="px-8 lg:px-12 py-4 lg:py-5 font-mono font-black uppercase italic tracking-[0.2em] text-[10px] lg:text-sm rounded-none transition-all bg-[#00FF41] text-[#053900] hover:bg-[#32e612] shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)]"
         >
-          {selectedPackage ? (
-            <span className="lg:hidden">GET YOUR FREE PPF QUOTE →</span>
-          ) : (
-            <span className="lg:hidden">CHOOSE YOUR COVERAGE</span>
-          )}
+          <span className="lg:hidden">GET FREE QUOTE →</span>
           <span className="hidden lg:inline">
-            {selectedPackage ? `Book — ${currentPkg?.price !== 'GET QUOTE' ? '$' : ''}${currentPkg?.price}` : 'Choose Your Coverage'}
+            Book — {currentPkg.price !== 'GET QUOTE' ? '$' : ''}{currentPkg.price}
           </span>
         </button>
       </div>
