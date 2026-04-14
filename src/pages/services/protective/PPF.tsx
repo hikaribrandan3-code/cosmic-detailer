@@ -156,7 +156,7 @@ export default function PPF() {
           <h2 className="text-center font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-white mb-10">Choose Your <span className="text-[#00FF41]">Coverage</span></h2>
 
           {/* ── TAB STRIP ── */}
-          <div className="flex overflow-x-auto no-scrollbar gap-2 pb-2 mb-0">
+          <div className="flex overflow-x-auto no-scrollbar gap-2 pb-2 mb-0 pt-4">
             {(Object.keys(packages) as PpfPackage[]).map((pkgKey) => {
               const pkg = packages[pkgKey];
               const isActive = selectedPackage === pkgKey;
