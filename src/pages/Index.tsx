@@ -2,6 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Shield, Droplets, Car, Clock, MapPin, Phone, Sparkles, Star, ChevronRight, Wrench, Zap, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEO from "@/components/SEO";
 import heroCar from "@/assets/hero-car.jpg";
 
 const Index = () => {
@@ -9,6 +10,10 @@ const Index = () => {
 
   return (
     <div>
+      <SEO 
+        title="Area 51 Detailing | Naples' #1 Mobile Detailing & Ceramic Coating"
+        description="Experience the ultimate in vehicle care. Area 51 serves Naples, FL with professional-grade ceramic coatings, precision paint correction, and full mobile detailing. 15+ years of master-level expertise. We come to you."
+      />
       {/* Hero */}
       <section className="relative min-h-[100vh] flex items-center hero-gradient grid-bg overflow-hidden">
         <div className="absolute inset-0">
@@ -22,9 +27,9 @@ const Index = () => {
               <div className="lg:hidden flex flex-col">
                 <span>We Show Up.</span>
                 <span>We Detail.</span>
-                <span className="text-primary font-black italic">Done.</span>
+                <span className="text-primary font-black italic text-glow">Naples, FL.</span>
               </div>
-              <span className="hidden lg:inline">Detailing That Is <span className="text-primary">Precisely Refined</span></span>
+              <span className="hidden lg:inline text-glow-subtle">Mobile Detailing & Ceramic Coating <span className="text-primary">Naples, FL</span></span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
               <span className="lg:hidden text-white/90">One call and we're at your door — water, power, and 15 years of expertise loaded in the truck. You don't lift a finger.</span>

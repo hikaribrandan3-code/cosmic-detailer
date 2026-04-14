@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import PPFFrontSVG from '@/components/PPFFrontSVG';
 
-type PpfPackage = 'partial' | 'fullFront' | 'stealth';
+type PpfPackage = 'partial' | 'fullFront' | 'trackPackage' | 'stealth';
 type Usage = 'city' | 'highway' | null;
 type Threat = 'rocks' | 'bugs' | null;
 
@@ -19,6 +19,7 @@ const packages = {
     id: 'partial',
     name: 'PARTIAL FRONT',
     price: '1,200',
+    image: '/images/ppf/partial-front.png',
     zones: ['bumper-front', 'hood-leading', 'fender-left', 'fender-right', 'mirror-left', 'mirror-right', 'door-cup-left', 'door-cup-right'],
     features: ['Bumper + Hood Leading Edge (30%)', 'Mirror Caps + Door Cups', '2-Year Warranty']
   },
@@ -26,13 +27,23 @@ const packages = {
     id: 'fullFront',
     name: 'FULL FRONT',
     price: '1,800',
+    image: '/images/ppf/full-front.png',
     zones: ['bumper-front', 'hood', 'fender-left', 'fender-right', 'mirror-left', 'mirror-right', 'headlight-left', 'headlight-right', 'door-cup-left', 'door-cup-right'],
     features: ['Full Hood, Fenders, Bumper', 'Mirrors, Headlights, Door Cups', '10-Year Warranty']
+  },
+  trackPackage: {
+    id: 'trackPackage',
+    name: 'TRACK PACKAGE',
+    price: '2,400',
+    image: '/images/ppf/track-package.png',
+    zones: ['bumper-front', 'hood', 'fender-left', 'fender-right', 'mirror-left', 'mirror-right', 'headlight-left', 'headlight-right', 'door-cup-left', 'door-cup-right', 'door-left', 'door-right'], // Simplified list of zones for now
+    features: ['Everything in Full Front', 'Rocker Panels & A-Pillars', 'Extended Side Impact Protection']
   },
   stealth: {
     id: 'stealth',
     name: 'STEALTH FULL',
     price: 'GET QUOTE',
+    image: '/images/ppf/full-vehicle.png',
     zones: ['bumper-front', 'hood', 'hood-leading', 'fender-left', 'fender-right', 'mirror-left', 'mirror-right', 'door-left', 'door-right', 'door-cup-left', 'door-cup-right', 'roof', 'headlight-left', 'headlight-right'],
     features: ['Every Painted Surface Covered', 'Matte/Satin Finish Available', 'Transferable Lifetime Warranty']
   }
@@ -73,6 +84,7 @@ export default function PPF() {
   const handleZoneClick = (zoneId: string) => {
     if (packages.partial.zones.includes(zoneId)) setSelectedPackage('partial');
     else if (packages.fullFront.zones.includes(zoneId)) setSelectedPackage('fullFront');
+    else if (packages.trackPackage.zones.includes(zoneId)) setSelectedPackage('trackPackage');
     else setSelectedPackage('stealth');
   };
 
@@ -159,33 +171,55 @@ export default function PPF() {
         </div>
       </section>
 
-      {/* INTERACTIVE CAR DIAGRAM */}
+      {/* COVERAGE VISUALIZER */}
       <section className="py-20 lg:py-32 px-6 bg-[#0e0e0e] border-b border-white/5">
-        <h3 className="text-center font-mono font-bold uppercase tracking-[0.3em] text-[10px] mb-8 lg:mb-12 text-[#adaaaa]">Select Impact Zones to View Tier Coverage</h3>
-        <div className="relative w-full max-w-4xl mx-auto flex justify-center">
+        <div className="max-w-7xl mx-auto flex flex-col items-center">
+          <h3 className="text-center font-mono font-bold uppercase tracking-[0.3em] text-[10px] mb-8 lg:mb-12 text-[#adaaaa]">Coverage Visual Reference</h3>
           
-          <PPFFrontSVG 
-            currentPackage={selectedPackage || ''}
-            isZoneActive={isZoneActive}
-            handleZoneClick={handleZoneClick}
-            setHoveredZone={setHoveredZone}
-          />
-          
-          {hoveredZone && (
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 pointer-events-none bg-[#131313]/90 backdrop-blur-sm border border-[#00FF41]/30 text-[#00FF41] px-4 py-2 text-[10px] font-mono uppercase tracking-[0.3em] font-black shadow-[0_0_20px_rgba(0,255,65,0.15)] flex flex-col items-center gap-1 z-20">
-              <span>{formatZoneLabel(hoveredZone)}</span>
-              {hoveredZone === 'bumper-front' && <span className="text-[#ff725e] text-[8px] animate-pulse whitespace-nowrap">60% IMPACT RISK</span>}
-            </div>
-          )}
+          <div className="relative w-full max-w-4xl aspect-[16/9] mb-16 overflow-hidden bg-[#131313] border border-white/5 group">
+             {/* Dynamic Image Overlay */}
+             <div className="absolute inset-0 z-0">
+               {selectedPackage ? (
+                 <img 
+                   src={packages[selectedPackage].image} 
+                   alt={packages[selectedPackage].name}
+                   className="w-full h-full object-contain animate-in fade-in zoom-in duration-500"
+                 />
+               ) : (
+                 <div className="w-full h-full flex items-center justify-center opacity-20 grayscale">
+                    <Shield size={120} className="text-[#adaaaa]" />
+                 </div>
+               )}
+             </div>
+             
+             {/* Interactive SVG Overlay (Keeping for interaction but making it subtle) */}
+             <div className="absolute inset-0 z-10 opacity-20 hover:opacity-100 transition-opacity duration-500">
+               <PPFFrontSVG 
+                 currentPackage={selectedPackage || ''}
+                 isZoneActive={isZoneActive}
+                 handleZoneClick={handleZoneClick}
+                 setHoveredZone={setHoveredZone}
+               />
+             </div>
 
+             {hoveredZone && (
+               <div className="absolute top-4 left-1/2 -translate-x-1/2 pointer-events-none bg-[#131313]/90 backdrop-blur-sm border border-[#00FF41]/30 text-[#00FF41] px-4 py-2 text-[10px] font-mono uppercase tracking-[0.3em] font-black shadow-[0_0_20px_rgba(0,255,65,0.15)] flex flex-col items-center gap-1 z-20">
+                 <span>{formatZoneLabel(hoveredZone)}</span>
+                 {hoveredZone === 'bumper-front' && <span className="text-[#ff725e] text-[8px] animate-pulse whitespace-nowrap">60% IMPACT RISK</span>}
+               </div>
+             )}
+          </div>
+          
+          <p className="text-center font-mono text-[9px] uppercase tracking-widest text-[#00FF41] animate-pulse">
+            {selectedPackage ? `Showing: ${packages[selectedPackage].name}` : 'Select a package below to see coverage area'}
+          </p>
         </div>
-        <p className="text-center font-mono text-[9px] uppercase tracking-widest text-white/30 mt-8">Graphic uses Model S layout. Coverage applies to all makes/models.</p>
       </section>
 
       {/* PACKAGE CARDS */}
       <section className="py-20 px-6 lg:px-12 bg-[#131313]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {(Object.keys(packages) as PpfPackage[]).map((pkgKey) => {
               const pkg = packages[pkgKey];
               const isActive = selectedPackage === pkgKey;
@@ -214,8 +248,9 @@ export default function PPF() {
                       {/* Mobile One-liners */}
                       <p className="lg:hidden mt-2 font-mono text-[8px] font-bold text-[#00FF41] uppercase tracking-widest leading-tight">
                         {pkgKey === 'partial' ? 'Best for daily drivers. Covers the highest-impact zones.' : 
-                         pkgKey === 'fullFront' ? 'The most popular choice. Full front-end protection, 10-year warranty.' : 
-                         'Full vehicle wrapped in matte or satin PPF. Zero paint visible. Zero compromise.'}
+                         pkgKey === 'fullFront' ? 'The most popular choice. Full front-end protection.' : 
+                         pkgKey === 'trackPackage' ? 'Adds rockers and impact zones for spirited driving.' :
+                         'Full vehicle wrap. Zero paint visible. Zero compromise.'}
                       </p>
                     </div>
                     <ul className="space-y-4">

@@ -1,10 +1,15 @@
 import { Award, Star, Shield, Zap, Car, Heart, Target, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
 import jasonPhoto from "/jason.png";
 
 const About = () => {
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="About Area 51 Detailing | Naples' Master Detailer Jason Midler"
+        description="Meet the mind behind Area 51 Detailing. 15+ years of automotive expertise and 7+ years of professional mobile detailing in Naples, FL. Trusted with over $100M in luxury vehicles."
+      />
       {/* Hero Section */}
       <section className="relative border-b border-border bg-card/30 py-16 lg:py-32">
         <div className="container mx-auto px-4 lg:px-8">
@@ -27,8 +32,8 @@ const About = () => {
             <div>
               <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-4">About Us</p>
               <h1 className="text-4xl font-bold leading-tight tracking-tight lg:text-5xl mb-6">
-                <span className="lg:hidden">The difference is classified.</span>
-                <span className="hidden lg:inline">Meet the Mind Behind <span className="text-primary text-glow">Area 51</span></span>
+                <span className="lg:hidden text-glow">Naples' Master Detailer</span>
+                <span className="hidden lg:inline">Meet the Mind Behind <span className="text-primary text-glow">Area 51 Naples</span></span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 <span className="lg:hidden">15 years. One mission. Perfect paint.</span>

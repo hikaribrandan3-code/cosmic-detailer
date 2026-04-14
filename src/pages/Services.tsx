@@ -1,19 +1,24 @@
 import { useOutletContext, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Shield, Droplets, Zap, Clock, Star, ChevronRight, Gauge, Layers } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const ServicesPage = () => {
   const { openQuote } = useOutletContext<{ openQuote: (service?: string) => void }>();
 
   return (
     <div className="bg-background">
+      <SEO 
+        title="Mobile Detailing Services Naples, FL | Full Interior & Exterior"
+        description="Explore the best mobile detailing services in Naples, FL. From full restoration details and interior deep cleans to machine polishing and paint protection. We bring the shop to your driveway."
+      />
 
       {/* Header */}
       <section className="pt-32 pb-16 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <p className="font-mono text-xs uppercase tracking-[0.4em] text-primary mb-4">// OUR SERVICES</p>
           <h1 className="text-5xl font-black italic lg:text-7xl tracking-tighter uppercase">
-            What We <span className="text-primary text-glow">Do</span>
+            Mobile Detailing <span className="text-primary text-glow">Naples</span>
           </h1>
           <p className="mt-6 text-muted-foreground max-w-2xl mx-auto font-mono text-xs uppercase tracking-widest leading-relaxed">
             Every detail documented. Every result guaranteed.

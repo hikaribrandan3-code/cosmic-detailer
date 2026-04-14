@@ -1,4 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import SEO from "@/components/SEO";
 
 const faqs = [
   { q: "What's the difference between a $150 detail and a $250 detail?", a: "The $150 Mini Detail is maintenance: vacuum, wipe-down, quick wash. The $250 Full Detail is restoration: extraction, decontamination, engine bay, door jambs. If your car hasn't been detailed in 6+ months, the Full Detail is the better value. If you maintain it monthly, the Mini keeps it there." },
@@ -14,10 +15,14 @@ const faqs = [
 
 const FAQPage = () => (
   <div>
+    <SEO 
+      title="Naples Auto Detailing — FAQ | Area 51 Detailing"
+      description="Common questions from Naples car owners about ceramic coating, mobile detailing, and paint protection. We answer every text and call personally. Marco Island to Fort Myers."
+    />
     <section className="py-16 lg:py-32 hero-gradient grid-bg">
       <div className="container mx-auto px-4 text-center lg:px-8">
         <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Knowledge Base</p>
-        <h1 className="text-4xl font-bold lg:text-6xl">Frequently Asked <span className="text-primary text-glow">Questions</span></h1>
+        <h1 className="text-4xl font-bold lg:text-6xl">Naples Detailing <span className="text-primary text-glow">FAQ</span></h1>
       </div>
     </section>
 

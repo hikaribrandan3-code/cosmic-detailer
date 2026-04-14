@@ -20,6 +20,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEO from "@/components/SEO";
 
 const packages = {
   entry: { 
@@ -75,6 +76,10 @@ const Ceramic = () => {
 
   return (
     <div className="min-h-screen bg-[#0e0e0e] text-white font-sans antialiased overflow-x-hidden pt-16 pb-32">
+      <SEO 
+        title="Ceramic Coating Naples, FL | 3-5 Year Paint Protection"
+        description="Experience the ultimate in vehicle armor. Area 51 Detailing specializes in professional ceramic coating in Naples, FL. Ultra-high gloss, hydrophobic surface, and permanent UV protection."
+      />
       {/* Sub-header Bar (Mobile-first feel) */}
       <div className="bg-[#131313] text-[#8eff71] font-mono tracking-tighter uppercase border-b border-white/5 flex justify-between items-center w-full px-6 py-2 z-40 lg:hidden">
         <div className="flex items-center gap-2">
@@ -106,7 +111,7 @@ const Ceramic = () => {
               <span className="text-[10px] lg:text-xs font-bold text-[#8eff71] tracking-[0.3em] uppercase">Ceramic Division</span>
             </div>
             <h1 className="text-5xl md:text-7xl lg:text-9xl font-mono font-black border-l-8 border-[#8eff71] pl-6 leading-[0.8] tracking-tighter uppercase italic drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-              CERAMIC<br/><span className="text-[#8eff71]">COATING</span>
+              NAPLES FL<br/><span className="text-[#8eff71]">CERAMIC</span>
             </h1>
             <p className="text-[#adaaaa] text-lg lg:text-2xl font-mono leading-tight max-w-[450px] uppercase tracking-tighter opacity-80">
               <span className="lg:hidden">5 years. Zero wax.</span>
@@ -240,18 +245,18 @@ const Ceramic = () => {
                   image: 'https://images.unsplash.com/photo-1551522435-a13afa10f103?w=800&q=80',
                   desc: { mobile: 'Brake dust bonds to bare metal fast. Ceramic-coated wheels clean in seconds and resist the iron buildup that turns wheels brown.', desktop: 'Protects against brake dust' } },
                 { icon: <User className="w-6 h-6 text-[#8eff71]" />, title: 'Interior Leather', price: '+$199', 
-                  image: 'https://images.unsplash.com/photo-1621360341396-43e98341629d?w=800&q=80',
+                  image: '/images/addons/interior-leather.png', alt: 'Leather conditioning treatment',
                   desc: { mobile: 'Leather in Naples heat cracks and fades fast. Ceramic coating bonds to the surface and keeps it supple, stain-resistant, and looking new.', desktop: 'Prevents stains and wear' } },
                 { icon: <Waves className="w-6 h-6 text-[#8eff71]" />, title: 'Plastic Trim', price: '+$149', 
                   image: 'https://images.unsplash.com/photo-1620891549027-942fdc95d3f5?w=800&q=80',
                   desc: { mobile: 'Faded grey trim drops your car\'s whole look. We restore it black and coat it so it stays that way — not for a week, for years.', desktop: 'Restores and protects trim' } },
                 { icon: <Droplets className="w-6 h-6 text-[#8eff71]" />, title: 'Glass Coating', price: '+$99', 
-                  image: 'https://images.unsplash.com/photo-1557401592-340788647087?w=800&q=80',
+                  image: '/images/addons/glass-coating.png', alt: 'Hydrophobic glass coating',
                   desc: { mobile: 'Rain beads off at speed. No more squinting through a smeared windshield on 75. Visibility up, wiper use down.', desktop: 'Improves rain visibility' } },
               ].map((addon, i) => (
                 <div key={i} className="p-6 bg-[#191a1a] border border-white/5 hover:border-[#8eff71]/30 transition-all group flex flex-col gap-4 relative overflow-hidden">
                   <div className="absolute inset-0 z-0 opacity-20 transition-transform duration-700 group-hover:scale-110">
-                    <img src={addon.image} alt={addon.title} className="w-full h-full object-cover" />
+                    <img src={addon.image} alt={addon.alt || addon.title} className="w-full h-full object-cover" />
                   </div>
                   <div className="absolute inset-0 bg-[#0e0e0e]/40 z-1" />
                   

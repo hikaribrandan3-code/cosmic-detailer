@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Sparkles, Zap, Target, Gauge, Fingerprint, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEO from "@/components/SEO";
 
 const PaintCorrection = () => {
   const { openQuote } = useOutletContext<{ openQuote: (service?: string) => void }>();
@@ -19,6 +20,10 @@ const PaintCorrection = () => {
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-32 selection:bg-[#39FF14] selection:text-black w-full overflow-x-hidden">
+      <SEO 
+        title="Paint Correction Naples, FL | Mirror Finish Restoration"
+        description="Naples' elite paint correction specialists. We remove swirls, scratches, and oxidation permanently. 15+ years experience restoring clear coat to Level-0 clarity."
+      />
       <div className="container mx-auto px-4 lg:px-8">
         
         <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
@@ -28,7 +33,7 @@ const PaintCorrection = () => {
              <span className="hidden lg:inline">RESTORATION / 15+ YEARS MASTERY</span>
           </div>
           <h1 className="text-4xl lg:text-7xl font-black italic uppercase tracking-tighter leading-none">
-            PAINT <span className="text-[#39FF14] text-glow">CORRECTION</span>
+            NAPLES FL <span className="text-[#39FF14] text-glow">RESTORATION</span>
           </h1>
           <p className="font-mono text-xs lg:text-sm uppercase tracking-[0.4em] text-muted-foreground max-w-2xl mx-auto italic">
             <span className="lg:hidden text-white/90 normal-case tracking-widest not-italic leading-relaxed">Naples sun is relentless. Every swirl, scratch, and oxidation mark is exposed in high-def. After 15 years in the game, we don't just "buff" — we diagnose. We remove defects permanently to restore Level-0 surface clarity. Done.</span>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Shield, Sparkles, ChevronRight, Zap, Target, Crosshair } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEO from "@/components/SEO";
 
 const PPF = () => {
   const { openQuote } = useOutletContext<{ openQuote: (service?: string) => void }>();
@@ -37,6 +38,10 @@ const PPF = () => {
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-32 overflow-hidden selection:bg-[#39FF14] selection:text-black">
+      <SEO 
+        title="PPF Naples, FL | Paint Protection Film Specialists"
+        description="Naples' premier Paint Protection Film (PPF) installation. Self-healing clear bra protects your exotic or luxury vehicle from rock chips, debris, and road wear. Invisible armor for Naples drivers."
+      />
       <div className="container mx-auto px-4 lg:px-8">
         
         {/* Tactical Header */}
@@ -46,7 +51,7 @@ const PPF = () => {
              Strategic Preservation System
           </div>
           <h1 className="text-4xl lg:text-7xl font-black italic uppercase tracking-tighter leading-none">
-            AREA 51 <span className="text-[#39FF14] text-glow">PPF</span>
+            NAPLES FL <span className="text-[#39FF14] text-glow">PPF</span>
           </h1>
           <p className="font-mono text-xs lg:text-sm uppercase tracking-[0.4em] text-muted-foreground max-w-2xl mx-auto italic">
             TACTICAL PROTECTION MAP / SPECIMEN: TESLA MODEL 3
