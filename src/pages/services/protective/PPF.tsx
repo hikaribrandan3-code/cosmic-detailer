@@ -150,8 +150,8 @@ export default function PPF() {
       </section>
 
       {/* ─── PPF PACKAGE VISUALIZER (unified, clean) ─── */}
-      <section className="bg-[#0e0e0e] border-b border-white/5">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-0">
+      <section className="bg-[#0e0e0e] border-b border-white/5 scroll-mt-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-40 pb-0">
           <p className="text-center font-mono font-bold uppercase tracking-[0.3em] text-[10px] mb-6 text-[#adaaaa]">Our PPF Packages</p>
           <h2 className="text-center font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-white mb-10">Choose Your <span className="text-[#00FF41]">Coverage</span></h2>
 
