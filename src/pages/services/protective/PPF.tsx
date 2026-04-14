@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useOutletContext } from 'react-router-dom';
 import { 
   Shield, 
@@ -81,7 +82,7 @@ export default function PPF() {
     <div className="min-h-screen bg-[#0e0e0e] text-[#adaaaa] font-sans pt-16 pb-32 overflow-x-hidden selection:bg-[#00FF41] selection:text-black">
       
       {/* HERO SECTION */}
-      <section className="px-6 py-16 lg:py-32 relative overflow-hidden bg-[#0e0e0e] border-b border-white/5">
+      <section className="px-6 py-12 lg:py-16 relative overflow-hidden bg-[#0e0e0e] border-b border-white/5">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" }}></div>
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           <div className="lg:w-1/2">
@@ -150,7 +151,7 @@ export default function PPF() {
 
       {/* ─── PPF PACKAGE VISUALIZER (unified, clean) ─── */}
       <section className="bg-[#0e0e0e] border-b border-white/5">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-14 pb-0">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-0">
           <p className="text-center font-mono font-bold uppercase tracking-[0.3em] text-[10px] mb-6 text-[#adaaaa]">Our PPF Packages</p>
           <h2 className="text-center font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-white mb-10">Choose Your <span className="text-[#00FF41]">Coverage</span></h2>
 
@@ -180,12 +181,12 @@ export default function PPF() {
         </div>
 
         {/* ── FULL-WIDTH IMAGE PANEL ── */}
-        <div className="relative w-full bg-[#111] overflow-hidden" style={{ minHeight: '280px' }}>
+        <div className="relative w-full bg-[#111] overflow-hidden" style={{ minHeight: '300px' }}>
           {/* Green colour-shift filter over the image — hue-rotate turns the blue coverage zones green */}
           <div
             className="w-full transition-opacity duration-500"
             style={{
-              filter: 'hue-rotate(100deg) saturate(1.8) brightness(1.05)',
+              filter: 'hue-rotate(145deg) saturate(2.5) brightness(1.1)',
             }}
           >
             <img
@@ -197,13 +198,81 @@ export default function PPF() {
             />
           </div>
 
+          {/* ── ANIMATED POINTER LINES ── */}
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={selectedPackage}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 pointer-events-none z-20"
+            >
+              <div className="relative w-full h-full max-w-4xl mx-auto">
+                {/* Labels point to specific areas based on package */}
+                {/* Each point has a line and a word */}
+                
+                {/* BUMPER LINE */}
+                <motion.div 
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="absolute top-[65%] left-[18%] flex items-center gap-2"
+                >
+                  <div className="w-1 h-1 rounded-full bg-white shadow-[0_0_10px_white]" />
+                  <div className="h-[1px] w-8 bg-white/50" />
+                  <span className="font-mono text-[8px] lg:text-[10px] uppercase font-bold text-white tracking-widest bg-black/40 px-2 py-1 backdrop-blur-sm">Bumper</span>
+                </motion.div>
+
+                {/* HOOD LINE */}
+                <motion.div 
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="absolute top-[48%] left-[28%] flex flex-col items-center gap-1"
+                >
+                  <span className="font-mono text-[8px] lg:text-[10px] uppercase font-bold text-white tracking-widest bg-black/40 px-2 py-1 backdrop-blur-sm">Full Hood</span>
+                  <div className="w-[1px] h-6 bg-white/50" />
+                  <div className="w-1 h-1 rounded-full bg-white shadow-[0_0_10px_white]" />
+                </motion.div>
+
+                {/* FENDER / MIRROR LINE (Dynamic depending on pkg) */}
+                <motion.div 
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.7 }}
+                  className="absolute top-[55%] left-[45%] flex items-center gap-2"
+                >
+                  <div className="w-1 h-1 rounded-full bg-white shadow-[0_0_10px_white]" />
+                  <div className="h-[1px] w-12 bg-white/50" />
+                  <span className="font-mono text-[8px] lg:text-[10px] uppercase font-bold text-white tracking-widest bg-black/40 px-2 py-1 backdrop-blur-sm">
+                    {selectedPackage === 'partial' ? 'Mirrors' : 'Full Fenders'}
+                  </span>
+                </motion.div>
+
+                {/* ROCKER PANEL / REAR (Only for higher tiers) */}
+                {(selectedPackage === 'trackPackage' || selectedPackage === 'stealth') && (
+                  <motion.div 
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.9 }}
+                    className="absolute top-[75%] left-[55%] flex flex-col items-center gap-1"
+                  >
+                    <span className="font-mono text-[8px] lg:text-[10px] uppercase font-bold text-white tracking-widest bg-black/40 px-2 py-1 backdrop-blur-sm">Rockers / A-Pillars</span>
+                    <div className="w-[1px] h-6 bg-white/50" />
+                    <div className="w-1 h-1 rounded-full bg-white shadow-[0_0_10px_white]" />
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
           {/* Subtle dark vignette edges so image blends into dark bg */}
           <div className="absolute inset-0 pointer-events-none" style={{
             background: 'radial-gradient(ellipse at center, transparent 50%, #0e0e0e 100%)'
           }} />
 
           {/* Coverage label badge */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#0e0e0e]/80 backdrop-blur-sm border border-[#00FF41]/30 px-5 py-2">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#0e0e0e]/80 backdrop-blur-sm border border-[#00FF41]/30 px-5 py-2 z-30">
             <span className="font-mono font-black text-[#00FF41] text-xs uppercase tracking-[0.25em]">
               {currentPkg.name} — {currentPkg.price !== 'GET QUOTE' ? `$${currentPkg.price}` : 'Get Quote'}
             </span>
@@ -211,7 +280,7 @@ export default function PPF() {
         </div>
 
         {/* ── DETAIL PANEL ── */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 lg:py-14">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 lg:py-10 text-center lg:text-left">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
             
             {/* Left: name + description */}
@@ -260,7 +329,7 @@ export default function PPF() {
       </section>
 
       {/* SMART RECOMMENDER */}
-      <section className="px-6 py-20 lg:py-32 bg-[#0e0e0e]" id="funnel" ref={funnelRef}>
+      <section className="px-6 py-12 lg:py-16 bg-[#0e0e0e]" id="funnel" ref={funnelRef}>
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-6xl font-mono font-black uppercase tracking-tighter italic text-white">NOT SURE? <span className="text-[#00FF41]">WE'LL HELP.</span></h2>

@@ -39,12 +39,12 @@ export const AmbientUFO = () => {
       animate={floatX}
       transition={floatTransition}
     >
-      <div className="relative w-28 h-12">
+      <div className="relative w-[88px] h-[38px]">
         {/* Saucer Hull (Glassmorphism) */}
         <div className="absolute inset-0 bg-[#1a1b1a]/40 backdrop-blur-md rounded-[100%] border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.4)]" />
         
         {/* Cockpit Dome */}
-        <div className="absolute top-[-25%] left-1/2 -translate-x-1/2 w-8 h-4 bg-cyan-500/20 rounded-[100%] border border-cyan-400/30 overflow-hidden">
+        <div className="absolute top-[-25%] left-1/2 -translate-x-1/2 w-[26px] h-[13px] bg-cyan-500/20 rounded-[100%] border border-cyan-400/30 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/10 to-transparent" />
         </div>
 
