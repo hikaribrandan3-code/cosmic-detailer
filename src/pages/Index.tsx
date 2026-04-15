@@ -95,7 +95,7 @@ const Index = () => {
       </section>
 
       {/* Why We're Different / Problem/Solution Hybrid */}
-      <section className="py-16 lg:py-32">
+      <section className="py-10 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Mobile: Simple List */}
           <div className="lg:hidden max-w-3xl mx-auto">
@@ -154,9 +154,9 @@ const Index = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="border-t border-border py-24 lg:py-32 bg-card/50">
+      <section className="border-t border-border py-12 lg:py-20 bg-card/50">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">What We Offer</p>
             <h2 className="text-3xl font-bold lg:text-5xl">Our Services</h2>
           </div>
@@ -202,9 +202,9 @@ const Index = () => {
       </section>
 
       {/* Why Us */}
-      <section className="py-16 lg:py-32">
+      <section className="py-10 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Why Area 51</p>
             <h2 className="text-3xl font-bold lg:text-5xl">Why Us</h2>
           </div>
@@ -228,9 +228,9 @@ const Index = () => {
       </section>
 
       {/* Portfolio Teaser */}
-      <section className="border-t border-border py-24 lg:py-32 bg-card/50">
+      <section className="border-t border-border py-12 lg:py-20 bg-card/50">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Portfolio</p>
             <h2 className="text-3xl font-bold lg:text-5xl">Our Work</h2>
           </div>
@@ -253,9 +253,9 @@ const Index = () => {
       </section>
 
       {/* Reviews */}
-      <section className="py-16 lg:py-32">
+      <section className="py-10 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Social Proof</p>
             <h2 className="text-3xl font-bold lg:text-5xl mb-6">What Our Clients Say</h2>
             <a 
@@ -299,9 +299,9 @@ const Index = () => {
       </section>
 
       {/* FAQ Teaser */}
-      <section className="border-t border-border py-24 lg:py-32 bg-card/50">
+      <section className="border-t border-border py-12 lg:py-20 bg-card/50">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">FAQ</p>
             <h2 className="text-3xl font-bold lg:text-5xl">Common Questions</h2>
           </div>
@@ -326,7 +326,7 @@ const Index = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 lg:py-32 hero-gradient grid-bg">
+      <section className="py-12 lg:py-20 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <div className="inline-block mb-4 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-primary">LIMITED SPOTS THIS WEEK</p>

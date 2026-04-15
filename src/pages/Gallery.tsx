@@ -8,7 +8,7 @@ const GalleryPage = () => {
         title="Naples Detailing Gallery | Before & After Portfolio"
         description="See the mirror-finish results of our ceramic coating, paint correction, and mobile detailing in Naples, FL. Real transformations, real luxury."
       />
-      <section className="py-16 lg:py-32 hero-gradient grid-bg">
+      <section className="py-10 lg:py-16 hero-gradient grid-bg">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Portfolio</p>
           <h1 className="text-4xl font-bold lg:text-6xl">Naples Detailing <span className="text-primary text-glow">Portfolio</span></h1>
@@ -16,7 +16,7 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      <section className="py-16 lg:py-32">
+      <section className="py-10 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }, (_, i) => (

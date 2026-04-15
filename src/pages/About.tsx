@@ -11,7 +11,7 @@ const About = () => {
         description="Meet the mind behind Area 51 Detailing. 15+ years of automotive expertise and 7+ years of professional mobile detailing in Naples, FL. Trusted with over $100M in luxury vehicles."
       />
       {/* Hero Section */}
-      <section className="relative border-b border-border bg-card/30 py-16 lg:py-32">
+      <section className="relative border-b border-border bg-card/30 py-10 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             {/* Photo */}
@@ -68,7 +68,7 @@ const About = () => {
       </section>
 
       {/* Story Section */}
-      <section className="py-16 lg:py-32">
+      <section className="py-10 lg:py-20">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
           <div className="space-y-12">
             {/* Block 1 */}

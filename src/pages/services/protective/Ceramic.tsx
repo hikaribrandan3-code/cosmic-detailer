@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useOutletContext, useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { 
   Shield, 
   Sparkles, 

@@ -19,14 +19,14 @@ const FAQPage = () => (
       title="Naples Auto Detailing — FAQ | Area 51 Detailing"
       description="Common questions from Naples car owners about ceramic coating, mobile detailing, and paint protection. We answer every text and call personally. Marco Island to Fort Myers."
     />
-    <section className="py-16 lg:py-32 hero-gradient grid-bg">
+    <section className="py-10 lg:py-16 hero-gradient grid-bg">
       <div className="container mx-auto px-4 text-center lg:px-8">
         <p className="font-mono text-sm uppercase tracking-[0.3em] text-primary mb-3">Knowledge Base</p>
         <h1 className="text-4xl font-bold lg:text-6xl">Naples Detailing <span className="text-primary text-glow">FAQ</span></h1>
       </div>
     </section>
 
-    <section className="py-16 lg:py-32 pb-32">
+    <section className="py-10 lg:py-20">
       <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
         
         <p className="mb-12 font-mono text-xs uppercase tracking-widest leading-relaxed text-muted-foreground border-l-2 border-primary pl-4 max-w-xl mx-auto">

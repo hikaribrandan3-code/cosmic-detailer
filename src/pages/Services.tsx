@@ -14,7 +14,7 @@ const ServicesPage = () => {
       />
 
       {/* Hero */}
-      <section className="relative px-6 overflow-hidden pt-[140px] pb-24 min-h-[60vh] flex flex-col justify-center items-center text-center border-b border-white/5">
+      <section className="relative px-6 overflow-hidden pt-24 pb-12 lg:pt-32 lg:pb-16 min-h-[50vh] flex flex-col justify-center items-center text-center border-b border-white/5">
         <div className="absolute inset-0 z-0">
           <img
             src="/images/bg/full-detail-bg.png"
@@ -227,7 +227,7 @@ const ServicesPage = () => {
       </section>
 
       {/* PROTECTIVE SERVICES SECTION */}
-      <section className="py-16 lg:py-32 bg-card/20 border-t border-white/5">
+      <section className="py-12 lg:py-20 bg-card/20 border-t border-white/5">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16 space-y-4">
             <p className="font-mono text-xs uppercase tracking-[0.4em] text-primary">// LONG-TERM PROTECTION</p>
@@ -299,7 +299,7 @@ interface ServiceDetailProps {
 }
 
 const ServiceDetail = ({ id, badge, serviceNumber, title, tagline, price, time, ctaLabel, ctaService, openQuote, bgImage, experience, sections, difference }: ServiceDetailProps) => (
-  <section id={id} className="py-16 pt-24 bg-black relative">
+  <section id={id} className="py-10 pt-14 bg-black relative">
     <div className="container mx-auto px-4 lg:px-8 relative z-10">
       <div className="grid lg:grid-cols-[1fr_380px] gap-16 items-start">
 

@@ -288,18 +288,6 @@ export default function PPF() {
 
       {/* REVIEW MARQUEE */}
       <section className="py-12 bg-[#191a1a] border-y border-white/10 overflow-hidden">
-        <style>{`
-          @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-marquee {
-            animation: marquee 30s linear infinite;
-          }
-          .animate-marquee:hover {
-            animation-play-state: paused;
-          }
-        `}</style>
         <div className="relative w-full will-change-transform">
           <div className="flex whitespace-nowrap animate-marquee">
             {[

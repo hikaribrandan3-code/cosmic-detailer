@@ -64,6 +64,19 @@
 }
 
 @layer utilities {
+  /* Shared marquee animation — used by PPF and Tint pages */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+
   .text-glow {
     text-shadow: 0 0 20px hsl(110 100% 54% / 0.4), 0 0 40px hsl(110 100% 54% / 0.2);
   }

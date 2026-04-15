@@ -84,19 +84,6 @@ export default function Tint() {
         title="Window Tint Naples, FL | Ceramic & Carbon Film Installation"
         description="Professional window tint in Naples, FL. Ceramic film blocks 99% UV and up to 98% infrared heat. Computer-cut precision install with lifetime warranty."
       />
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
       {/* Mobile Sub-header */}
       <div className="bg-[#131313] text-[#39FF14] font-display tracking-tighter uppercase border-b border-white/5 flex justify-between items-center w-full px-6 py-2 z-40 lg:hidden italic">
         <div className="flex items-center gap-2">
