@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useOutletContext } from 'react-router-dom';
-import { 
-  Shield, 
-  MapPin, 
-  ArrowRight, 
-  AlertTriangle, 
+import {
+  ArrowRight,
+  AlertTriangle,
   CheckCircle2,
   TrendingDown
 } from 'lucide-react';
@@ -37,7 +35,7 @@ const packages = {
     name: 'TRACK PACKAGE',
     price: '2,400',
     image: '/images/ppf/track-package.png',
-    zones: ['bumper-front', 'hood', 'fender-left', 'fender-right', 'mirror-left', 'mirror-right', 'headlight-left', 'headlight-right', 'door-cup-left', 'door-cup-right', 'door-left', 'door-right'], // Simplified list of zones for now
+    zones: ['bumper-front', 'hood', 'fender-left', 'fender-right', 'mirror-left', 'mirror-right', 'headlight-left', 'headlight-right', 'door-cup-left', 'door-cup-right', 'door-left', 'door-right'],
     features: ['Everything in Full Front', 'Rocker Panels & A-Pillars', 'Extended Side Impact Protection']
   },
   stealth: {
@@ -52,14 +50,13 @@ const packages = {
 
 export default function PPF() {
   const { openQuote } = useOutletContext<{ openQuote: (service?: string) => void }>();
-  
-  // Default to fullFront so the visualizer always has something to show
+
   const [selectedPackage, setSelectedPackage] = useState<PpfPackage>('fullFront');
-  
+
   // Quiz State
   const [usage, setUsage] = useState<Usage>(null);
   const [threat, setThreat] = useState<Threat>(null);
-  
+
   const funnelRef = useRef<HTMLDivElement>(null);
 
   // Engine: Quiz mapping
@@ -79,84 +76,54 @@ export default function PPF() {
   const currentPkg = packages[selectedPackage];
 
   return (
-    <div className="min-h-screen bg-[#0e0e0e] text-[#adaaaa] font-sans pt-16 pb-32 overflow-x-hidden selection:bg-[#00FF41] selection:text-black">
-      
-      {/* HERO SECTION */}
-      <section className="px-6 py-12 lg:py-16 relative overflow-hidden bg-[#0e0e0e] border-b border-white/5">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" }}></div>
-        <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-          <div className="lg:w-1/2">
-            <span className="text-[#00FF41] font-mono font-bold uppercase tracking-[0.2em] text-[10px] lg:text-xs">Just Took Delivery?</span>
-            <h2 className="mt-4 text-5xl md:text-7xl font-mono font-black leading-[0.9] uppercase tracking-tighter italic text-white drop-shadow-lg">
-              <span className="lg:hidden">YOUR NEW CAR IS PERFECT. FOR NOW.</span>
-              <span className="hidden lg:inline">PROTECT IT BEFORE<br/><span className="text-[#00FF41]">THE FIRST CHIP</span></span>
-            </h2>
-            <p className="mt-6 text-[#adaaaa] max-w-md font-mono text-xs lg:text-sm uppercase tracking-widest leading-relaxed">
-              <span className="lg:hidden text-white/90">One rock chip at highway speed and you're looking at a $800 body shop visit — if they can even match the paint. PPF stops it before it starts. Professionally applied, virtually invisible, and if it ever takes a hit — just peel it off and replace it. Your paint underneath stays factory perfect.</span>
-              <span className="hidden lg:inline">That new car smell comes with a countdown. Highway debris hits at <span className="text-white font-bold">140mph</span>. Your factory paint won't survive the drive home.</span>
-            </p>
-            {/* Mobile Trust Bar */}
-            <div className="lg:hidden mt-8 grid grid-cols-2 gap-3 py-6 border-y border-white/5 bg-[#131313]/50">
-              {[
-                "NEW CAR? PROTECT IT NOW",
-                "PROFESSIONAL APPLICATION",
-                "10-YEAR WARRANTY",
-                "PEEL & REPLACE IF DAMAGED"
-              ].map(trust => (
-                <div key={trust} className="flex items-center gap-2 px-1">
-                  <span className="text-[#00FF41] text-xs">✓</span>
-                  <span className="text-[8px] font-mono font-black tracking-widest text-[#adaaaa] leading-tight uppercase">{trust}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="lg:w-1/2 w-full pt-12 lg:pt-0">
-             {/* PAIN POINTS */}
-            <div className="grid grid-cols-1 gap-4">
-              <div className="bg-[#131313] p-6 lg:p-8 border-l-4 border-[#ff725e] group hover:border-[#ff725e]/50 transition-all">
-                <div className="flex items-center gap-2 text-[#ff725e] mb-3">
-                  <AlertTriangle className="w-4 h-4" />
-                  <span className="font-mono font-bold uppercase text-[10px] tracking-[0.3em]">Paint Matching = Impossible</span>
-                </div>
-                <h3 className="text-xl lg:text-2xl font-mono font-black uppercase leading-tight italic text-white">BODY SHOPS CAN'T MATCH ROBOTS</h3>
-                <p className="mt-2 text-[#adaaaa] font-mono text-[9px] uppercase tracking-widest leading-relaxed opacity-80">
-                  <span className="lg:hidden">Factory paint is applied by robots in a controlled environment. Body shops use spray guns and hope. One chip leads to a panel respray. One respray leads to a Carfax flag. Protect the original — it's worth more.</span>
-                  <span className="hidden lg:inline">Factory: 3-stage electrostatic precision. Body shop: Gravity-fed spray gun + hope. Your metallic pearl will never lay the same way twice.</span>
-                </p>
-              </div>
-              <div className="bg-[#131313] p-6 lg:p-8 border-l-4 border-[#ff725e] group hover:border-[#ff725e]/50 transition-all">
-                <div className="flex items-center gap-2 text-[#ff725e] mb-3">
-                  <TrendingDown className="w-4 h-4" />
-                  <span className="font-mono font-bold uppercase text-[10px] tracking-[0.3em]">CARFAX Flags</span>
-                </div>
-                <h3 className="text-xl lg:text-2xl font-mono font-black uppercase leading-tight italic text-white">A RESPRAY IS A RED FLAG</h3>
-                <p className="mt-2 text-[#adaaaa] font-mono text-[9px] uppercase tracking-widest leading-relaxed opacity-80">
-                  <span className="lg:hidden">A single paint correction or respray shows up on Carfax as a damage flag. That drops resale value by 15% instantly. PPF means your paint never needs repainting — it stays original, clean, and full value.</span>
-                  <span className="hidden lg:inline">One "minor" chip leads to a panel respray. One respray leads to a "Minor Accident" flag on CARFAX. Resale value drops 15% instantly.</span>
-                </p>
-              </div>
-            </div>
+    <div className="min-h-screen bg-[#0e0e0e] text-[#adaaaa] font-sans pt-16 pb-24 overflow-x-hidden selection:bg-[#39ff14] selection:text-[#053900]">
 
-            {/* Mobile-only "Even Easier to Clean" Section */}
-            <div className="lg:hidden mt-8 bg-[#131313] p-6 border border-[#39ff14]/20 shadow-[0_0_20px_rgba(57,255,20,0.05)]">
-              <h3 className="text-xl font-mono font-black uppercase italic text-white mb-1">EVEN EASIER TO CLEAN</h3>
-              <p className="text-[10px] font-mono font-bold text-[#00FF41] uppercase tracking-[0.2em] mb-3">ADD PAINT PROTECTION + CERAMIC COATING</p>
-              <p className="text-[#adaaaa] font-mono text-[9px] uppercase tracking-widest leading-relaxed">
-                PPF alone is great. PPF + ceramic coating is next level. The coating bonds to the film — water beads off, dirt slides off, and your car stays cleaner longer between washes. Ask us about the combo package.
-              </p>
-            </div>
+      {/* HERO SECTION - CENTER STACKED */}
+      <section className="px-6 pt-24 pb-6 lg:pt-32 lg:pb-8 relative overflow-hidden bg-[#0e0e0e] flex flex-col items-center justify-center text-center border-b border-white/5">
+        {/* Background Image with Fade */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/bg/ppf-tint-bg.png"
+            alt="PPF Application installation preview"
+            className="w-full h-full object-cover opacity-40 contrast-125"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0e0e0e]/80 via-transparent to-[#0e0e0e]/40"></div>
+        </div>
+
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" }}></div>
+
+        <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">
+          <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-display font-black leading-[0.9] uppercase tracking-tighter italic text-white drop-shadow-2xl">
+            PAINT PROTECTION FILM
+          </h1>
+          <p className="mt-4 text-[#39FF14] font-mono text-sm lg:text-base font-bold uppercase tracking-widest">
+            (Polyurethane film to prevent rock chips and road rash)
+          </p>
+          <p className="mt-8 text-[#e5e5e5] text-base lg:text-lg font-medium leading-relaxed max-w-2xl px-4">
+            Your factory paint is under attack the moment you leave the lot. Road debris. Bug guts. UV damage. It adds up.
+          </p>
+
+          {/* Trust Bar */}
+          <div className="mt-8 mb-0 w-full flex justify-center">
+            <p className="text-[10px] lg:text-xs font-mono font-black tracking-[0.2em] lg:tracking-[0.3em] text-[#adaaaa] uppercase border-y border-white/10 py-4 px-4 w-full md:w-auto">
+              <span className="hidden md:inline">9MIL THICK • SELF-HEALING • CERAMIC-INFUSED • 10-YEAR WARRANTY</span>
+              <span className="md:hidden flex flex-col gap-2">
+                <span>9MIL THICK • SELF-HEALING</span>
+                <span>CERAMIC-INFUSED • 10-YEAR WARRANTY</span>
+              </span>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ─── PPF PACKAGE VISUALIZER (unified, clean) ─── */}
-      <section className="bg-[#0e0e0e] border-b border-white/5 scroll-mt-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-40 pb-0">
-          <p className="text-center font-mono font-bold uppercase tracking-[0.3em] text-[10px] mb-6 text-[#adaaaa]">Our PPF Packages</p>
-          <h2 className="text-center font-mono text-3xl lg:text-5xl font-black uppercase tracking-tighter text-white mb-10">Choose Your <span className="text-[#00FF41]">Coverage</span></h2>
+      {/* ─── PPF PACKAGE VISUALIZER ─── */}
+      <section id="coverage-map" className="bg-[#0e0e0e] border-b border-white/5 scroll-mt-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-0">
+          <h2 className="text-center font-display text-3xl lg:text-5xl font-black uppercase tracking-tighter text-white mb-4 leading-[0.8]">SELECT YOUR <span className="text-[#39FF14]">SHIELD</span></h2>
 
           {/* ── TAB STRIP ── */}
-          <div className="flex overflow-x-auto no-scrollbar gap-2 pb-2 mb-0 pt-4">
+          <div className="flex justify-start md:justify-center overflow-x-auto no-scrollbar gap-2 pb-2 mb-0 pt-4">
             {(Object.keys(packages) as PpfPackage[]).map((pkgKey) => {
               const pkg = packages[pkgKey];
               const isActive = selectedPackage === pkgKey;
@@ -164,14 +131,16 @@ export default function PPF() {
                 <button
                   key={pkgKey}
                   onClick={() => setSelectedPackage(pkgKey)}
-                  className={`relative flex-shrink-0 px-5 py-3 font-mono font-black text-[10px] lg:text-xs uppercase tracking-[0.2em] transition-all duration-200 border-b-2 ${
+                  className={`relative flex-shrink-0 px-6 py-3 font-display font-black text-sm lg:text-lg uppercase tracking-[0.1em] transition-all duration-200 border ${
                     isActive
-                      ? 'border-[#00FF41] text-[#00FF41] bg-[#00FF41]/5'
-                      : 'border-transparent text-[#adaaaa] hover:text-white hover:border-white/20'
+                      ? 'border-[#39FF14] text-[#39FF14] bg-[#39FF14]/10 shadow-[0_0_15px_rgba(57,255,20,0.1)]'
+                      : 'border-white/10 text-[#adaaaa] hover:text-white hover:border-white/30 hover:bg-white/5'
                   }`}
                 >
                   {pkgKey === 'fullFront' && (
-                    <span className="absolute -top-2 right-1 text-[8px] bg-[#00FF41] text-[#053900] px-1.5 font-black uppercase tracking-wider">★ Popular</span>
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+                      <span className="bg-[#39FF14] text-[#053900] text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full whitespace-nowrap shadow-[0_4px_10px_rgba(57,255,20,0.3)]">★ RECOMMENDED</span>
+                    </div>
                   )}
                   {pkg.name}
                 </button>
@@ -181,26 +150,25 @@ export default function PPF() {
         </div>
 
         {/* ── FULL-WIDTH IMAGE PANEL ── */}
-        <div className="relative w-full bg-[#111] overflow-hidden" style={{ minHeight: '300px' }}>
-          {/* Green colour-shift filter over the image — hue-rotate turns the blue coverage zones green */}
+        <div className="relative w-full bg-[#111] overflow-hidden">
           <div
             className="w-full transition-opacity duration-500"
             style={{
-              filter: 'hue-rotate(145deg) saturate(2.5) brightness(1.1)',
+              filter: 'saturate(1.5) brightness(1.1)',
             }}
           >
             <img
               key={selectedPackage}
               src={currentPkg.image}
               alt={currentPkg.name + ' PPF coverage'}
-              className="w-full h-auto object-contain mx-auto block"
+              className="w-full h-auto object-contain mx-auto block -mt-10 lg:-mt-20 scale-105"
               style={{ maxHeight: '480px', objectPosition: 'center' }}
             />
           </div>
 
           {/* ── ANIMATED POINTER LINES ── */}
           <AnimatePresence mode="wait">
-            <motion.div 
+            <motion.div
               key={selectedPackage}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -208,11 +176,8 @@ export default function PPF() {
               className="absolute inset-0 pointer-events-none z-20"
             >
               <div className="relative w-full h-full max-w-4xl mx-auto">
-                {/* Labels point to specific areas based on package */}
-                {/* Each point has a line and a word */}
-                
                 {/* BUMPER LINE */}
-                <motion.div 
+                <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.3 }}
@@ -224,7 +189,7 @@ export default function PPF() {
                 </motion.div>
 
                 {/* HOOD LINE */}
-                <motion.div 
+                <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5 }}
@@ -235,8 +200,8 @@ export default function PPF() {
                   <div className="w-1 h-1 rounded-full bg-white shadow-[0_0_10px_white]" />
                 </motion.div>
 
-                {/* FENDER / MIRROR LINE (Dynamic depending on pkg) */}
-                <motion.div 
+                {/* FENDER / MIRROR LINE */}
+                <motion.div
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.7 }}
@@ -251,7 +216,7 @@ export default function PPF() {
 
                 {/* ROCKER PANEL / REAR (Only for higher tiers) */}
                 {(selectedPackage === 'trackPackage' || selectedPackage === 'stealth') && (
-                  <motion.div 
+                  <motion.div
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 0.9 }}
@@ -266,29 +231,22 @@ export default function PPF() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Subtle dark vignette edges so image blends into dark bg */}
+          {/* Subtle dark vignette edges */}
           <div className="absolute inset-0 pointer-events-none" style={{
             background: 'radial-gradient(ellipse at center, transparent 50%, #0e0e0e 100%)'
           }} />
-
-          {/* Coverage label badge */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#0e0e0e]/80 backdrop-blur-sm border border-[#00FF41]/30 px-5 py-2 z-30">
-            <span className="font-mono font-black text-[#00FF41] text-xs uppercase tracking-[0.25em]">
-              {currentPkg.name} — {currentPkg.price !== 'GET QUOTE' ? `$${currentPkg.price}` : 'Get Quote'}
-            </span>
-          </div>
         </div>
 
-        {/* ── DETAIL PANEL ── */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 lg:py-10 text-center lg:text-left">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
-            
-            {/* Left: name + description */}
-            <div className="lg:w-1/2">
-              <h3 className="font-mono text-4xl lg:text-5xl font-black italic uppercase tracking-tighter text-white leading-none mb-3">
+        {/* ── DETAIL PANEL - LUXURY SPLIT ── */}
+        <div className="max-w-5xl mx-auto px-6 pt-4 lg:pt-0 pb-12 lg:pb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+            {/* Left: Bio / Summary */}
+            <div className="space-y-6">
+              <h3 className="font-display text-5xl lg:text-7xl font-black italic uppercase tracking-tighter text-white leading-[0.8]">
                 {currentPkg.name}
               </h3>
-              <p className="font-mono text-[10px] lg:text-xs uppercase tracking-widest text-[#adaaaa] leading-relaxed">
+              <p className="text-sm lg:text-base text-[#adaaaa] leading-relaxed font-medium max-w-md">
                 {selectedPackage === 'partial'
                   ? 'Covers the highest-impact front zones: bumper, hood leading edge, mirrors and door cups. Ideal for daily drivers who want smart protection on a tighter budget.'
                   : selectedPackage === 'fullFront'
@@ -299,31 +257,100 @@ export default function PPF() {
               </p>
             </div>
 
-            {/* Right: features + CTA */}
-            <div className="lg:w-1/2">
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-8">
-                {currentPkg.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 shrink-0 text-[#00FF41]" />
-                    <span className="font-mono text-[10px] lg:text-xs text-[#e5e2e1] uppercase tracking-wider">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-[#adaaaa] font-mono text-[10px] uppercase tracking-widest">Starting at</span>
-                  <span className="font-mono font-black italic text-3xl lg:text-4xl tracking-tighter text-white">
-                    {currentPkg.price !== 'GET QUOTE' ? `$${currentPkg.price}` : 'Custom'}
+            {/* Right: Technical Specs & Pricing */}
+            <div className="space-y-12">
+              <div className="space-y-6">
+                <h4 className="text-[10px] font-mono font-black uppercase tracking-[0.3em] text-[#39FF14]">Package Inclusive</h4>
+                <ul className="flex flex-col gap-4">
+                  {currentPkg.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-4">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 text-[#39FF14]" />
+                      <span className="font-mono text-[10px] lg:text-xs text-[#e5e2e1] uppercase tracking-wider">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-8 border-t border-white/10 shrink-0">
+                <div className="flex flex-col">
+                  <span className="text-gray-500 font-mono text-[10px] uppercase tracking-[0.2em] mb-3">Base Investment</span>
+                  <span className="font-display font-black italic text-5xl lg:text-6xl tracking-tighter text-white leading-none">
+                    {currentPkg.price !== 'GET QUOTE' ? `$${currentPkg.price}` : 'CALL'}
                   </span>
                 </div>
-                <button
-                  onClick={() => openQuote(`PPF: ${currentPkg.name}`)}
-                  className="w-full sm:w-auto bg-[#00FF41] text-[#053900] font-mono font-black uppercase tracking-[0.2em] text-xs px-8 py-4 hover:bg-[#32e612] active:scale-95 transition-all shadow-[0_0_24px_rgba(0,255,65,0.3)]"
-                >
-                  GET FREE QUOTE →
-                </button>
               </div>
             </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      {/* REVIEW MARQUEE */}
+      <section className="py-12 bg-[#191a1a] border-y border-white/10 overflow-hidden">
+        <style>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 30s linear infinite;
+          }
+          .animate-marquee:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+        <div className="relative w-full will-change-transform">
+          <div className="flex whitespace-nowrap animate-marquee">
+            {[
+              { text: '"Absolutely amazing job. Best detailing I\'ve had on any of my cars. 100% recommended!"', author: 'Manu GP, Tesla Model Y' },
+              { text: '"Found them on Google and the reviews convinced me. My 9-month-old Tesla came back flawless."', author: 'Tesla Model Y Owner, Naples' },
+              { text: '"Pricing was very affordable and the PPF is invisible. My paint still looks factory perfect."', author: 'Local Customer, Naples FL' },
+            ].map((r, i) => (
+              <div key={i} className="inline-flex flex-col px-8 border-r border-white/10 w-[340px] shrink-0 whitespace-normal">
+                <div className="flex gap-1 text-[#39FF14] mb-2">
+                  {[...Array(5)].map((_, j) => (
+                    <svg key={j} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  ))}
+                </div>
+                <p className="text-sm font-bold italic font-display uppercase tracking-wider mb-1 text-white line-clamp-2">{r.text}</p>
+                <span className="text-[10px] text-[#adaaaa] uppercase tracking-widest">{r.author}</span>
+              </div>
+            ))}
+            {[
+              { text: '"Absolutely amazing job. Best detailing I\'ve had on any of my cars. 100% recommended!"', author: 'Manu GP, Tesla Model Y' },
+              { text: '"Found them on Google and the reviews convinced me. My 9-month-old Tesla came back flawless."', author: 'Tesla Model Y Owner, Naples' },
+              { text: '"Pricing was very affordable and the PPF is invisible. My paint still looks factory perfect."', author: 'Local Customer, Naples FL' },
+            ].map((r, i) => (
+              <div key={`dup-${i}`} className="inline-flex flex-col px-8 border-r border-white/10 w-[340px] shrink-0 whitespace-normal">
+                <div className="flex gap-1 text-[#39FF14] mb-2">
+                  {[...Array(5)].map((_, j) => (
+                    <svg key={j} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                  ))}
+                </div>
+                <p className="text-sm font-bold italic font-display uppercase tracking-wider mb-1 text-white line-clamp-2">{r.text}</p>
+                <span className="text-[10px] text-[#adaaaa] uppercase tracking-widest">{r.author}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST LOGOS */}
+      <section className="bg-[#131313] px-6 py-6 lg:py-8 border-y border-white/5">
+        <p className="text-center font-mono font-bold text-[9px] uppercase tracking-[0.4em] text-white mb-6">Certified Film Partners</p>
+        <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-100">
+          <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
+            <span className="text-3xl lg:text-5xl font-display font-black italic tracking-tighter text-white">STEK</span>
+            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#39FF14]">Authorized Dealer</span>
+          </div>
+          <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
+            <span className="text-3xl lg:text-5xl font-display font-black tracking-tight text-white">XPEL</span>
+            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#39FF14]">Ultimate Plus</span>
+          </div>
+          <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
+            <span className="text-3xl lg:text-5xl font-display font-black italic tracking-tighter text-white">3M</span>
+            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#39FF14]">Pro Series</span>
           </div>
         </div>
       </section>
@@ -332,52 +359,52 @@ export default function PPF() {
       <section className="px-6 py-12 lg:py-16 bg-[#0e0e0e]" id="funnel" ref={funnelRef}>
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-6xl font-mono font-black uppercase tracking-tighter italic text-white">NOT SURE? <span className="text-[#00FF41]">WE'LL HELP.</span></h2>
-            <div className="h-1 w-12 bg-[#00FF41] mx-auto mt-6 shadow-[0_0_10px_#00FF41]"></div>
+            <h2 className="text-4xl lg:text-6xl font-display font-black uppercase tracking-tighter italic text-white">NOT SURE? <span className="text-[#39FF14]">WE'LL HELP.</span></h2>
+            <div className="h-1 w-12 bg-[#39FF14] mx-auto mt-6 shadow-[0_0_10px_#39FF14]"></div>
             <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] font-bold text-[#adaaaa]">
               <span className="lg:hidden">Answer 2 quick questions and we'll tell you exactly what your car needs.</span>
               <span className="hidden lg:inline">Answer 2 questions to find your coverage tier.</span>
             </p>
           </div>
-          
+
           <div className="space-y-12">
-            
+
             {/* Step 1 */}
             <div className="space-y-4">
-              <p className="font-mono font-bold uppercase text-[10px] tracking-[0.3em] text-[#00FF41]">01 — How do you drive?</p>
+              <p className="font-mono font-bold uppercase text-[10px] tracking-[0.3em] text-[#39FF14]">01 — How do you drive?</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button 
+                <button
                   onClick={() => setUsage('city')}
-                  className={`py-8 px-6 border-2 transition-all font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest flex items-center justify-center ${usage === 'city' ? 'border-[#00FF41] bg-[#00FF41]/10 text-[#00FF41]' : 'border-[#262626] bg-[#131313] hover:border-[#484847] text-white hover:bg-[#1a1a1a]'}`}
+                  className={`py-8 px-6 border-2 transition-all font-display text-sm font-black uppercase italic tracking-widest flex items-center justify-center ${usage === 'city' ? 'border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14]' : 'border-[#262626] bg-[#131313] hover:border-[#484847] text-white hover:bg-[#1a1a1a]'}`}
                 >
                   City/Suburban
                 </button>
-                <button 
+                <button
                   onClick={() => setUsage('highway')}
-                  className={`py-8 px-6 border-2 transition-all font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest flex items-center justify-center ${usage === 'highway' ? 'border-[#00FF41] bg-[#00FF41]/10 text-[#00FF41]' : 'border-[#262626] bg-[#131313] hover:border-[#484847] text-white hover:bg-[#1a1a1a]'}`}
+                  className={`py-8 px-6 border-2 transition-all font-display text-sm font-black uppercase italic tracking-widest flex items-center justify-center ${usage === 'highway' ? 'border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14]' : 'border-[#262626] bg-[#131313] hover:border-[#484847] text-white hover:bg-[#1a1a1a]'}`}
                 >
                   Highway Commuter
                 </button>
               </div>
             </div>
-            
+
             {/* Step 2 */}
             <div className="space-y-4">
-              <p className="font-mono font-bold uppercase text-[10px] tracking-[0.3em] text-[#00FF41]">02 — What's your main concern?</p>
+              <p className="font-mono font-bold uppercase text-[10px] tracking-[0.3em] text-[#39FF14]">02 — What's your main concern?</p>
               <div className="grid grid-cols-1 gap-4">
-                <button 
+                <button
                   onClick={() => setThreat('rocks')}
-                  className={`flex justify-between items-center p-6 lg:p-8 border-2 transition-all group ${threat === 'rocks' ? 'bg-[#00FF41]/10 border-[#00FF41]' : 'bg-[#131313] border-[#262626] hover:bg-white/5'}`}
+                  className={`flex justify-between items-center p-6 lg:p-8 border-2 transition-all group ${threat === 'rocks' ? 'bg-[#39FF14]/10 border-[#39FF14]' : 'bg-[#131313] border-[#262626] hover:bg-white/5'}`}
                 >
-                  <span className={`font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest ${threat === 'rocks' ? 'text-[#00FF41]' : 'text-white'}`}>Rock chips and road debris</span>
-                  <ArrowRight className={`w-5 h-5 transition-opacity ${threat === 'rocks' ? 'opacity-100 text-[#00FF41]' : 'opacity-0 group-hover:opacity-50 text-white'}`} />
+                  <span className={`font-display text-sm font-black uppercase italic tracking-widest ${threat === 'rocks' ? 'text-[#39FF14]' : 'text-white'}`}>Rock chips and road debris</span>
+                  <ArrowRight className={`w-5 h-5 transition-opacity ${threat === 'rocks' ? 'opacity-100 text-[#39FF14]' : 'opacity-0 group-hover:opacity-50 text-white'}`} />
                 </button>
-                <button 
+                <button
                   onClick={() => setThreat('bugs')}
-                  className={`flex justify-between items-center p-6 lg:p-8 border-2 transition-all group ${threat === 'bugs' ? 'bg-[#00FF41]/10 border-[#00FF41]' : 'bg-[#131313] border-[#262626] hover:bg-white/5'}`}
+                  className={`flex justify-between items-center p-6 lg:p-8 border-2 transition-all group ${threat === 'bugs' ? 'bg-[#39FF14]/10 border-[#39FF14]' : 'bg-[#131313] border-[#262626] hover:bg-white/5'}`}
                 >
-                  <span className={`font-mono text-sm lg:text-sm font-black uppercase italic tracking-widest ${threat === 'bugs' ? 'text-[#00FF41]' : 'text-white'}`}>UV exposure and environmental fallout</span>
-                  <ArrowRight className={`w-5 h-5 transition-opacity ${threat === 'bugs' ? 'opacity-100 text-[#00FF41]' : 'opacity-0 group-hover:opacity-50 text-white'}`} />
+                  <span className={`font-display text-sm font-black uppercase italic tracking-widest ${threat === 'bugs' ? 'text-[#39FF14]' : 'text-white'}`}>UV exposure and environmental fallout</span>
+                  <ArrowRight className={`w-5 h-5 transition-opacity ${threat === 'bugs' ? 'opacity-100 text-[#39FF14]' : 'opacity-0 group-hover:opacity-50 text-white'}`} />
                 </button>
               </div>
             </div>
@@ -386,40 +413,51 @@ export default function PPF() {
         </div>
       </section>
 
-      {/* TRUST LOGOS */}
-      <section className="bg-[#131313] px-6 py-12 lg:py-16 border-y border-white/5">
-        <p className="text-center font-mono font-bold text-[9px] uppercase tracking-[0.4em] text-[#adaaaa] mb-10">Certified Film Partners</p>
-        <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-60">
-          <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
-            <span className="text-3xl lg:text-5xl font-black italic tracking-tighter text-white">STEK</span>
-            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#00FF41]">Authorized Dealer</span>
-          </div>
-          <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
-            <span className="text-3xl lg:text-5xl font-black tracking-tight text-white">XPEL</span>
-            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#00FF41]">Ultimate Plus</span>
-          </div>
-          <div className="flex flex-col items-center hover:opacity-100 transition-opacity">
-            <span className="text-3xl lg:text-5xl font-black italic tracking-tighter text-white">3M</span>
-            <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-widest mt-1 text-[#00FF41]">Pro Series</span>
-          </div>
+      {/* QUOTE FORM */}
+      <section className="px-6 py-6 lg:py-12 bg-[#0e0e0e] border-t border-white/5">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-display text-4xl lg:text-7xl font-black uppercase tracking-tighter text-white mb-8 text-center italic">REQUEST A <span className="text-[#39FF14]">QUOTE</span></h2>
+          <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); openQuote(`Quote Request from PPF page`); }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-[10px] font-mono uppercase tracking-widest text-white/50 mb-2">Name</label>
+                <input type="text" className="w-full bg-[#131313] border border-white/10 p-4 text-white font-mono focus:border-[#39FF14] outline-none" placeholder="Your Name" required />
+              </div>
+              <div>
+                <label className="block text-[10px] font-mono uppercase tracking-widest text-white/50 mb-2">Phone</label>
+                <input type="tel" className="w-full bg-[#131313] border border-white/10 p-4 text-white font-mono focus:border-[#39FF14] outline-none" placeholder="(xxx) xxx-xxxx" required />
+              </div>
+            </div>
+            <div>
+              <label className="block text-[10px] font-mono uppercase tracking-widest text-white/50 mb-2">Vehicle (Year / Make / Model)</label>
+              <input type="text" className="w-full bg-[#131313] border border-white/10 p-4 text-white font-mono focus:border-[#39FF14] outline-none" placeholder="e.g. 2024 Porsche 911 GT3" required />
+            </div>
+            <div>
+              <label className="block text-[10px] font-mono uppercase tracking-widest text-white/50 mb-2">Message</label>
+              <textarea rows={4} className="w-full bg-[#131313] border border-white/10 p-4 text-white font-mono focus:border-[#39FF14] outline-none" placeholder="Any specific concerns?" />
+            </div>
+            <button type="submit" className="w-full bg-[#39FF14] text-[#053900] font-display font-black uppercase tracking-[0.2em] p-6 hover:bg-[#32e612] transition-all text-xl italic pt-8 pb-8 mt-4 rounded-none shadow-[0_0_20px_rgba(57,255,20,0.2)]">
+              SEND REQUEST
+            </button>
+          </form>
         </div>
       </section>
 
-      <div className="fixed bottom-0 w-full z-[60] bg-[#1a1b1a]/95 backdrop-blur-2xl border-t border-[#00FF41]/20 px-6 py-4 flex items-center justify-between shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      {/* STICKY BAR */}
+      <div className="fixed bottom-0 w-full z-[60] bg-black/95 backdrop-blur-2xl border-t border-[#39FF14]/20 px-6 py-4 flex items-center justify-between shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="flex flex-col max-w-[50%]">
-          <span className="lg:hidden text-[8px] text-[#00FF41] uppercase font-bold tracking-[0.3em] font-mono mb-1 animate-pulse">We come to you. Most installs same week.</span>
-          <span className="font-mono text-[8px] lg:text-[10px] font-bold uppercase tracking-[0.3em] text-[#adaaaa] mb-1">Selected Plan</span>
-          <span className="font-mono text-sm lg:text-xl font-black italic uppercase tracking-tighter text-white truncate">
+          <span className="lg:hidden text-[8px] text-[#39FF14] uppercase font-bold tracking-[0.3em] font-mono mb-1 animate-pulse">We come to you. Most installs same week.</span>
+          <span className="font-display text-2xl lg:text-4xl font-black italic uppercase tracking-tighter text-white truncate leading-none mt-1">
             {currentPkg.name}
           </span>
         </div>
         <button
           onClick={() => openQuote(`PPF: ${currentPkg.name} (${currentPkg.price})`)}
-          className="px-8 lg:px-12 py-4 lg:py-5 font-mono font-black uppercase italic tracking-[0.2em] text-[10px] lg:text-sm rounded-none transition-all bg-[#00FF41] text-[#053900] hover:bg-[#32e612] shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)]"
+          className="whitespace-nowrap shrink-0 px-6 lg:px-8 py-3 lg:py-4 font-display font-black uppercase italic tracking-[0.1em] text-base lg:text-2xl rounded-none transition-all bg-[#39FF14] text-[#053900] hover:bg-[#32e612] shadow-[0_0_20px_rgba(57,255,20,0.2)]"
         >
-          <span className="lg:hidden">GET FREE QUOTE →</span>
+          <span className="lg:hidden">GET QUOTE →</span>
           <span className="hidden lg:inline">
-            Book — {currentPkg.price !== 'GET QUOTE' ? '$' : ''}{currentPkg.price}
+            BOOK NOW — {currentPkg.price !== 'GET QUOTE' ? '$' : ''}{currentPkg.price}
           </span>
         </button>
       </div>

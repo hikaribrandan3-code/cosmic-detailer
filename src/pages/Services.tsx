@@ -1,6 +1,6 @@
 import { useOutletContext, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Shield, Droplets, Zap, Clock, Star, ChevronRight, Gauge, Layers } from "lucide-react";
+import { Shield, Droplets, Zap, Clock, ChevronRight } from "lucide-react";
 import SEO from "@/components/SEO";
 
 const ServicesPage = () => {
@@ -8,23 +8,39 @@ const ServicesPage = () => {
 
   return (
     <div className="bg-background">
-      <SEO 
+      <SEO
         title="Mobile Detailing Services Naples, FL | Full Interior & Exterior"
         description="Explore the best mobile detailing services in Naples, FL. From full restoration details and interior deep cleans to machine polishing and paint protection. We bring the shop to your driveway."
       />
 
-      {/* Header */}
-      <section className="pt-32 pb-16 hero-gradient grid-bg">
-        <div className="container mx-auto px-4 text-center lg:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.4em] text-primary mb-4">// OUR SERVICES</p>
-          <h1 className="text-5xl font-black italic lg:text-7xl tracking-tighter uppercase">
-            Mobile Detailing <span className="text-primary text-glow">Naples</span>
+      {/* Hero */}
+      <section className="relative px-6 overflow-hidden pt-[140px] pb-24 min-h-[60vh] flex flex-col justify-center items-center text-center border-b border-white/5">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/bg/full-detail-bg.png"
+            alt="Auto detailing services"
+            className="w-full h-full object-cover"
+            style={{ filter: "brightness(0.35)" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-[#0A0A0A]" />
+        </div>
+        <div className="relative z-10 w-full max-w-4xl mx-auto">
+          <h1 className="text-[56px] md:text-[100px] font-black leading-[0.85] tracking-tighter uppercase italic text-white"
+              style={{ textShadow: "0 10px 40px rgba(0,0,0,0.9)" }}>
+            YOUR CAR.<br />
+            <span className="text-[#39FF14]">OUR CRAFT.</span>
           </h1>
-          <p className="mt-6 text-muted-foreground max-w-2xl mx-auto font-mono text-xs uppercase tracking-widest leading-relaxed">
-            Every detail documented. Every result guaranteed.
+          <p className="mt-8 text-white/80 text-[10px] md:text-[13px] font-black uppercase tracking-[0.4em]">
+            Professional Detailing & Paint Protection
           </p>
         </div>
       </section>
+
+      {/* CATEGORY: SIGNATURE DETAILING */}
+      <div className="w-full bg-[#0E0E0E] py-12 border-b border-white/20 text-center relative z-10">
+        <h2 className="text-3xl lg:text-5xl font-black uppercase text-white tracking-widest">SIGNATURE DETAILING</h2>
+        <p className="text-white/60 text-xs font-bold uppercase tracking-[0.2em] mt-2">Interior and Exterior Restorations</p>
+      </div>
 
       {/* ─────────── SERVICE 01: FULL DETAIL ─────────── */}
       <ServiceDetail
@@ -64,6 +80,8 @@ const ServicesPage = () => {
         difference="Book this if your car hasn't seen a detail in 6+ months. It's also our most popular pre-sale service — because buyers open the hood and check the door jambs."
       />
 
+      <div className="w-full h-px bg-white/20 block" />
+
       {/* ─────────── SERVICE 02: INTERIOR ─────────── */}
       <ServiceDetail
         id="interior"
@@ -92,6 +110,12 @@ const ServicesPage = () => {
         ]}
         difference="Interior-only when the outside is already maintained. If both need work, the Full Detail saves you money."
       />
+
+      {/* CATEGORY: HIGH-END PAINT PROTECTION */}
+      <div className="w-full bg-[#0E0E0E] py-12 border-y border-white/20 text-center relative z-10">
+        <h2 className="text-3xl lg:text-5xl font-black uppercase text-white tracking-widest">HIGH-END PAINT PROTECTION</h2>
+        <p className="text-white/60 text-xs font-bold uppercase tracking-[0.2em] mt-2">Correction, Polish, and Preservation</p>
+      </div>
 
       {/* ─────────── SERVICE 03: ONE-STEP POLISH ─────────── */}
       <ServiceDetail
@@ -126,6 +150,8 @@ const ServicesPage = () => {
         ]}
         difference="Newer vehicles (under 3 years). Prep before ceramic or PPF. If your fingernail catches the scratch, you need Paint Correction instead."
       />
+
+      <div className="w-full h-px bg-white/20 block" />
 
       {/* ─────────── SERVICE 04: PAINT CORRECTION ─────────── */}
       <ServiceDetail
@@ -273,8 +299,8 @@ interface ServiceDetailProps {
 }
 
 const ServiceDetail = ({ id, badge, serviceNumber, title, tagline, price, time, ctaLabel, ctaService, openQuote, bgImage, experience, sections, difference }: ServiceDetailProps) => (
-  <section id={id} className="py-16 border-t border-border/30">
-    <div className="container mx-auto px-4 lg:px-8">
+  <section id={id} className="py-16 pt-24 bg-black relative">
+    <div className="container mx-auto px-4 lg:px-8 relative z-10">
       <div className="grid lg:grid-cols-[1fr_380px] gap-16 items-start">
 
         {/* LEFT — Content */}
@@ -283,42 +309,40 @@ const ServiceDetail = ({ id, badge, serviceNumber, title, tagline, price, time, 
           {/* Header */}
           <div className="space-y-4">
             <div className="flex items-center gap-4">
-              <span className="font-mono text-[10px] text-primary tracking-[0.4em] uppercase">// {serviceNumber}</span>
+              <span className="font-mono text-[10px] text-white/50 tracking-[0.4em] uppercase">// {serviceNumber}</span>
               {badge && (
-                <span className="px-2 py-0.5 bg-primary text-black font-mono text-[9px] font-black uppercase tracking-widest">
+                <span className="px-2 py-0.5 bg-[#39FF14] text-[#053900] font-mono text-[9px] font-black uppercase tracking-widest">
                   ★ {badge}
                 </span>
               )}
             </div>
-            <h2 className="text-4xl lg:text-6xl font-black italic uppercase tracking-tighter leading-none">{title}</h2>
-            <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest leading-relaxed border-l-2 border-primary pl-4">
+            <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter leading-none text-white">{title}</h2>
+            <p className="font-mono text-xs text-white/80 uppercase tracking-widest leading-relaxed border-l-2 border-[#39FF14] pl-4">
               {tagline}
             </p>
           </div>
 
           {/* The Experience */}
           <div className="space-y-3">
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.4em] text-primary">THE EXPERIENCE</h3>
-            <p className="text-foreground/80 leading-relaxed text-sm lg:text-base">{experience}</p>
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.4em] text-white">THE EXPERIENCE</h3>
+            <p className="text-white/80 leading-relaxed text-sm lg:text-base">{experience}</p>
           </div>
 
           {/* What's Included */}
-          <div className="space-y-8">
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.4em] text-primary">WHAT'S INCLUDED</h3>
+          <div className="space-y-12">
+            <h3 className="font-display text-sm uppercase tracking-[0.5em] text-[#39FF14] italic">WHAT'S INCLUDED</h3>
             {sections.map(section => (
-              <div key={section.category} className="space-y-3">
-                <h4 className="font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/50 border-b border-border/30 pb-2">
-                  ┌─ {section.category}
+              <div key={section.category} className="space-y-4">
+                <h4 className="font-display text-xl uppercase tracking-[0.2em] text-white italic border-b border-white/5 pb-3">
+                  {section.category}
                 </h4>
-                <ul className="space-y-3 pl-2">
-                  {section.items.map((item, i) => (
-                    <li key={item.label} className="flex gap-3 text-sm">
-                      <span className="font-mono text-primary/60 shrink-0 mt-0.5 text-xs">
-                        {i < section.items.length - 1 ? "├─" : "└─"}
-                      </span>
+                <ul className="space-y-4 pl-0">
+                  {section.items.map((item) => (
+                    <li key={item.label} className="flex gap-4 text-sm font-mono uppercase tracking-widest text-[#adaaaa] italic group">
+                      <div className="w-1.5 h-1.5 bg-[#39FF14] mt-1.5 shadow-[0_0_8px_#39FF14] shrink-0" />
                       <span>
-                        <span className="font-bold text-foreground">{item.label}:</span>{" "}
-                        <span className="text-muted-foreground leading-relaxed">{item.detail}</span>
+                        <span className="font-black text-white">{item.label}:</span>{" "}
+                        <span className="leading-relaxed">{item.detail}</span>
                       </span>
                     </li>
                   ))}
@@ -329,43 +353,43 @@ const ServiceDetail = ({ id, badge, serviceNumber, title, tagline, price, time, 
 
           {/* The Difference */}
           <div className="space-y-3">
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.4em] text-primary">THE DIFFERENCE</h3>
-            <p className="text-foreground/70 leading-relaxed text-sm border border-border/30 bg-card/20 p-4 rounded">{difference}</p>
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.4em] text-white">THE DIFFERENCE</h3>
+            <p className="text-white/70 leading-relaxed text-sm border border-white/20 bg-white/5 p-4 rounded-none">{difference}</p>
           </div>
         </div>
 
         {/* RIGHT — Sticky Booking Card */}
-        <div className="lg:sticky lg:top-28 space-y-6">
-          <div className="border border-border/50 bg-card/40 backdrop-blur-sm overflow-hidden">
+        <div className="lg:sticky lg:top-40 space-y-8">
+          <div className="border border-white/10 bg-[#0A0A0A]/80 backdrop-blur-md overflow-hidden relative group">
+            <div className="absolute top-0 left-0 w-full h-1 bg-[#39FF14]" />
             {bgImage && (
               <div
-                className="h-48 bg-cover bg-center relative"
+                className="h-64 bg-cover bg-center relative transition-all duration-700 opacity-60 group-hover:opacity-100"
                 style={{ backgroundImage: `url(${bgImage})` }}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
               </div>
             )}
-            <div className="p-6 space-y-6">
-              <div className="space-y-1">
-                <p className="font-mono text-[9px] uppercase tracking-[0.4em] text-muted-foreground">Pricing</p>
-                <p className="text-2xl font-black text-primary italic tracking-tight">{price}</p>
+            <div className="p-8 space-y-10">
+              <div className="space-y-2">
+                <p className="font-display text-xs uppercase tracking-[0.4em] text-white/50 italic">The Investment</p>
+                <p className="text-5xl font-display font-black text-white italic tracking-tighter leading-none">{price}</p>
               </div>
-              <div className="space-y-1">
-                <p className="font-mono text-[9px] uppercase tracking-[0.4em] text-muted-foreground">Estimated Time</p>
-                <div className="flex items-center gap-2 text-foreground/80">
-                  <Clock size={14} className="text-primary" />
-                  <span className="text-sm font-mono">{time}</span>
+              <div className="space-y-2">
+                <p className="font-display text-xs uppercase tracking-[0.4em] text-white/50 italic">THE CHAIR TIME</p>
+                <div className="flex items-center gap-3 text-white">
+                  <Clock size={16} className="text-white" />
+                  <span className="text-xl font-display font-black uppercase tracking-widest italic">{time}</span>
                 </div>
               </div>
-              <div className="h-px bg-border/30" />
               <Button
                 onClick={() => openQuote(ctaService)}
-                className="w-full bg-primary text-primary-foreground font-display uppercase tracking-widest text-xs font-black hover:opacity-90 box-glow py-6 text-center"
+                className="w-full lg:w-auto lg:self-start bg-[#39FF14] text-[#053900] font-display uppercase tracking-[0.2em] text-sm lg:text-base font-black hover:bg-[#32e612] py-5 lg:py-4 px-8 lg:px-10 rounded-none italic shadow-none whitespace-normal h-auto break-words leading-tight"
               >
                 {ctaLabel} →
               </Button>
-              <p className="font-mono text-[9px] text-muted-foreground text-center uppercase tracking-widest">
-                Mobile service — we come to you
+              <p className="font-mono text-[9px] text-[#adaaaa] text-center uppercase tracking-[0.4em] font-bold italic leading-relaxed">
+                MOBILE SERVICE — WE COME TO YOU
               </p>
             </div>
           </div>
